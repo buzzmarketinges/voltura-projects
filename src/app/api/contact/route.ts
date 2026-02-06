@@ -1,27 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-// Configuración del transportador SMTP
-const transporter = nodemailer.createTransport({
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true, // true para puerto 465
-    auth: {
-        user: "info@volturaprojects.es",
-        pass: process.env.SMTP_PASSWORD || "",
-    },
-});
-
 export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { firstName, lastName, email, phone, message } = body;
+
+    // Validación de campos requeridos
+    if (!firstName || !lastName || !email || !message) {
+      return NextResponse.json(
+        { error: "Faltan campos requeridos" },
+        { status: 400 }
+      );
+    }
+
+    // Validar que la contraseña SMTP esté configurada
+    if (!process.env.SMTP_PASSWORD) {
+      console.error("SMTP_PASSWORD no está configurada en las variables de entorno");
+      return NextResponse.json(
+        { error: "Error de configuración del servidor" },
+        { status: 500 }
+      );
+    }
+
+    // Configuración del transportador SMTP
+    const transporter = nodemailer.createTransport({
+      host: "smtp.hostinger.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "info@volturaprojects.es",
+        pass: process.env.SMTP_PASSWORD,
+      },
+    });
+
+    // Verificar la conexión SMTP
     try {
-        const body = await request.json();
-        const { firstName, lastName, email, phone, message } = body;
+      await transporter.verify();
+    } catch (verifyError) {
+      console.error("Error verificando conexión SMTP:", verifyError);
+      return NextResponse.json(
+        { error: "Error de conexión con el servidor de correo" },
+        { status: 500 }
+      );
+    }
 
-        // Obtener la URL de origen
-        const referer = request.headers.get("referer") || "URL no disponible";
+    // Obtener la URL de origen
+    const referer = request.headers.get("referer") || "URL no disponible";
 
-        // Email de confirmación al usuario
-        const userEmailHtml = `
+    // Email de confirmación al usuario
+    const userEmailHtml = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,11 +115,11 @@ export async function POST(request: NextRequest) {
 </body>
 </html>
     `
-            .replace(/%%nombre%%/g, firstName)
-            .replace(/%%mensaje%%/g, message.replace(/\n/g, "<br>"));
+      .replace(/%%nombre%%/g, firstName)
+      .replace(/%%mensaje%%/g, message.replace(/\n/g, "<br>"));
 
-        // Email de notificación a Voltura Projects
-        const adminEmailHtml = `
+    // Email de notificación a Voltura Projects
+    const adminEmailHtml = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,9 +194,9 @@ export async function POST(request: NextRequest) {
             <td style="padding: 20px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center;">
               <p style="color: #64748B; font-size: 12px; margin: 0;">
                 Recibido el ${new Date().toLocaleString("es-ES", {
-            dateStyle: "full",
-            timeStyle: "short"
-        })}
+      dateStyle: "full",
+      timeStyle: "short"
+    })}
               </p>
             </td>
           </tr>
@@ -180,32 +208,42 @@ export async function POST(request: NextRequest) {
 </html>
     `;
 
-        // Enviar email de confirmación al usuario
-        await transporter.sendMail({
-            from: '"Voltura Projects" <info@volturaprojects.es>',
-            to: email,
-            subject: "Hemos recibido tu solicitud - Voltura Projects",
-            html: userEmailHtml,
-        });
-
-        // Enviar notificación al equipo
-        await transporter.sendMail({
-            from: '"Sistema Voltura" <info@volturaprojects.es>',
-            to: "info@volturaprojects.es",
-            subject: `Nueva solicitud de contacto - ${firstName} ${lastName}`,
-            html: adminEmailHtml,
-            replyTo: email,
-        });
-
-        return NextResponse.json(
-            { message: "Emails enviados correctamente" },
-            { status: 200 }
-        );
-    } catch (error) {
-        console.error("Error enviando emails:", error);
-        return NextResponse.json(
-            { error: "Error al enviar los emails" },
-            { status: 500 }
-        );
+    // Enviar email de confirmación al usuario
+    try {
+      await transporter.sendMail({
+        from: '"Voltura Projects" <info@volturaprojects.es>',
+        to: email,
+        subject: "Hemos recibido tu solicitud - Voltura Projects",
+        html: userEmailHtml,
+      });
+    } catch (emailError) {
+      console.error("Error enviando email al usuario:", emailError);
+      throw emailError;
     }
+
+    // Enviar notificación al equipo
+    try {
+      await transporter.sendMail({
+        from: '"Sistema Voltura" <info@volturaprojects.es>',
+        to: "info@volturaprojects.es",
+        subject: `Nueva solicitud de contacto - ${firstName} ${lastName}`,
+        html: adminEmailHtml,
+        replyTo: email,
+      });
+    } catch (emailError) {
+      console.error("Error enviando email al admin:", emailError);
+      // No lanzamos error aquí porque el email al usuario ya se envió
+    }
+
+    return NextResponse.json(
+      { message: "Emails enviados correctamente" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error en el endpoint de contacto:", error);
+    return NextResponse.json(
+      { error: "Error al enviar los emails. Por favor, inténtalo de nuevo." },
+      { status: 500 }
+    );
+  }
 }

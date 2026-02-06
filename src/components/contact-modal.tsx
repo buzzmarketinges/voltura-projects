@@ -30,12 +30,27 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
-        setIsSubmitting(false);
-        onClose();
-        router.push("/gracias");
+            if (!response.ok) {
+                throw new Error("Error al enviar el formulario");
+            }
+
+            setIsSubmitting(false);
+            onClose();
+            router.push("/gracias");
+        } catch (error) {
+            console.error("Error:", error);
+            setIsSubmitting(false);
+            alert("Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.");
+        }
     };
 
     return (

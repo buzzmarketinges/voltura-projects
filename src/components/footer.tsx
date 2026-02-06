@@ -22,8 +22,13 @@ export function Footer() {
                     <ul className="space-y-2 opacity-80">
                         <li>Voltura Projects S.L.</li>
                         <li>
-                            <Link href="/terminos-condiciones" className="hover:text-voltura-gold transition-colors text-sm">
-                                Términos y Condiciones
+                            <Link href="/politica-privacidad" className="hover:text-voltura-gold transition-colors text-sm">
+                                Política de Privacidad
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/politica-cookies" className="hover:text-voltura-gold transition-colors text-sm">
+                                Política de Cookies
                             </Link>
                         </li>
                     </ul>
@@ -40,6 +45,13 @@ export function Footer() {
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            {/* Sub-footer Agency Credit */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/5 text-center">
+                <p className="text-xs text-white/30 tracking-wide">
+                    Página web desarrollada por la <a href="https://buzzmarketing.es/agencia-de-marketing-digital-en-barcelona/" target="_blank" rel="noopener noreferrer" className="text-inherit hover:text-white/50 transition-colors">agencia de marketing digital de Barcelona</a> BuzzMarketing.
+                </p>
             </div>
         </footer>
     );

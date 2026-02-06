@@ -60,6 +60,19 @@ export default function InstalacionesClimatizacionPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Instalación de Aire Acondicionado en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Instalación de aire acondicionado por conductos, splits y sistemas de zonificación Airzone."
+                })}
+            </Script>
 
             <Navbar />
 

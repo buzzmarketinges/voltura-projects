@@ -60,6 +60,19 @@ export default function InstalacionesAerotermiaPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Instalación de Aerotermia en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Instalación de sistemas de aerotermia para calefacción, refrigeración y ACS con suelo radiante."
+                })}
+            </Script>
 
             <Navbar />
 

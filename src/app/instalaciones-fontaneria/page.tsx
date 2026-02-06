@@ -60,6 +60,19 @@ export default function InstalacionesFontaneriaPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Instalaciones de Fontanería en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Cambio de tuberías, instalación de termos, descalcificadores y reparaciones de fontanería."
+                })}
+            </Script>
 
             <Navbar />
 

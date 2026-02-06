@@ -60,6 +60,19 @@ export default function EnergiaFotovoltaicaPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Instalación de Placas Solares en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Instalación de paneles solares para autoconsumo en viviendas y empresas. Gestión integral de permisos y subvenciones."
+                })}
+            </Script>
 
             <Navbar />
 

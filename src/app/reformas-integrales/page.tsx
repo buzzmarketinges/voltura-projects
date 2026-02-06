@@ -76,6 +76,19 @@ export default function ReformasIntegralesPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Reformas Integrales en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Servicio de reformas integrales llave en mano para viviendas y locales en Barcelona. Incluye diseño, gestión de licencias y ejecución de obra."
+                })}
+            </Script>
 
             <Navbar />
 

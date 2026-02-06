@@ -64,6 +64,19 @@ export default function ReformasBanosPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Reformas de Baños en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Reforma integral de baños con diseños modernos, microcemento, grifería empotrada y sanitarios suspendidos."
+                })}
+            </Script>
 
             <Navbar />
 

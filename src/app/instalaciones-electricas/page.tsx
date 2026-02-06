@@ -60,6 +60,19 @@ export default function InstalacionesElectricasPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Instalaciones Eléctricas en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Instalaciones eléctricas completas, cambios de cuadro, iluminación LED y boletines eléctricos."
+                })}
+            </Script>
 
             <Navbar />
 

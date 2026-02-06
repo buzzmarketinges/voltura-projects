@@ -64,6 +64,19 @@ export default function ReformasCocinasPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Reformas de Cocinas en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Diseño y reforma de cocinas modernas, abiertas al salón, con isla y acabados premium."
+                })}
+            </Script>
 
             <Navbar />
 

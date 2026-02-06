@@ -60,6 +60,19 @@ export default function TrabajosVerticalesPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <Script id="service-schema" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    "name": "Trabajos Verticales en Barcelona",
+                    "provider": {
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects"
+                    },
+                    "areaServed": "Barcelona",
+                    "description": "Rehabilitación de fachadas, pintura de patios de luces y reparaciones en altura sin andamios."
+                })}
+            </Script>
 
             <Navbar />
 

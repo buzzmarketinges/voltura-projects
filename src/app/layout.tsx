@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ContactProvider } from "@/context/contact-modal-context";
+import { CookieConsent } from "@/components/cookie-consent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,19 +35,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-BJK839HK51"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-BJK839HK51');
-          `}
-        </Script>
+        <CookieConsent />
         <ContactProvider>
           {children}
         </ContactProvider>

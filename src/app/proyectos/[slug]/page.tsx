@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { projects } from "@/data/projects";
 import Image from "next/image";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { MapPin, Calendar, Tag, ArrowLeft, ArrowRight, Lightbulb, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
@@ -46,6 +47,31 @@ export default async function ProjectDetailPage({ params }: Props) {
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
             <Navbar />
+
+            <Script id="json-ld-project" type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Project",
+                    "name": project.title,
+                    "description": project.summary,
+                    "url": `https://volturaprojects.es/proyectos/${project.slug}`,
+                    "location": {
+                        "@type": "Place",
+                        "name": project.location,
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Barcelona",
+                            "addressRegion": "Barcelona",
+                            "addressCountry": "ES"
+                        }
+                    },
+                    "organizer": {
+                        "@type": "Organization",
+                        "name": "Voltura Projects",
+                        "url": "https://volturaprojects.es"
+                    }
+                })}
+            </Script>
 
             {/* Hero Detail */}
             <section className="relative h-[70vh] w-full overflow-hidden">

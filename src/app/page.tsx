@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { FileText, Building2, Zap, Home, Palette, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { ContactButton } from "@/components/contact-button";
 import { ProjectCarousel } from "@/components/project-carousel";
 
@@ -43,6 +44,28 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
       <Navbar />
+
+      <Script id="json-ld-local-business" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HomeAndConstructionBusiness",
+          "name": "Voltura Projects",
+          "image": "https://volturaprojects.es/oro-imagotipo.png",
+          "description": "Empresa de reformas integrales y soluciones técnicas de alta gama en Barcelona. Especialistas en rehabilitación, climatización y domótica.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Barcelona",
+            "addressRegion": "Barcelona",
+            "postalCode": "08001",
+            "addressCountry": "ES"
+          },
+          "url": "https://volturaprojects.es",
+          "telephone": "+34640801491",
+          "email": "info@volturaprojects.es",
+          "priceRange": "$$$",
+          "areaServed": "Barcelona"
+        })}
+      </Script>
 
       {/* Hero Section */}
       <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">

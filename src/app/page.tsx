@@ -149,7 +149,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="md:w-1/2 h-80 relative rounded-sm overflow-hidden border border-white/10 group">
+          <div className="w-full md:w-1/2 h-80 relative rounded-sm overflow-hidden border border-white/10 group">
             <Image
               src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2574&auto=format&fit=crop"
               alt="Filosofía Voltura Projects"

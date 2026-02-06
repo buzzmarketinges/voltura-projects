@@ -52,18 +52,86 @@ export default function HomePage() {
           "name": "Voltura Projects",
           "image": "https://volturaprojects.es/oro-imagotipo.png",
           "description": "Empresa de reformas integrales y soluciones técnicas de alta gama en Barcelona. Especialistas en rehabilitación, climatización y domótica.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Barcelona",
-            "addressRegion": "Barcelona",
-            "postalCode": "08001",
-            "addressCountry": "ES"
-          },
-          "url": "https://volturaprojects.es",
+          "url": "https://volturaprojects.es/",
           "telephone": "+34640801491",
           "email": "info@volturaprojects.es",
           "priceRange": "$$$",
-          "areaServed": "Barcelona"
+          "hasMap": "https://maps.app.goo.gl/NMuSVUC3XuwYTZpT7",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Carrer de Bernat Metge, 14",
+            "addressLocality": "Barcelona",
+            "addressRegion": "Barcelona",
+            "postalCode": "08019",
+            "addressCountry": "ES"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "20:00"
+            }
+          ],
+          "areaServed": [
+            { "@type": "City", "name": "Barcelona" },
+            { "@type": "City", "name": "L'Hospitalet de Llobregat" },
+            { "@type": "City", "name": "Badalona" },
+            { "@type": "City", "name": "Santa Coloma de Gramenet" },
+            { "@type": "City", "name": "Sant Adrià de Besòs" },
+            { "@type": "City", "name": "Sabadell" },
+            { "@type": "City", "name": "Terrassa" },
+            { "@type": "City", "name": "Sant Cugat del Vallès" },
+            { "@type": "AdministrativeArea", "name": "Vallès Occidental" },
+            { "@type": "AdministrativeArea", "name": "Vallès Oriental" }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios de Reformas e Instalaciones",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Reformas Integrales"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Reformas de Cocinas Premium y Baños de Lujo"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Aerotermia y Energía Fotovoltaica"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Climatización y Domótica"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Trabajos Verticales y Rehabilitación de Fachadas"
+                }
+              }
+            ]
+          }
         })}
       </Script>
 

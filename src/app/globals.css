@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F8F9FA;
+  /* Default light background, though main sections might be dark */
+  --foreground: #1B263B;
+
+  /* Brand Colors */
+  --voltura-blue: #0F172A;
+  /* --azul-oscuro */
+  --voltura-gold: #C5A059;
+  /* --bronce */
+  --voltura-stone: #F1F5F9;
+  /* --gris-plata */
+  --voltura-slate: #1E293B;
+  /* --pizarra */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-voltura-blue: var(--voltura-blue);
+  --color-voltura-gold: var(--voltura-gold);
+  --color-voltura-stone: var(--voltura-stone);
+  --color-voltura-slate: var(--voltura-slate);
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+
+  --animate-scroll: scroll 40s linear infinite;
+
+  @keyframes scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}

@@ -21,6 +21,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
         termsAccepted: false,
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     if (!isOpen) return null;
 
@@ -29,6 +30,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
         if (!formData.termsAccepted) return;
 
         setIsSubmitting(true);
+        setErrorMessage("");
 
         try {
             const response = await fetch("/api/contact", {
@@ -39,8 +41,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 body: JSON.stringify(formData),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error("Error al enviar el formulario");
+                throw new Error(data.error || "Error al enviar el formulario");
             }
 
             setIsSubmitting(false);
@@ -49,7 +53,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
         } catch (error) {
             console.error("Error:", error);
             setIsSubmitting(false);
-            alert("Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.");
+            setErrorMessage(error instanceof Error ? error.message : "Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.");
         }
     };
 
@@ -141,6 +145,12 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                 He leído y acepto los <Link href="/terminos-condiciones" className="text-voltura-gold hover:underline" target="_blank">términos y condiciones</Link> y la política de privacidad.
                             </label>
                         </div>
+
+                        {errorMessage && (
+                            <div className="bg-red-500/10 border border-red-500/20 rounded-sm p-3 mt-4">
+                                <p className="text-red-400 text-sm">{errorMessage}</p>
+                            </div>
+                        )}
 
                         <button
                             type="submit"

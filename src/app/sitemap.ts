@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.volturaprojects.com'; // Reemplazar con el dominio real cuando esté disponible
+    const baseUrl = 'https://www.volturaprojects.es';
 
     return [
         {

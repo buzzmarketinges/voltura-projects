@@ -1,0 +1,22 @@
+{
+    "collectionName": "components_servicio_caracteristicas",
+    "info": {
+        "displayName": "Característica",
+        "description": "Característica de un servicio"
+    },
+    "options": {},
+    "attributes": {
+        "titulo": {
+            "type": "string",
+            "required": true
+        },
+        "descripcion": {
+            "type": "text",
+            "required": true
+        },
+        "icono": {
+            "type": "string",
+            "required": false
+        }
+    }
+}

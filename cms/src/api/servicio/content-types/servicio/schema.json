@@ -1,0 +1,93 @@
+{
+    "kind": "collectionType",
+    "collectionName": "servicios",
+    "info": {
+        "singularName": "servicio",
+        "pluralName": "servicios",
+        "displayName": "Servicio",
+        "description": "Servicios ofrecidos por Voltura Projects"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "titulo": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "titulo",
+            "required": true
+        },
+        "descripcionCorta": {
+            "type": "text",
+            "required": true,
+            "maxLength": 200
+        },
+        "descripcionLarga": {
+            "type": "richtext",
+            "required": true
+        },
+        "imagenPrincipal": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "imagenHero": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "icono": {
+            "type": "string",
+            "required": false
+        },
+        "orden": {
+            "type": "integer",
+            "default": 0
+        },
+        "destacado": {
+            "type": "boolean",
+            "default": false
+        },
+        "metaTitle": {
+            "type": "string",
+            "required": true
+        },
+        "metaDescription": {
+            "type": "text",
+            "required": true,
+            "maxLength": 160
+        },
+        "caracteristicas": {
+            "type": "component",
+            "repeatable": true,
+            "component": "servicio.caracteristica"
+        },
+        "faqs": {
+            "type": "component",
+            "repeatable": true,
+            "component": "servicio.faq"
+        },
+        "beneficios": {
+            "type": "component",
+            "repeatable": true,
+            "component": "servicio.beneficio"
+        },
+        "proyectos": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::proyecto.proyecto",
+            "mappedBy": "servicios"
+        }
+    }
+}

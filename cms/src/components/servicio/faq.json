@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_servicio_faqs",
+    "info": {
+        "displayName": "FAQ",
+        "description": "Preguntas frecuentes sobre el servicio"
+    },
+    "options": {},
+    "attributes": {
+        "pregunta": {
+            "type": "string",
+            "required": true
+        },
+        "respuesta": {
+            "type": "text",
+            "required": true
+        }
+    }
+}

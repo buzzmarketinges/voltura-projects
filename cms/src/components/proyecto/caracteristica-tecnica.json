@@ -1,0 +1,22 @@
+{
+    "collectionName": "components_proyecto_caracteristicas_tecnicas",
+    "info": {
+        "displayName": "Característica Técnica",
+        "description": "Característica técnica del proyecto"
+    },
+    "options": {},
+    "attributes": {
+        "nombre": {
+            "type": "string",
+            "required": true
+        },
+        "valor": {
+            "type": "string",
+            "required": true
+        },
+        "icono": {
+            "type": "string",
+            "required": false
+        }
+    }
+}

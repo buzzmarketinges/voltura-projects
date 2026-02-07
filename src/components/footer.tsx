@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
     return (
-        <footer className="bg-voltura-blue text-voltura-stone border-t border-white/10 py-12">
+        <footer className="bg-voltura-blue text-voltura-stone border-t border-white/10 pt-12 pb-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
 
                 {/* Company Info */}
@@ -40,9 +40,6 @@ export function Footer() {
                     <ul className="space-y-2 opacity-80">
                         <li><a href="mailto:info@volturaprojects.es" className="hover:text-voltura-gold transition-colors">info@volturaprojects.es</a></li>
                         <li><a href="tel:640801491" className="hover:text-voltura-gold transition-colors">640 801 491</a></li>
-                        <li className="pt-4 text-xs text-white/40">
-                            © {new Date().getFullYear()} VOLTURA PROJECTS. Todos los derechos reservados.
-                        </li>
                     </ul>
                 </div>
             </div>

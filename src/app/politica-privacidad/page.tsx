@@ -57,6 +57,12 @@ export default function PrivacyPolicyPage() {
                     <p>
                         Cualquier cambio que realicemos en nuestra política de privacidad en el futuro se publicará en esta página.
                     </p>
+
+                    <div className="mt-12 pt-8 border-t border-white/10 text-center">
+                        <p className="text-xs text-white/40">
+                            © {new Date().getFullYear()} VOLTURA PROJECTS. Todos los derechos reservados.
+                        </p>
+                    </div>
                 </div>
             </div>
             <Footer />

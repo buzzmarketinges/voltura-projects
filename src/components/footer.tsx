@@ -48,7 +48,7 @@ export function Footer() {
             </div>
 
             {/* Sub-footer Agency Credit */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-white/5 text-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-[5px] border-t border-white/5 text-center">
                 <p className="text-xs text-white/30 tracking-wide">
                     Página web desarrollada por la <a href="https://buzzmarketing.es/agencia-de-marketing-digital-en-barcelona/" target="_blank" rel="noopener noreferrer" className="text-inherit hover:text-white/50 transition-colors">agencia de marketing digital de Barcelona</a> BuzzMarketing.
                 </p>

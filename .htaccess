@@ -1,0 +1,121 @@
+# ============================================
+# CONFIGURACIÓN HTACCESS - VOLTURA PROJECTS
+# ============================================
+
+# --------------------------------------------
+# 1. REDIRECCIÓN FORZADA A HTTPS
+# --------------------------------------------
+# Activa el motor de reescritura de URLs de Apache
+RewriteEngine On
+
+# Condición: Si la conexión NO es HTTPS (es HTTP)
+RewriteCond %{HTTPS} off
+
+# Acción: Redirige permanentemente (301) a la versión HTTPS
+# - ^(.*)$ captura toda la URL después del dominio
+# - %{HTTP_HOST} es el nombre del dominio (ej: volturaprojects.es)
+# - %{REQUEST_URI} es la ruta completa (ej: /proyectos/reforma-integral)
+# - [L,R=301] significa: Last (última regla) y Redirect 301 (permanente)
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+# --------------------------------------------
+# 2. ELIMINAR WWW DEL DOMINIO
+# --------------------------------------------
+# Activa el motor de reescritura (por si se desactiva entre secciones)
+RewriteEngine On
+
+# Condición: Si el dominio empieza con "www."
+# - ^www\.(.*)$ captura todo después de "www."
+# - [NC] significa "No Case" (no distingue mayúsculas/minúsculas)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+
+# Acción: Redirige a la versión sin www
+# - %1 es el contenido capturado en la condición (el dominio sin www)
+# - $1 es la ruta capturada en la regla
+# - Ejemplo: www.volturaprojects.es/proyectos → volturaprojects.es/proyectos
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+
+# --------------------------------------------
+# 3. CONTROL DE CACHÉ DEL NAVEGADOR
+# --------------------------------------------
+# Solo se ejecuta si el módulo mod_expires está disponible en Apache
+<IfModule mod_expires.c>
+  # Activa el sistema de expiración de caché
+  ExpiresActive On
+  
+  # Regla por defecto: todos los archivos se cachean 1 mes
+  # "access plus 1 month" significa que el navegador puede guardar
+  # el archivo durante 1 mes desde que lo descarga
+  ExpiresDefault "access plus 1 month"
+  
+  # Imágenes JPG: se cachean durante 1 año
+  # Las imágenes raramente cambian, así que se pueden cachear más tiempo
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  
+  # Imágenes PNG: se cachean durante 1 año
+  ExpiresByType image/png "access plus 1 year"
+  
+  # Imágenes WebP: formato moderno, también 1 año
+  ExpiresByType image/webp "access plus 1 year"
+  
+  # Archivos CSS: se cachean 1 mes
+  # Los estilos pueden cambiar con actualizaciones del sitio
+  ExpiresByType text/css "access plus 1 month"
+  
+  # Archivos JavaScript: se cachean 1 mes
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  
+  # Fuentes web: se cachean 1 año
+  # Las fuentes no suelen cambiar
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  
+  # Archivos HTML: se cachean solo 1 hora
+  # El contenido HTML cambia más frecuentemente
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+
+# --------------------------------------------
+# 4. COMPRESIÓN GZIP (OPCIONAL - RECOMENDADO)
+# --------------------------------------------
+# Comprime los archivos antes de enviarlos al navegador
+# Reduce el tamaño de descarga hasta un 70%
+<IfModule mod_deflate.c>
+  # Comprimir HTML, CSS, JavaScript, Text, XML y fuentes
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+
+# --------------------------------------------
+# 5. SEGURIDAD ADICIONAL
+# --------------------------------------------
+# Prevenir que se listen los archivos del directorio
+Options -Indexes
+
+# Proteger archivos sensibles
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Prevenir acceso a archivos de configuración
+<FilesMatch "\.(env|json|config\.js|config\.ts)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>

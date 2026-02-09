@@ -2,7 +2,8 @@ import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://volturaprojects.es';
+    // Use environment variable or default to production URL without www
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://volturaprojects.es';
 
     // Static pages
     const staticPages = [

@@ -740,6 +740,55 @@ En **Voltura Projects** diseñamos cocinas abiertas que combinan **estética y f
 
 [Solicita un diseño 3D gratuito](#contacto)
         `
+    },
+    {
+        slug: "energia-solar-fotovoltaica-autoconsumo",
+        title: "Energía Solar Fotovoltaica: Guía de Autoconsumo 2026",
+        excerpt: "Ahorra hasta un 70% en tu factura de luz instalando placas solares. Descubre rentabilidad, subvenciones y tipos de instalación.",
+        image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&auto=format&fit=crop",
+        category: "Energía Fotovoltaica",
+        author: "Voltura Projects",
+        date: "2026-02-10",
+        readTime: "6 min",
+        tags: ["Energía", "Sostenibilidad", "Fotovoltaica"],
+        content: `
+# Energía Solar Fotovoltaica: Tu Guía de Autoconsumo
+
+La energía solar fotovoltaica se ha convertido en la inversión más inteligente para hogares y empresas.
+
+## ¿Por qué instalar placas solares?
+
+### Ahorro Inmediato
+Desde el primer día, generas tu propia electricidad, reduciendo drásticamente la compra de energía a la red.
+
+### Independencia Energética
+Protégete de las subidas constantes del precio de la luz.
+
+### Sostenibilidad
+Reduce tu huella de carbono contribuyendo a un futuro más verde.
+
+## Tipos de Instalación
+
+1. **Autoconsumo sin excedentes**: La energía que no usas se pierde (no recomendado).
+2. **Autoconsumo con excedentes**: Viertes la energía sobrante a la red y te compensan por ella.
+3. **Autoconsumo con baterías**: Almacenas el exceso para usarlo por la noche.
+
+## Subvenciones y Bonificaciones 2026
+
+- **Deducción IRPF**: Hasta el 40-60% del coste de la instalación.
+- **Bonificación IBI**: Hasta el 50% durante varios años (depende del ayuntamiento).
+- **Ayudas Next Generation**: Fondos europeos (sujetos a disponibilidad).
+
+## ¿Es rentable?
+
+Sí. Con los precios actuales de la energía y las bonificaciones, el periodo de amortización se sitúa entre **4 y 7 años**. La vida útil de los paneles es de más de 25 años.
+
+## Conclusión
+
+El autoconsumo fotovoltaico es una tecnología madura, rentable y necesaria. En **Voltura Projects** realizamos estudios personalizados para maximizar tu ahorro.
+
+[Solicita tu estudio solar gratuito](#contacto)
+        `
     }
 ];
 

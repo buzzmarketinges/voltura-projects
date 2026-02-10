@@ -18,7 +18,7 @@ export function Footer() {
 
                 {/* Datos de Interés */}
                 <div className="md:border-l border-white/10 md:pl-8">
-                    <h5 className="text-white font-semibold mb-4 uppercase tracking-wider text-xs">Datos de interés</h5>
+                    <div className="text-white font-bold mb-4 uppercase tracking-wider text-xs">DATOS DE INTERÉS</div>
                     <ul className="space-y-2 opacity-80">
                         <li>Voltura Projects S.L.</li>
                         <li>
@@ -36,7 +36,7 @@ export function Footer() {
 
                 {/* Contact */}
                 <div className="md:border-l border-white/10 md:pl-8">
-                    <h5 className="text-white font-semibold mb-4 uppercase tracking-wider text-xs">Contacto</h5>
+                    <div className="text-white font-bold mb-4 uppercase tracking-wider text-xs">CONTACTO</div>
                     <ul className="space-y-2 opacity-80">
                         <li><a href="mailto:info@volturaprojects.es" className="hover:text-voltura-gold transition-colors">info@volturaprojects.es</a></li>
                         <li><a href="tel:640801491" className="hover:text-voltura-gold transition-colors">640 801 491</a></li>

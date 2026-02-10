@@ -72,7 +72,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <Navbar />
 
             {/* Immersive Hero Header (85vh) */}
-            <header className="relative min-h-[85vh] flex flex-col overflow-hidden">
+            <header className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={article.image}
@@ -86,11 +86,11 @@ export default async function ArticlePage({ params }: PageProps) {
                     <div className="absolute inset-0 bg-gradient-to-b from-voltura-blue/60 via-voltura-blue/40 to-voltura-blue pointer-events-none"></div>
                 </div>
 
-                {/* Main Content Container - Flex Col for spacing */}
-                <div className="relative z-10 w-full flex-grow flex flex-col justify-between max-w-5xl mx-auto px-6 pt-32 pb-20">
+                {/* Main Content Container */}
+                <div className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-24 pb-10 flex flex-col items-start">
 
-                    {/* Top: Back Button */}
-                    <div className="w-full hidden md:block">
+                    {/* Back Button (Just above title with correct margin) */}
+                    <div className="mb-8">
                         <Link
                             href="/noticias"
                             className="inline-flex items-center gap-2 text-white/90 hover:text-voltura-gold transition-colors text-xs font-bold uppercase tracking-widest bg-black/40 backdrop-blur-md px-5 py-3 rounded-full border border-white/10 hover:border-voltura-gold/50"
@@ -100,10 +100,10 @@ export default async function ArticlePage({ params }: PageProps) {
                         </Link>
                     </div>
 
-                    {/* Bottom: Article Info */}
-                    <div className="w-full mt-24">
+                    {/* Article Info */}
+                    <div className="w-full">
                         {/* Meta Tags */}
-                        <div className="flex flex-wrap items-center gap-6 mb-8">
+                        <div className="flex flex-wrap items-center gap-6 mb-6">
                             <span className="bg-voltura-gold text-voltura-blue px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] rounded-sm shadow-lg shadow-black/20">
                                 {article.category}
                             </span>
@@ -120,17 +120,17 @@ export default async function ArticlePage({ params }: PageProps) {
                         </div>
 
                         {/* Title */}
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-8 leading-tight max-w-4xl drop-shadow-xl">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight max-w-4xl drop-shadow-xl">
                             {article.title}
                         </h1>
 
                         {/* Intro / Excerpt in Hero */}
-                        <p className="text-xl md:text-2xl text-slate-100 max-w-3xl font-light leading-relaxed mb-10 drop-shadow-lg text-pretty">
+                        <p className="text-xl md:text-2xl text-slate-100 max-w-3xl font-light leading-relaxed mb-8 drop-shadow-lg text-pretty">
                             {article.excerpt}
                         </p>
 
                         {/* Author & Share Bar */}
-                        <div className="flex flex-wrap items-center justify-between border-t border-white/10 pt-8 gap-6">
+                        <div className="flex flex-wrap items-center justify-between border-t border-white/10 pt-6 gap-6">
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-full bg-voltura-gold/10 flex items-center justify-center text-voltura-gold font-serif font-bold overflow-hidden border border-voltura-gold/30">
                                     VG

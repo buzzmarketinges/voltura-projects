@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { ShareButton } from "@/components/share-button";
+import { ArticleCTAButton } from "@/components/article-cta-button";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -242,12 +243,7 @@ export default async function ArticlePage({ params }: PageProps) {
                                     Nuestro equipo de expertos puede ayudarte a hacer realidad tu proyecto
                                 </p>
                             </div>
-                            <Link
-                                href="/#contacto"
-                                className="bg-voltura-gold text-voltura-blue font-bold px-8 py-3 rounded-sm hover:brightness-110 transition-all uppercase tracking-wide whitespace-nowrap"
-                            >
-                                Solicitar Presupuesto
-                            </Link>
+                            <ArticleCTAButton />
                         </div>
                     </div>
 
@@ -332,12 +328,7 @@ export default async function ArticlePage({ params }: PageProps) {
                     <p className="text-xl text-gray-300">
                         Contacta con nosotros y descubre cómo podemos transformar tu hogar
                     </p>
-                    <Link
-                        href="/#contacto"
-                        className="inline-block bg-voltura-gold text-voltura-blue font-bold px-8 py-3 rounded-sm hover:brightness-110 transition-all uppercase tracking-wide"
-                    >
-                        Solicitar Presupuesto
-                    </Link>
+                    <ArticleCTAButton />
                 </div>
             </section>
 

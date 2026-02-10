@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, Tag, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
+import { ArticleCTAButton } from "@/components/article-cta-button";
 
 export const metadata: Metadata = {
     title: "Noticias y Blog | Voltura Projects - Reformas y Construcción",
@@ -196,12 +197,7 @@ export default function NoticiasPage() {
                     <p className="text-xl text-gray-300">
                         Nuestro equipo de expertos está listo para ayudarte a hacer realidad tu reforma
                     </p>
-                    <Link
-                        href="/#contacto"
-                        className="inline-block bg-voltura-gold text-voltura-blue font-bold px-8 py-3 rounded-sm hover:brightness-110 transition-all uppercase tracking-wide"
-                    >
-                        Solicitar Presupuesto
-                    </Link>
+                    <ArticleCTAButton />
                 </div>
             </section>
 

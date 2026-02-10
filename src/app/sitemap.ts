@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
+import { articles } from '@/data/articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     // Use environment variable or default to production URL without www
@@ -101,5 +102,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
     }));
 
-    return [...staticPages, ...projectPages];
+    // Noticias landing page
+    const newsLandingPage = {
+        url: `${baseUrl}/noticias`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    };
+
+    // Dynamic article pages
+    const articlePages = articles.map((article) => ({
+        url: `${baseUrl}/noticias/${article.slug}`,
+        lastModified: new Date(article.date),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }));
+
+    return [...staticPages, ...projectPages, newsLandingPage, ...articlePages];
 }

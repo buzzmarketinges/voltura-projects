@@ -13,6 +13,151 @@ export interface Article {
 
 export const articles: Article[] = [
     {
+        slug: "guia-ayudas-rehabilitacion-fachadas-2026",
+        title: "Guía 2026: Ayudas y subvenciones para rehabilitar fachadas en Cataluña",
+        excerpt: "En 2026 existen diversas ayudas públicas para la rehabilitación de fachadas en Cataluña, tanto a nivel municipal como autonómico, cubriendo hasta el 80% del coste en algunos casos.",
+        image: "https://images.unsplash.com/photo-1594040226829-716c9405d583?q=80&w=2670&auto=format&fit=crop",
+        category: "Guías",
+        author: "Voltura Projects",
+        date: "2026-02-12",
+        readTime: "10 min",
+        tags: ["Reformas", "Subvenciones", "Fachadas", "Eficiencia Energética"],
+        content: `
+# Guía 2026: Ayudas y Subvenciones para Rehabilitar Fachadas
+
+En 2026 existen diversas ayudas públicas para la rehabilitación de fachadas en Cataluña, tanto a nivel municipal (especialmente en Barcelona ciudad) como autonómico (Generalitat de Catalunya) e incluso iniciativas locales en otros municipios.
+
+A continuación, detallamos estas subvenciones organizadas por **tipo de inmueble** y **ámbito geográfico**.
+
+## Ayudas en Barcelona Ciudad
+
+### 1. Viviendas Unifamiliares (Casas o Pisos Individuales)
+
+**Subvención “Mejora Energética de Viviendas”**
+
+Barcelona ha lanzado en 2025 una ayuda específica para propietarios, inquilinos o usufructuarios de viviendas habituales que realicen obras de eficiencia energética.
+
+**Cubre actuaciones como:**
+- Mejora del aislamiento de la fachada (interior)
+- Cambio de ventanas
+- Sustitución de sistemas de climatización por renovables
+
+**Cuantía:**
+- Subvenciona aproximadamente el **40% del coste**, hasta un máximo de **6.000 € por vivienda**.
+- El importe puede incluir gastos asociados (honorarios técnicos, certificados) justificados.
+
+**Requisitos:**
+- La vivienda debe ser residencia habitual y permanente.
+- Coste mínimo de las obras: **1.000 €**.
+- Lograr una mejora energética mínima: reducir al menos un 7% la demanda de calefacción/refrigeración o un 30% el consumo de energía primaria no renovable.
+- Las obras deben finalizar antes del **30 de junio de 2026**.
+
+**Plazo:**
+- Abierta hasta el **30 de junio de 2026** (o hasta agotar fondos).
+
+---
+
+### 2. Comunidades de Propietarios
+
+**Subvención Rehabilitación Energética de Edificios (#NextGeneration)**
+
+Programa dirigido a edificios de uso residencial para financiar obras en elementos comunes (fachadas, cubiertas, medianeras) que mejoren la eficiencia energética.
+
+Permiten afrontar reparaciones eliminando patologías estructurales y mejorando la habitabilidad sin expulsar a los vecinos.
+
+**Cuantía según ahorro energético:**
+- **40% subvención** si se reduce ≥ 30% el consumo (tope **6.300 €/vivienda**).
+- **65% subvención** si se reduce ≥ 45% (tope **11.600 €/vivienda**).
+- **80% subvención** si se reduce ≥ 60% (tope **18.800 €/vivienda**).
+
+*Existen complementos municipales adicionales en zonas de alta contaminación acústica o para viviendas cedidas a la Bolsa de Alquiler Social.*
+
+**Requisitos:**
+- Edificio mayoritariamente residencial (>50% superficie).
+- Disponer de ITE aprobada y Certificado Energético (CEE) previo.
+- Acuerdo de la comunidad de propietarios.
+- Reducción de demanda de climatización de al menos un 25%.
+
+**Plazo:**
+- Hasta el **30 de junio de 2026** o agotar fondos.
+
+---
+
+### 3. Oficinas y Locales Comerciales
+
+Las ayudas provienen principalmente de programas de mejora del paisaje urbano.
+
+**Ayudas del Instituto Municipal del Paisaje Urbano (IMPU):**
+- Para fachadas, medianeras y elementos con valor arquitectónico.
+- **Paredes medianeras:** Subvención base del **35%** (hasta 120 €/m²). Puede aumentar al **50%** con mejoras extra o al **60%** en zonas prioritarias.
+- Bonificación extra del 10% por materiales ecológicos.
+- **Cubiertas verdes:** Ayudas del 40% hasta 50.000 €.
+
+**Ayudas para Locales Comerciales:**
+- **20% de subvención** (tope 8.000 €) para rehabilitar la fachada (rótulos, persianas, acabados).
+- **40%** (tope 15.000 €) para comercios históricos/protegidos.
+- **20%** para mejorar accesibilidad o sostenibilidad.
+
+---
+
+## Ayudas en el Resto de Cataluña (Generalitat)
+
+### 1. Viviendas Unifamiliares
+
+**Programa Next Generation – Actuaciones en Viviendas**
+
+Equivalente autonómico para mejoras energéticas en viviendas habituales (fachadas, cerramientos, ventanas).
+
+**Cuantía:**
+- **40% del coste**, con un límite de **3.000 € por vivienda**.
+- Coste mínimo de obra: 1.000 €.
+
+**Requisitos:**
+- Reducción de al menos 7% en demanda de climatización o 30% en consumo de energía primaria.
+- Obras finalizadas antes de mediados de 2026.
+
+**Plazo:**
+- Abierto hasta el **segundo trimestre de 2026**.
+
+---
+
+### 2. Comunidades de Propietarios
+
+**Programa Next Generation – Rehabilitación de Edificios**
+
+Para rehabilitación energética integral en cualquier municipio de Cataluña (excepto Área Metropolitana con gestión propia).
+
+**Cuantía:**
+- Mismos tramos que en Barcelona (40%, 65%, 80%) según el ahorro energético conseguido.
+- Topes de hasta **18.800 € por vivienda**.
+
+**Plazo:**
+- Solicitudes hasta el **30 de junio de 2026**.
+- Posibilidad de solicitar anticipos del 50% y 30% al avanzar la obra.
+
+---
+
+### 3. Oficinas y Locales en Municipios Pequeños
+
+**Programa PREE 5000 (ICAEN)**
+
+Para municipios de menos de 5.000 habitantes. Subvenciona mejoras en edificios completos de cualquier uso (residencial o terciario).
+
+**Requisitos:**
+- Mejoras de envolvente térmica o renovación de sistemas térmicos por renovables.
+- Reducción mínima del 30% en consumo de energía primaria no renovable.
+
+**Plazo:**
+- Hasta el **31 de julio de 2026**.
+
+## Conclusión
+
+Aprovechar estas ayudas en 2026 es fundamental para reducir significativamente el coste de rehabilitar tu fachada. En **Voltura Projects** gestionamos todo el proceso: desde el estudio previo y el proyecto técnico hasta la tramitación de la subvención.
+
+¿Quieres saber a qué ayudas opta tu edificio? [Contacta con nosotros](#contacto) para un estudio personalizado.
+        `
+    },
+    {
         slug: "tendencias-reformas-integrales-2026",
         title: "Tendencias en Reformas Integrales para 2026",
         excerpt: "Descubre las últimas tendencias en diseño de interiores y reformas que marcarán el año 2026. Desde materiales sostenibles hasta tecnología domótica.",

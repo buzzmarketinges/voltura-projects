@@ -9,6 +9,8 @@ import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { ShareButton } from "@/components/share-button";
 import { ArticleCTAButton } from "@/components/article-cta-button";
+import fs from "fs/promises";
+import path from "path";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -45,6 +47,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
+async function getArticleContent(slug: string, articleContent: string) {
+    const filePath = path.join(process.cwd(), "src", "content", "articles", `${slug}.html`);
+    try {
+        const fileContent = await fs.readFile(filePath, "utf-8");
+        return { type: "html", content: fileContent };
+    } catch (error) {
+        return { type: "markdown", content: articleContent };
+    }
+}
+
 export default async function ArticlePage({ params }: PageProps) {
     const { slug } = await params;
     const article = getArticleBySlug(slug);
@@ -52,6 +64,8 @@ export default async function ArticlePage({ params }: PageProps) {
     if (!article) {
         notFound();
     }
+
+    const { type, content } = await getArticleContent(slug, article.content);
 
     return (
         <main className="bg-voltura-blue text-slate-300 font-sans selection:bg-voltura-gold selection:text-white">
@@ -158,45 +172,48 @@ export default async function ArticlePage({ params }: PageProps) {
                     prose-th:text-voltura-gold prose-th:text-left prose-th:py-4 prose-th:border-b prose-th:border-white/20 prose-th:font-serif prose-th:text-xl
                     prose-td:py-4 prose-td:border-b prose-td:border-white/10 prose-td:text-slate-400
                 ">
-                    <ReactMarkdown
-                        components={{
-                            // Custom List Items with Check Icon
-                            li: ({ children }) => {
-                                const text = String(children);
-                                // Remove specific markers if they exist in markdown
-                                const cleanText = text.replace(/^✅\s*/, '').replace(/^❌\s*/, '');
+                    {type === "html" ? (
+                        <div dangerouslySetInnerHTML={{ __html: content }} />
+                    ) : (
+                        <ReactMarkdown
+                            components={{
+                                // Custom List Items with Check Icon
+                                li: ({ children }) => {
+                                    const text = String(children);
+                                    // Remove specific markers if they exist in markdown
+                                    const cleanText = text.replace(/^✅\s*/, '').replace(/^❌\s*/, '');
 
-                                const isCheck = text.includes('✅') || !text.includes('❌'); // Default to check-style if normal list in this context? Or just keep standard bullets for non-marked items?
-                                // Let's follow strictly: If it has ✅, use check style. Else standard.
+                                    const isCheck = text.includes('✅') || !text.includes('❌');
 
-                                if (text.includes('✅')) {
-                                    return (
-                                        <li className="flex items-start gap-4 list-none pl-0">
-                                            <CheckCircle className="w-6 h-6 text-voltura-gold flex-shrink-0 mt-1" />
-                                            <span>{cleanText}</span>
-                                        </li>
-                                    );
-                                }
-                                return <li className="text-slate-400">{children}</li>;
-                            },
-                            // Custom Box for emphasis (using Blockquote standard or specific hack)
-                            blockquote: ({ children }) => (
-                                <div className="my-12 p-8 bg-white/5 border border-white/5 rounded-xl">
-                                    <blockquote className="border-none p-0 bg-transparent not-italic">
+                                    if (text.includes('✅')) {
+                                        return (
+                                            <li className="flex items-start gap-4 list-none pl-0">
+                                                <CheckCircle className="w-6 h-6 text-voltura-gold flex-shrink-0 mt-1" />
+                                                <span>{cleanText}</span>
+                                            </li>
+                                        );
+                                    }
+                                    return <li className="text-slate-400">{children}</li>;
+                                },
+                                // Custom Box for emphasis (using Blockquote standard or specific hack)
+                                blockquote: ({ children }) => (
+                                    <div className="my-12 p-8 bg-white/5 border border-white/5 rounded-xl">
+                                        <blockquote className="border-none p-0 bg-transparent not-italic">
+                                            {children}
+                                        </blockquote>
+                                    </div>
+                                ),
+                                // H3 styled as highlighted headers
+                                h3: ({ children }) => (
+                                    <h3 className="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">
                                         {children}
-                                    </blockquote>
-                                </div>
-                            ),
-                            // H3 styled as highlighted headers
-                            h3: ({ children }) => (
-                                <h3 className="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">
-                                    {children}
-                                </h3>
-                            )
-                        }}
-                    >
-                        {article.content}
-                    </ReactMarkdown>
+                                    </h3>
+                                )
+                            }}
+                        >
+                            {content}
+                        </ReactMarkdown>
+                    )}
                 </article>
 
                 {/* Newsletter / CTA Box */}

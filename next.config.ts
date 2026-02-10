@@ -79,6 +79,11 @@ const nextConfig: NextConfig = {
     },
   },
 
+  // Experimental: Optimización de CSS
+  experimental: {
+    optimizeCss: true, // Habilita la optimización de CSS
+  },
+
   // Optimización de producción
   reactStrictMode: true,
   poweredByHeader: false,

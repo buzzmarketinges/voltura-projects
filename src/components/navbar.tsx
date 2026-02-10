@@ -50,6 +50,7 @@ export function Navbar() {
             ]
         },
         { name: "Proyectos", href: "/proyectos" },
+        { name: "Noticias", href: "/noticias" },
     ];
 
     return (

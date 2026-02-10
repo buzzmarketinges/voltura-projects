@@ -16,7 +16,7 @@ export const articles: Article[] = [
         slug: "guia-ayudas-rehabilitacion-fachadas-2026",
         title: "Guía 2026: Ayudas y subvenciones para rehabilitar fachadas en Cataluña",
         excerpt: "En 2026 existen diversas ayudas públicas para la rehabilitación de fachadas en Cataluña, tanto a nivel municipal como autonómico, cubriendo hasta el 80% del coste en algunos casos.",
-        image: "https://images.unsplash.com/photo-1594040226829-716c9405d583?q=80&w=2670&auto=format&fit=crop",
+        image: "/images/blog/Guia-de-ayudas-y-subvenciones-para-la-rehabilitacion-de-fachadas.webp",
         category: "Guías",
         author: "Voltura Projects",
         date: "2026-02-12",

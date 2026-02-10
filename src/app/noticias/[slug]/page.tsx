@@ -72,7 +72,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <Navbar />
 
             {/* Immersive Hero Header (85vh) */}
-            <header className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
+            <header className="relative min-h-[85vh] flex flex-col overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={article.image}
@@ -83,65 +83,67 @@ export default async function ArticlePage({ params }: PageProps) {
                         quality={90}
                     />
                     {/* Hero Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-voltura-blue/40 via-voltura-blue/80 to-voltura-blue pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-voltura-blue/60 via-voltura-blue/40 to-voltura-blue pointer-events-none"></div>
                 </div>
 
-                {/* Back Button (Absolute Top) */}
-                <div className="absolute top-24 left-0 right-0 z-20 px-6 hidden md:block">
-                    <div className="max-w-5xl mx-auto">
+                {/* Main Content Container - Flex Col for spacing */}
+                <div className="relative z-10 w-full flex-grow flex flex-col justify-between max-w-5xl mx-auto px-6 pt-32 pb-20">
+
+                    {/* Top: Back Button */}
+                    <div className="w-full hidden md:block">
                         <Link
                             href="/noticias"
-                            className="inline-flex items-center gap-2 text-white/80 hover:text-voltura-gold transition-colors text-sm uppercase tracking-widest backdrop-blur-md bg-black/20 px-4 py-2 rounded-full"
+                            className="inline-flex items-center gap-2 text-white/90 hover:text-voltura-gold transition-colors text-xs font-bold uppercase tracking-widest bg-black/40 backdrop-blur-md px-5 py-3 rounded-full border border-white/10 hover:border-voltura-gold/50"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Volver al Blog
                         </Link>
                     </div>
-                </div>
 
-                {/* Hero Content */}
-                <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
-                    {/* Meta Tags */}
-                    <div className="flex flex-wrap items-center gap-6 mb-8">
-                        <span className="bg-voltura-gold text-voltura-blue px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] rounded-sm">
-                            {article.category}
-                        </span>
-                        <div className="flex items-center text-slate-300 text-sm gap-6 font-medium">
-                            <span className="flex items-center gap-2">
-                                <Calendar className="w-4 h-4 text-voltura-gold" />
-                                {new Date(article.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {/* Bottom: Article Info */}
+                    <div className="w-full mt-24">
+                        {/* Meta Tags */}
+                        <div className="flex flex-wrap items-center gap-6 mb-8">
+                            <span className="bg-voltura-gold text-voltura-blue px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] rounded-sm shadow-lg shadow-black/20">
+                                {article.category}
                             </span>
-                            <span className="flex items-center gap-2">
-                                <Clock className="w-4 h-4 text-voltura-gold" />
-                                {article.readTime}
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Title */}
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-8 leading-tight max-w-4xl drop-shadow-lg">
-                        {article.title}
-                    </h1>
-
-                    {/* Intro / Excerpt in Hero */}
-                    <p className="text-xl md:text-2xl text-slate-200 max-w-3xl font-light leading-relaxed mb-10 drop-shadow-md">
-                        {article.excerpt}
-                    </p>
-
-                    {/* Author & Share Bar */}
-                    <div className="flex flex-wrap items-center justify-between border-t border-white/10 pt-8 gap-6">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-voltura-gold/10 flex items-center justify-center text-voltura-gold font-serif font-bold overflow-hidden border border-voltura-gold/30">
-                                VG
-                            </div>
-                            <div>
-                                <p className="text-xs uppercase tracking-widest text-slate-400 mb-1">Escrito por</p>
-                                <p className="text-sm font-bold text-white">Equipo Voltura Projects</p>
+                            <div className="flex items-center text-slate-200 text-sm gap-6 font-medium bg-black/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/5">
+                                <span className="flex items-center gap-2">
+                                    <Calendar className="w-4 h-4 text-voltura-gold" />
+                                    {new Date(article.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <Clock className="w-4 h-4 text-voltura-gold" />
+                                    {article.readTime}
+                                </span>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4">
-                            <ShareButton title={article.title} excerpt={article.excerpt} />
+                        {/* Title */}
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-8 leading-tight max-w-4xl drop-shadow-xl">
+                            {article.title}
+                        </h1>
+
+                        {/* Intro / Excerpt in Hero */}
+                        <p className="text-xl md:text-2xl text-slate-100 max-w-3xl font-light leading-relaxed mb-10 drop-shadow-lg text-pretty">
+                            {article.excerpt}
+                        </p>
+
+                        {/* Author & Share Bar */}
+                        <div className="flex flex-wrap items-center justify-between border-t border-white/10 pt-8 gap-6">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 rounded-full bg-voltura-gold/10 flex items-center justify-center text-voltura-gold font-serif font-bold overflow-hidden border border-voltura-gold/30">
+                                    VG
+                                </div>
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Escrito por</p>
+                                    <p className="text-sm font-bold text-white">Equipo Voltura Projects</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <ShareButton title={article.title} excerpt={article.excerpt} />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,7 +151,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
             <main className="max-w-4xl mx-auto px-6 py-20">
                 {/* Featured Quote / Highlight */}
-                <div className="relative border-l-4 border-voltura-gold pl-8 py-6 mb-20 bg-white/5 rounded-r-lg backdrop-blur-sm">
+                <div className="relative border-l-4 border-voltura-gold pl-8 py-6 mb-20 bg-white/5 rounded-r-lg backdrop-blur-sm shadow-xl">
                     <p className="text-2xl font-serif italic text-slate-200 leading-relaxed">
                         "{article.excerpt}"
                     </p>

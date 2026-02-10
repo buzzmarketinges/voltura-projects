@@ -137,8 +137,18 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image Placeholder / Overlay */}
-        <div className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2666&auto=format&fit=crop')] bg-cover bg-center">
+        {/* Background Image Optimizada */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2666&auto=format&fit=crop"
+            alt="Voltura Projects - Reformas de alta gama en Barcelona"
+            fill
+            priority
+            fetchPriority="high"
+            quality={85}
+            sizes="100vw"
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-voltura-blue/80 backdrop-grayscale-[20%]"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-voltura-blue via-transparent to-voltura-blue/40"></div>
         </div>
@@ -245,6 +255,9 @@ export default function HomePage() {
               src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2574&auto=format&fit=crop"
               alt="Filosofía Voltura Projects"
               fill
+              loading="lazy"
+              quality={80}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-voltura-blue/20"></div>

@@ -27,6 +27,9 @@ export function ProjectCarousel() {
                                     src={project.mainImage}
                                     alt={project.title}
                                     fill
+                                    loading="lazy"
+                                    quality={75}
+                                    sizes="(max-width: 768px) 300px, 400px"
                                     className="object-cover transition-transform duration-700 group-hover/card:scale-110 grayscale-[30%] group-hover/card:grayscale-0"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-voltura-blue/90 via-voltura-blue/20 to-transparent opacity-80 group-hover/card:opacity-90 transition-opacity"></div>

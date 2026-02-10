@@ -61,13 +61,18 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
   # Imágenes WebP: formato moderno, también 1 año
   ExpiresByType image/webp "access plus 1 year"
   
-  # Archivos CSS: se cachean 1 mes
-  # Los estilos pueden cambiar con actualizaciones del sitio
-  ExpiresByType text/css "access plus 1 month"
+  # Imágenes AVIF: formato más moderno, 1 año
+  ExpiresByType image/avif "access plus 1 year"
   
-  # Archivos JavaScript: se cachean 1 mes
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
+  # SVG: 1 año
+  ExpiresByType image/svg+xml "access plus 1 year"
+  
+  # Archivos CSS: se cachean 1 año (con versionado en producción)
+  ExpiresByType text/css "access plus 1 year"
+  
+  # Archivos JavaScript: se cachean 1 año (con versionado en producción)
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
   
   # Fuentes web: se cachean 1 año
   # Las fuentes no suelen cambiar
@@ -81,12 +86,49 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
   ExpiresByType text/html "access plus 1 hour"
 </IfModule>
 
+# Headers adicionales de caché con mod_headers
+<IfModule mod_headers.c>
+  # Para imágenes y assets estáticos: immutable
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # Para CSS y JS: con stale-while-revalidate
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, stale-while-revalidate=86400"
+  </FilesMatch>
+  
+  # Para HTML: caché corto con revalidación
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+
 
 # --------------------------------------------
-# 4. COMPRESIÓN GZIP (OPCIONAL - RECOMENDADO)
+# 4. COMPRESIÓN GZIP Y BROTLI
 # --------------------------------------------
 # Comprime los archivos antes de enviarlos al navegador
 # Reduce el tamaño de descarga hasta un 70%
+
+# Compresión Brotli (más eficiente que Gzip)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html
+  AddOutputFilterByType BROTLI_COMPRESS text/css
+  AddOutputFilterByType BROTLI_COMPRESS text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/x-javascript
+  AddOutputFilterByType BROTLI_COMPRESS text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/ld+json
+  AddOutputFilterByType BROTLI_COMPRESS font/woff
+  AddOutputFilterByType BROTLI_COMPRESS font/woff2
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# Compresión Gzip (fallback si Brotli no está disponible)
 <IfModule mod_deflate.c>
   # Comprimir HTML, CSS, JavaScript, Text, XML y fuentes
   AddOutputFilterByType DEFLATE text/html
@@ -97,9 +139,16 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
   AddOutputFilterByType DEFLATE text/xml
   AddOutputFilterByType DEFLATE application/xml
   AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/ld+json
   AddOutputFilterByType DEFLATE font/woff
   AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE text/plain
+  
+  # Excluir archivos ya comprimidos
+  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif)$ no-gzip dont-vary
 </IfModule>
+
 
 
 # --------------------------------------------

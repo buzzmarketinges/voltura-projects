@@ -83,8 +83,11 @@ export default function InstalacionesFontaneriaPage() {
                         src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=2670&auto=format&fit=crop"
                         alt="Instalaciones de fontanería en Barcelona"
                         fill
-                        className="object-cover"
                         priority
+                        fetchPriority="high"
+                        quality={85}
+                        sizes="100vw"
+                        className="object-cover"
                     />
                     <div className="absolute inset-0 bg-voltura-blue/80 backdrop-grayscale-[20%]"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-voltura-blue via-transparent to-voltura-blue/40"></div>

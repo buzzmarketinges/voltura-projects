@@ -93,7 +93,7 @@ export function Navbar() {
                                                 <div key={idx} className="relative group/sub">
                                                     {item.group ? (
                                                         <>
-                                                            <button className="w-full text-left flex items-center justify-between px-4 py-3 text-sm text-white bg-transparent hover:bg-transparent hover:text-voltura-gold transition-colors">
+                                                            <button aria-label={`Abrir menú de ${item.name}`} className="w-full text-left flex items-center justify-between px-4 py-3 text-sm text-white bg-transparent hover:bg-transparent hover:text-voltura-gold transition-colors">
                                                                 {item.name}
                                                                 <ChevronDown className="-rotate-90 w-4 h-4 text-white group-hover/sub:text-voltura-gold" />
                                                             </button>
@@ -139,7 +139,7 @@ export function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center">
-                        <button onClick={toggleMenu} className="text-voltura-stone hover:text-white">
+                        <button onClick={toggleMenu} aria-label={isOpen ? "Cerrar menú" : "Abrir menú"} className="text-voltura-stone hover:text-white">
                             {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
                         </button>
                     </div>
@@ -156,6 +156,7 @@ export function Navbar() {
                                     <div className="space-y-2">
                                         <button
                                             onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
+                                            aria-label={`${activeDropdown === link.name ? 'Cerrar' : 'Abrir'} menú de ${link.name}`}
                                             className="flex justify-between w-full text-left text-lg font-medium text-white"
                                         >
                                             {link.name}

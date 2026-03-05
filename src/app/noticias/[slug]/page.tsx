@@ -4,134 +4,119 @@ import { articles, getArticleBySlug } from "@/data/articles";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, Clock, Share2, CheckCircle, ArrowLeft } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, CheckCircle } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { ShareButton } from "@/components/share-button";
 import { ArticleCTAButton } from "@/components/article-cta-button";
-import fs from "fs/promises";
-import path from "path";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
-export const dynamicParams = true;
-export const revalidate = 0; // Disable caching
-
-export async function generateStaticParams() {
-    return []; // Disable static params for dynamic DB content, or only return local ones if we want to mix. Next.js will dynamically render the rest.
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { slug } = await params;
+    try {
+        const { slug } = await params;
+        const dbPost = await prisma.post.findUnique({
+            where: { slug }
+        }).catch(() => null);
 
-    // Check DB first
-    const dbPost = await prisma.post.findUnique({
-        where: { slug }
-    });
+        if (dbPost && dbPost.isPublished) {
+            return {
+                title: String(dbPost.metaTitle || `${dbPost.title} | Voltura Projects`),
+                description: String(dbPost.metaDescription || ""),
+                alternates: { canonical: `https://volturaprojects.es/noticias/${slug}` },
+                openGraph: {
+                    title: String(dbPost.title),
+                    description: String(dbPost.metaDescription || ""),
+                    images: dbPost.mainImage ? [String(dbPost.mainImage)] : [],
+                    type: "article",
+                    publishedTime: dbPost.createdAt instanceof Date ? dbPost.createdAt.toISOString() : undefined,
+                },
+            };
+        }
 
-    if (dbPost && dbPost.isPublished) {
-        return {
-            title: dbPost.metaTitle || `${dbPost.title} | Voltura Projects`,
-            description: dbPost.metaDescription,
-            alternates: { canonical: `/noticias/${slug}` },
-            openGraph: {
-                title: dbPost.title,
-                description: dbPost.metaDescription || undefined,
-                images: dbPost.mainImage ? [dbPost.mainImage] : [],
-                type: "article",
-                publishedTime: dbPost.createdAt.toISOString(),
-            },
-        };
-    }
-
-    const article = getArticleBySlug(slug);
-
-    if (!article) {
-        return {
-            title: "Artículo no encontrado | Voltura Projects",
-            alternates: { canonical: `/noticias/${slug}` },
-        };
+        const article = getArticleBySlug(slug);
+        if (article) {
+            return {
+                title: `${article.title} | Voltura Projects`,
+                description: article.excerpt,
+                alternates: { canonical: `https://volturaprojects.es/noticias/${slug}` },
+                openGraph: {
+                    title: article.title,
+                    description: article.excerpt,
+                    images: [article.image],
+                    type: "article",
+                    publishedTime: article.date,
+                    authors: [article.author],
+                },
+            };
+        }
+    } catch (e) {
+        console.error("Metadata error:", e);
     }
 
     return {
-        title: `${article.title} | Voltura Projects`,
-        description: article.excerpt,
-        alternates: { canonical: `/noticias/${slug}` },
-        openGraph: {
-            title: article.title,
-            description: article.excerpt,
-            images: [article.image],
-            type: "article",
-            publishedTime: article.date,
-            authors: [article.author],
-            tags: article.tags,
-        },
+        title: "Noticias | Voltura Projects",
     };
-}
-
-async function getArticleContent(slug: string, articleContent: string) {
-    const filePath = path.join(process.cwd(), "src", "content", "articles", `${slug}.html`);
-    try {
-        const fileContent = await fs.readFile(filePath, "utf-8");
-        return { type: "html", content: fileContent };
-    } catch (error) {
-        return { type: "markdown", content: articleContent };
-    }
 }
 
 export default async function ArticlePage({ params }: PageProps) {
     const { slug } = await params;
-
-    // Check DB First
-    const dbPost = await prisma.post.findUnique({
-        where: { slug },
-        include: { faqs: true }
-    });
-
-    let article;
-    let type = "html";
+    let articleData: any = null;
+    let isHtml = true;
     let content = "";
     let faqs: any[] = [];
-    let cats: string[] = ["Todos"];
 
-    if (dbPost && dbPost.isPublished) {
-        let parsedCats = ["Todos"];
-        try {
-            if (dbPost.categories && dbPost.categories !== "[]" && dbPost.categories.startsWith('[')) {
-                const parsed = JSON.parse(dbPost.categories);
-                parsedCats = Array.isArray(parsed) ? parsed : [parsed];
-            } else if (dbPost.categories && dbPost.categories !== "[]") {
-                parsedCats = [dbPost.categories];
-            }
-        } catch (e) {
-            parsedCats = [dbPost.categories || "Todos"];
-        }
-        cats = parsedCats;
+    try {
+        const dbPost = await prisma.post.findUnique({
+            where: { slug },
+            include: { faqs: true }
+        }).catch(() => null);
 
-        article = {
-            title: dbPost.title,
-            category: cats[0], // Display the first category found
-            date: dbPost.createdAt.toISOString(),
-            readTime: "5 min lectura",
-            excerpt: dbPost.metaDescription || "Noticia destacada sobre nuestras obras e instalaciones.",
-            image: dbPost.mainImage || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80",
-            author: "Equipo Voltura Projects",
-            tags: ["Actualidad"]
-        };
-        content = dbPost.contentHtml || dbPost.contentText || "";
-        faqs = dbPost.faqs || [];
-    } else {
-        const localArticle = getArticleBySlug(slug);
-        if (!localArticle) {
-            notFound();
+        if (dbPost && dbPost.isPublished) {
+            let cats = ["Reformas"];
+            try {
+                if (dbPost.categories && typeof dbPost.categories === 'string' && dbPost.categories !== "[]") {
+                    if (dbPost.categories.startsWith('[')) {
+                        const parsed = JSON.parse(dbPost.categories);
+                        cats = Array.isArray(parsed) ? parsed : [parsed];
+                    } else {
+                        cats = [dbPost.categories];
+                    }
+                }
+            } catch (e) { }
+
+            articleData = {
+                title: String(dbPost.title),
+                category: String(cats[0] || "Reformas"),
+                date: dbPost.createdAt instanceof Date ? dbPost.createdAt.toISOString() : new Date().toISOString(),
+                readTime: "5 min lectura",
+                excerpt: String(dbPost.metaDescription || "Noticia destacada sobre nuestras obras e instalaciones."),
+                image: String(dbPost.mainImage || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80"),
+            };
+            content = String(dbPost.contentHtml || dbPost.contentText || "");
+            faqs = (dbPost.faqs || []).map(f => ({
+                question: String(f.question),
+                answer: String(f.answer)
+            }));
+            isHtml = !!dbPost.contentHtml;
         }
-        article = localArticle;
-        const res = await getArticleContent(slug, localArticle.content);
-        type = res.type;
-        content = res.content;
+    } catch (e) {
+        console.error("DB Fetch Error:", e);
+    }
+
+    // Fallback to local
+    if (!articleData) {
+        const local = getArticleBySlug(slug);
+        if (!local) notFound();
+
+        articleData = local;
+        content = local.content;
+        isHtml = false; // articles in static data are usually markdown or handled as such
     }
 
     const faqSchema = faqs.length > 0 ? {
@@ -157,25 +142,20 @@ export default async function ArticlePage({ params }: PageProps) {
                 />
             )}
 
-            {/* Immersive Hero Header (85vh) */}
             <header className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src={article.image}
-                        alt={article.title}
+                        src={articleData.image}
+                        alt={articleData.title}
                         fill
                         priority
                         className="object-cover"
                         quality={90}
                     />
-                    {/* Hero Overlay Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-b from-voltura-blue/60 via-voltura-blue/40 to-voltura-blue pointer-events-none"></div>
                 </div>
 
-                {/* Main Content Container */}
                 <div className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-24 pb-10 flex flex-col items-start">
-
-                    {/* Back Button (Just above title with correct margin) */}
                     <div className="mb-8">
                         <Link
                             href="/noticias"
@@ -186,36 +166,27 @@ export default async function ArticlePage({ params }: PageProps) {
                         </Link>
                     </div>
 
-                    {/* Article Info */}
                     <div className="w-full">
-                        {/* Meta Tags */}
                         <div className="flex flex-wrap items-center gap-6 mb-6">
                             <span className="bg-voltura-gold text-voltura-blue px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] rounded-sm shadow-lg shadow-black/20">
-                                {article.category}
+                                {articleData.category}
                             </span>
                             <div className="flex items-center text-slate-200 text-sm gap-6 font-medium bg-black/20 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/5">
                                 <span className="flex items-center gap-2">
                                     <Calendar className="w-4 h-4 text-voltura-gold" />
-                                    {new Date(article.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                    {new Date(articleData.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
                                 </span>
                                 <span className="flex items-center gap-2">
                                     <Clock className="w-4 h-4 text-voltura-gold" />
-                                    {article.readTime}
+                                    {articleData.readTime || "5 min"}
                                 </span>
                             </div>
                         </div>
 
-                        {/* Title */}
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight max-w-4xl drop-shadow-xl">
-                            {article.title}
+                            {articleData.title}
                         </h1>
 
-                        {/* Intro / Excerpt in Hero */}
-                        <p className="text-xl md:text-2xl text-slate-100 max-w-3xl font-light leading-relaxed mb-8 drop-shadow-lg text-pretty">
-                            {article.excerpt}
-                        </p>
-
-                        {/* Author & Share Bar */}
                         <div className="flex flex-wrap items-center justify-between border-t border-white/10 pt-6 gap-6">
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-full bg-voltura-gold/10 flex items-center justify-center text-voltura-gold font-serif font-bold overflow-hidden border border-voltura-gold/30">
@@ -228,7 +199,7 @@ export default async function ArticlePage({ params }: PageProps) {
                             </div>
 
                             <div className="flex items-center gap-4">
-                                <ShareButton title={article.title} excerpt={article.excerpt} />
+                                <ShareButton title={articleData.title} excerpt={articleData.excerpt} />
                             </div>
                         </div>
                     </div>
@@ -236,14 +207,6 @@ export default async function ArticlePage({ params }: PageProps) {
             </header>
 
             <main className="max-w-4xl mx-auto px-6 py-20">
-                {/* Featured Quote / Highlight */}
-                <div className="relative border-l-4 border-voltura-gold pl-8 py-6 mb-20 bg-white/5 rounded-r-lg backdrop-blur-sm shadow-xl">
-                    <p className="text-2xl font-serif italic text-slate-200 leading-relaxed">
-                        "{article.excerpt}"
-                    </p>
-                </div>
-
-                {/* Article Body */}
                 <article className="prose prose-lg prose-invert max-w-none
                     prose-headings:font-serif prose-headings:text-white
                     prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:font-normal
@@ -260,19 +223,14 @@ export default async function ArticlePage({ params }: PageProps) {
                     prose-th:text-voltura-gold prose-th:text-left prose-th:py-4 prose-th:border-b prose-th:border-white/20 prose-th:font-serif prose-th:text-xl
                     prose-td:py-4 prose-td:border-b prose-td:border-white/10 prose-td:text-slate-400
                 ">
-                    {type === "html" ? (
+                    {isHtml ? (
                         <div dangerouslySetInnerHTML={{ __html: content }} />
                     ) : (
                         <ReactMarkdown
                             components={{
-                                // Custom List Items with Check Icon
                                 li: ({ children }) => {
                                     const text = String(children);
-                                    // Remove specific markers if they exist in markdown
                                     const cleanText = text.replace(/^✅\s*/, '').replace(/^❌\s*/, '');
-
-                                    const isCheck = text.includes('✅') || !text.includes('❌');
-
                                     if (text.includes('✅')) {
                                         return (
                                             <li className="flex items-start gap-4 list-none pl-0">
@@ -283,20 +241,6 @@ export default async function ArticlePage({ params }: PageProps) {
                                     }
                                     return <li className="text-slate-400">{children}</li>;
                                 },
-                                // Custom Box for emphasis (using Blockquote standard or specific hack)
-                                blockquote: ({ children }) => (
-                                    <div className="my-12 p-8 bg-white/5 border border-white/5 rounded-xl">
-                                        <blockquote className="border-none p-0 bg-transparent not-italic">
-                                            {children}
-                                        </blockquote>
-                                    </div>
-                                ),
-                                // H3 styled as highlighted headers
-                                h3: ({ children }) => (
-                                    <h3 className="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">
-                                        {children}
-                                    </h3>
-                                )
                             }}
                         >
                             {content}
@@ -304,7 +248,6 @@ export default async function ArticlePage({ params }: PageProps) {
                     )}
                 </article>
 
-                {/* FAQS Render */}
                 {faqs.length > 0 && (
                     <section className="mt-16 pt-10 border-t border-white/10">
                         <h2 className="text-3xl font-serif text-white mb-8">
@@ -325,7 +268,6 @@ export default async function ArticlePage({ params }: PageProps) {
                     </section>
                 )}
 
-                {/* Newsletter / CTA Box */}
                 <section className="mt-24 p-12 bg-voltura-gold/5 border border-voltura-gold/20 rounded-2xl flex flex-col md:flex-row items-center gap-10">
                     <div className="flex-1 space-y-4 text-center md:text-left">
                         <h3 className="text-3xl font-serif font-bold text-white">

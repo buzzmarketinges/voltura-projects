@@ -8,9 +8,11 @@ import { ContactButton } from "@/components/contact-button";
 import { ProjectCarousel } from "@/components/project-carousel";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   alternates: {
-    canonical: "/",
+    canonical: "https://volturaprojects.es/",
   },
   title: "Voltura Projects | Reformas y Soluciones Técnicas en Barcelona",
   description: "Empresa de reformas integrales y soluciones técnicas de alta gama en Barcelona. Calidad, diseño y seguridad en cada proyecto.",

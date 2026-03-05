@@ -50,15 +50,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <head>
-        {/* Preconnect a Google Fonts para reducir latencia */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Preconnect a Unsplash para imágenes */}
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        {/* Preload critical CSS - Next.js lo inyectará automáticamente */}
-        <link rel="preload" href="/_next/static/css/app/layout.css" as="style" />
-      </head>
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >

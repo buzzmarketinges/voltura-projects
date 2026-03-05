@@ -98,7 +98,18 @@ export default async function ArticlePage({ params }: PageProps) {
     let cats: string[] = ["Todos"];
 
     if (dbPost && dbPost.isPublished) {
-        cats = dbPost.categories && dbPost.categories !== "[]" ? JSON.parse(dbPost.categories) : ["Todos"];
+        let parsedCats = ["Todos"];
+        try {
+            if (dbPost.categories && dbPost.categories !== "[]" && dbPost.categories.startsWith('[')) {
+                const parsed = JSON.parse(dbPost.categories);
+                parsedCats = Array.isArray(parsed) ? parsed : [parsed];
+            } else if (dbPost.categories && dbPost.categories !== "[]") {
+                parsedCats = [dbPost.categories];
+            }
+        } catch (e) {
+            parsedCats = [dbPost.categories || "Todos"];
+        }
+        cats = parsedCats;
 
         article = {
             title: dbPost.title,

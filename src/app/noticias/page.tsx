@@ -22,7 +22,16 @@ export default async function NoticiasPage() {
     });
 
     const parsedDbPosts = dbPosts.map((post: any) => {
-        const cats = post.categories && post.categories !== "[]" ? JSON.parse(post.categories) : ["Reformas"];
+        let cats = ["Reformas"];
+        try {
+            if (post.categories && post.categories !== "[]" && post.categories.startsWith('[')) {
+                cats = JSON.parse(post.categories);
+            } else if (post.categories && post.categories !== "[]") {
+                cats = [post.categories];
+            }
+        } catch (e) {
+            cats = [post.categories || "Reformas"];
+        }
         return {
             id: post.id,
             slug: post.slug,

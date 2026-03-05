@@ -6,6 +6,15 @@ import Image from "next/image";
 import Script from "next/script";
 import { ContactButton } from "@/components/contact-button";
 import { ProjectCarousel } from "@/components/project-carousel";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  title: "Voltura Projects | Reformas y Soluciones Técnicas en Barcelona",
+  description: "Empresa de reformas integrales y soluciones técnicas de alta gama en Barcelona. Calidad, diseño y seguridad en cada proyecto.",
+};
 
 export default function HomePage() {
   const services = [

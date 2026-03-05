@@ -6,6 +6,9 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 
 export const metadata = {
+    alternates: {
+        canonical: "/proyectos",
+    },
     title: "Proyectos Realizados | Voltura Projects Barcelona",
     description: "Descubre nuestra selección de proyectos de reformas integrales, instalaciones y rehabilitaciones en Barcelona.",
 };

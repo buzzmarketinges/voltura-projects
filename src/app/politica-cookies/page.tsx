@@ -2,6 +2,9 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
+    alternates: {
+        canonical: "/politica-cookies",
+    },
     title: "Política de Cookies | Voltura Projects",
     description: "Información sobre el uso de cookies en Voltura Projects.",
 };

@@ -4,6 +4,9 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata = {
+    alternates: {
+        canonical: "/gracias",
+    },
     title: "Gracias por contactar | Voltura Projects",
     description: "Gracias por tu interés en Voltura Projects.",
     robots: {

@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/reformas-integrales",
+    },
     title: "Reformas Integrales en Barcelona | Voltura Projects",
     description: "Especialistas en reformas integrales de viviendas y locales en Barcelona. Proyectos llave en mano, arquitectura técnica y diseño de interiores de alta gama.",
 };

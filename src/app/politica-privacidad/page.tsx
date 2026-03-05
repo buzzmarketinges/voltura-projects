@@ -2,6 +2,9 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
+    alternates: {
+        canonical: "/politica-privacidad",
+    },
     title: "Política de Privacidad | Voltura Projects",
     description: "Política de privacidad y protección de datos de Voltura Projects.",
 };

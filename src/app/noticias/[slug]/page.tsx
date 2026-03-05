@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { articles, getArticleBySlug } from "@/data/articles";
+import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, Share2, CheckCircle, ArrowLeft } from "lucide-react";
@@ -16,25 +17,49 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+export const dynamicParams = true;
+export const revalidate = 0; // Disable caching
+
 export async function generateStaticParams() {
-    return articles.map((article) => ({
-        slug: article.slug,
-    }));
+    return []; // Disable static params for dynamic DB content, or only return local ones if we want to mix. Next.js will dynamically render the rest.
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
+
+    // Check DB first
+    const dbPost = await prisma.post.findUnique({
+        where: { slug }
+    });
+
+    if (dbPost && dbPost.isPublished) {
+        return {
+            title: dbPost.metaTitle || `${dbPost.title} | Voltura Projects`,
+            description: dbPost.metaDescription,
+            alternates: { canonical: `/noticias/${slug}` },
+            openGraph: {
+                title: dbPost.title,
+                description: dbPost.metaDescription || undefined,
+                images: dbPost.mainImage ? [dbPost.mainImage] : [],
+                type: "article",
+                publishedTime: dbPost.createdAt.toISOString(),
+            },
+        };
+    }
+
     const article = getArticleBySlug(slug);
 
     if (!article) {
         return {
             title: "Artículo no encontrado | Voltura Projects",
+            alternates: { canonical: `/noticias/${slug}` },
         };
     }
 
     return {
         title: `${article.title} | Voltura Projects`,
         description: article.excerpt,
+        alternates: { canonical: `/noticias/${slug}` },
         openGraph: {
             title: article.title,
             description: article.excerpt,
@@ -59,17 +84,67 @@ async function getArticleContent(slug: string, articleContent: string) {
 
 export default async function ArticlePage({ params }: PageProps) {
     const { slug } = await params;
-    const article = getArticleBySlug(slug);
 
-    if (!article) {
-        notFound();
+    // Check DB First
+    const dbPost = await prisma.post.findUnique({
+        where: { slug },
+        include: { faqs: true }
+    });
+
+    let article;
+    let type = "html";
+    let content = "";
+    let faqs: any[] = [];
+    let cats: string[] = ["Todos"];
+
+    if (dbPost && dbPost.isPublished) {
+        cats = dbPost.categories && dbPost.categories !== "[]" ? JSON.parse(dbPost.categories) : ["Todos"];
+
+        article = {
+            title: dbPost.title,
+            category: cats[0], // Display the first category found
+            date: dbPost.createdAt.toISOString(),
+            readTime: "5 min lectura",
+            excerpt: dbPost.metaDescription || "Noticia destacada sobre nuestras obras e instalaciones.",
+            image: dbPost.mainImage || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80",
+            author: "Equipo Voltura Projects",
+            tags: ["Actualidad"]
+        };
+        content = dbPost.contentHtml || dbPost.contentText || "";
+        faqs = dbPost.faqs || [];
+    } else {
+        const localArticle = getArticleBySlug(slug);
+        if (!localArticle) {
+            notFound();
+        }
+        article = localArticle;
+        const res = await getArticleContent(slug, localArticle.content);
+        type = res.type;
+        content = res.content;
     }
 
-    const { type, content } = await getArticleContent(slug, article.content);
+    const faqSchema = faqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    } : null;
 
     return (
         <main className="bg-voltura-blue text-slate-300 font-sans selection:bg-voltura-gold selection:text-white">
             <Navbar />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
 
             {/* Immersive Hero Header (85vh) */}
             <header className="relative min-h-[85vh] flex flex-col justify-end overflow-hidden">
@@ -217,6 +292,27 @@ export default async function ArticlePage({ params }: PageProps) {
                         </ReactMarkdown>
                     )}
                 </article>
+
+                {/* FAQS Render */}
+                {faqs.length > 0 && (
+                    <section className="mt-16 pt-10 border-t border-white/10">
+                        <h2 className="text-3xl font-serif text-white mb-8">
+                            Preguntas Frecuentes
+                        </h2>
+                        <div className="space-y-6">
+                            {faqs.map((faq, idx) => (
+                                <div key={idx} className="bg-white/5 border border-white/5 rounded-xl p-6 transition-colors hover:bg-white/10">
+                                    <h3 className="text-xl font-bold text-voltura-gold mb-3 font-sans">
+                                        {faq.question}
+                                    </h3>
+                                    <p className="text-slate-300 leading-relaxed font-sans">
+                                        {faq.answer}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 {/* Newsletter / CTA Box */}
                 <section className="mt-24 p-12 bg-voltura-gold/5 border border-voltura-gold/20 rounded-2xl flex flex-col md:flex-row items-center gap-10">

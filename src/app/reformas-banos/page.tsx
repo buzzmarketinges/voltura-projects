@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/reformas-banos",
+    },
     title: "Reformas de Baños en Barcelona | Diseños de Lujo y Modernos",
     description: "Especialistas en reformas de baños en Barcelona. Transformamos tu baño en un spa con microcemento, grifería empotrada y sanitarios suspendidos.",
 };

@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/trabajos-verticales",
+    },
     title: "Trabajos Verticales en Barcelona | Rehabilitación de Fachadas",
     description: "Empresa de trabajos verticales en Barcelona. Rehabilitación de fachadas, patios de luces y pintura sin andamios. Rápidos, seguros y económicos.",
 };

@@ -23,11 +23,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
     const { slug } = await params;
     const project = projects.find((p) => p.slug === slug);
-    if (!project) return { title: "Proyecto no encontrado" };
+    if (!project) return {
+        title: "Proyecto no encontrado",
+        alternates: { canonical: `/proyectos/${slug}` }
+    };
 
     return {
         title: `${project.title} | Voltura Projects`,
         description: project.summary,
+        alternates: { canonical: `/proyectos/${slug}` }
     };
 }
 

@@ -2,6 +2,9 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
+    alternates: {
+        canonical: "/terminos-condiciones",
+    },
     title: "Términos y Condiciones | Voltura Projects",
     description: "Términos y condiciones de uso del sitio web de Voltura Projects.",
 };

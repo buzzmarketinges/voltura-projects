@@ -20,6 +20,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://volturaprojects.es"),
   title: "Voltura Projects | Reformas y Soluciones Técnicas",
   description: "Empresa de reformas integrales y soluciones técnicas de alta gama en Barcelona. Calidad, diseño y seguridad.",
   icons: {

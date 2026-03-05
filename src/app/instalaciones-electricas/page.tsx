@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/instalaciones-electricas",
+    },
     title: "Instalaciones Eléctricas en Barcelona | Boletines y Reformas",
     description: "Electricistas autorizados en Barcelona. Realizamos instalaciones eléctricas completas, cambios de cuadro, iluminación LED y boletines (azul/blanco).",
 };

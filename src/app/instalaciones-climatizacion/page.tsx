@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/instalaciones-climatizacion",
+    },
     title: "Aire Acondicionado en Barcelona | Instalación y Climatización",
     description: "Expertos en climatización en Barcelona. Instalación de aire acondicionado por conductos, splits, sistemas Airzone y mantenimiento.",
 };

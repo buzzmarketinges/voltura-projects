@@ -8,7 +8,7 @@ import { Article } from "@/data/articles";
 import { ArticleCTAButton } from "@/components/article-cta-button";
 
 interface NewsListProps {
-    initialArticles: Article[];
+    initialArticles: (Article & { allCategories?: string[] })[];
 }
 
 const CATEGORIES = [
@@ -35,8 +35,17 @@ export function NewsList({ initialArticles }: NewsListProps) {
             "Guías": "Guías",
         };
 
-        // Try exact match first, then mapped
-        return article.category === selectedCategory || article.category === categoryMap[selectedCategory];
+        const mappedCategory = categoryMap[selectedCategory] || selectedCategory;
+
+        // Try exact match first
+        const isMatch = article.category === selectedCategory || article.category === mappedCategory;
+
+        // Also check if article has an array of categories 
+        if (!isMatch && article.allCategories) {
+            return article.allCategories.includes(selectedCategory) || article.allCategories.includes(mappedCategory);
+        }
+
+        return isMatch;
     });
 
     // Determine featured article and list

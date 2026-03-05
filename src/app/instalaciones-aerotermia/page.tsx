@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/instalaciones-aerotermia",
+    },
     title: "Aerotermia en Barcelona | Calefacción y Refrigeración Sostenible",
     description: "Especialistas en instalaciones de aerotermia en Barcelona. Ahorra hasta un 70% en tu factura con suelo radiante y bombas de calor de alta eficiencia.",
 };

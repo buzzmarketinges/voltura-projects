@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Post {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  metaTitle       String?
+  metaDescription String?
+  contentHtml     String?
+  contentText     String?
+  mainImage       String?
+  isPublished     Boolean  @default(false)
+  categories      String?  @default("[]") // Stored as JSON string
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  faqs            Faq[]
+}
+
+model Faq {
+  id        String @id @default(cuid())
+  postId    String
+  post      Post   @relation(fields: [postId], references: [id])
+  question  String
+  answer    String
+  order     Int    @default(0)
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  altText   String?
+  type      String   // e.g "image", "video", "icon"
+  createdAt DateTime @default(now())
+}

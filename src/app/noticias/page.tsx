@@ -3,13 +3,46 @@ import { Footer } from "@/components/footer";
 import { articles } from "@/data/articles";
 import { Metadata } from "next";
 import { NewsList } from "@/components/news-list";
+import { prisma } from '@/lib/prisma';
 
 export const metadata: Metadata = {
+    alternates: {
+        canonical: "/noticias",
+    },
     title: "Noticias y Blog | Voltura Projects - Reformas y Construcción",
     description: "Artículos, guías y consejos sobre reformas integrales, instalaciones y construcción. Mantente informado con las últimas tendencias del sector.",
 };
 
-export default function NoticiasPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function NoticiasPage() {
+    const dbPosts = await prisma.post.findMany({
+        where: { isPublished: true },
+        orderBy: { createdAt: 'desc' },
+    });
+
+    const parsedDbPosts = dbPosts.map((post: any) => {
+        const cats = post.categories && post.categories !== "[]" ? JSON.parse(post.categories) : ["Reformas"];
+        return {
+            id: post.id,
+            slug: post.slug,
+            title: post.title,
+            excerpt: post.metaDescription || "Noticia destacada sobre nuestras obras e instalaciones.",
+            image: post.mainImage || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80",
+            date: post.createdAt.toISOString(),
+            readTime: "5 min lectura",
+            category: cats[0] || "Todos", // Pick the first
+            allCategories: cats, // Send all array
+            author: "Equipo Voltura",
+            tags: ["Actualidad"],
+            content: post.contentHtml || ""
+        };
+    });
+
+    // Convert readonly type to mutable by type assertion or spread if needed.
+    // data/articles.ts might strictly type articles. Let's merge them as any or as Article[]
+    const combinedArticles = [...parsedDbPosts, ...articles] as any[];
+
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
             <Navbar />
@@ -32,7 +65,7 @@ export default function NoticiasPage() {
             </section>
 
             {/* News List & Filters Client Component */}
-            <NewsList initialArticles={articles} />
+            <NewsList initialArticles={combinedArticles} />
 
             <Footer />
         </main>

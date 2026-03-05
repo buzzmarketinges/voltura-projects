@@ -8,6 +8,9 @@ import { ContactButton } from "@/components/contact-button";
 import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
+    alternates: {
+        canonical: "/instalaciones-fontaneria",
+    },
     title: "Instalaciones de Fontanería en Barcelona | Reformas y Reparaciones",
     description: "Fontaneros expertos en Barcelona. Cambio de tuberías (cobre, multicapa), bajantes, instalación de termos y descalcificadores.",
 };

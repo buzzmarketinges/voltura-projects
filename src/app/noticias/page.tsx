@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { articles } from "@/data/articles";
 import { Metadata } from "next";
 import { NewsList } from "@/components/news-list";
 import { prisma } from '@/lib/prisma';
@@ -62,7 +61,7 @@ export default async function NoticiasPage() {
         console.error("Global error in NoticiasPage data fetch:", globalError);
     }
 
-    const combinedArticles = [...dbArticles, ...articles];
+    const combinedArticles = dbArticles;
 
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">

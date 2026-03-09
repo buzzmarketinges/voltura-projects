@@ -1,0 +1,211 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
+async function main() {
+    const htmlContent = `
+<p class="text-xl leading-relaxed text-slate-300">
+    En 2025 existen diversas ayudas públicas para la rehabilitación de fachadas en Cataluña, tanto a nivel municipal (especialmente en Barcelona ciudad) como autonómico (Generalitat de Catalunya) e incluso iniciativas locales en otros municipios. A continuación, se detallan dichas subvenciones, organizadas por tipo de inmueble (vivienda unifamiliar, comunidad de propietarios, oficinas/locales) y por ámbito geográfico (Barcelona ciudad vs. resto de Cataluña). Para cada ayuda se indica en qué consiste, el porcentaje o cuantía que cubre, los requisitos principales, los plazos y un enlace oficial para más información o trámite.
+</p>
+
+<h2 class="text-4xl font-serif text-white mt-16 mb-8">Ayudas en Barcelona ciudad (Ayuntamiento de Barcelona)</h2>
+
+<h3 class="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">Ayudas para Viviendas unifamiliares (casas o pisos individuales)</h3>
+
+<h3 class="text-xl text-voltura-gold font-serif mt-12 mb-4 block">Subvención “Mejora Energética de Viviendas”</h3>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    Barcelona ha lanzado en 2025 una ayuda específica para propietarios/as (o inquilinos/as y usufructuarios) de viviendas habituales que realicen obras de eficiencia energética en su vivienda (barcelona.cat). Cubre actuaciones como la mejora del aislamiento de la fachada (interior), el cambio de ventanas o la sustitución de sistemas de climatización por otros de energías renovables. El objetivo es reducir el consumo energético de los hogares y mitigar el cambio climático.
+</p>
+
+<blockquote class="relative border-l-4 border-voltura-gold pl-8 py-6 my-12 bg-white/5 rounded-r-lg backdrop-blur-sm">
+    <p class="text-2xl font-serif italic text-slate-200 leading-relaxed m-0">
+        "La ayuda subvenciona aproximadamente el 40% del coste de la obra, hasta un máximo de 6.000 € por vivienda. Este límite se ha duplicado en 2025 gracias a la cofinanciación del Ayuntamiento y los fondos europeos Next Generation."
+    </p>
+</blockquote>
+
+<h3 class="text-xl text-voltura-gold font-serif mt-12 mb-4 block">Requisitos</h3>
+
+<div class="grid gap-4 my-8 not-prose">
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Residencia habitual y permanente del solicitante.</span>
+    </div>
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Coste mínimo de 1.000 € en las obras.</span>
+    </div>
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Reducción de al menos un 7% en demanda de calefacción/refrigeración o 30% de energía primaria no renovable.</span>
+    </div>
+</div>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    <strong>Plazo:</strong> La convocatoria está abierta hasta el 30 de junio de 2026 (o hasta agotar fondos). Las solicitudes se atienden por orden de presentación.
+</p>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    <strong>Enlace oficial:</strong> Consorci de l’Habitatge de Barcelona (barcelona.cat).
+</p>
+
+<h3 class="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">Ayudas para Comunidades de propietarios (edificios residenciales)</h3>
+
+<h3 class="text-xl text-voltura-gold font-serif mt-12 mb-4 block">Subvención rehabilitación energética de edificios (#NextGeneration)</h3>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    Programa dirigido a edificios de uso residencial para financiar obras en elementos comunes: fachadas, cubiertas, aislamiento térmico, etc.
+</p>
+
+<div class="overflow-x-auto my-12 rounded-lg border border-white/10 shadow-xl">
+    <table class="w-full text-left border-collapse min-w-[600px]">
+        <thead>
+            <tr class="bg-white/5 border-b border-white/10">
+                <th class="p-6 text-xl font-serif font-normal text-voltura-gold tracking-wide">Ahorro Energético</th>
+                <th class="p-6 text-xl font-serif font-normal text-voltura-gold tracking-wide">Importe Máximo</th>
+                <th class="p-6 text-xl font-serif font-normal text-voltura-gold tracking-wide">Porcentaje</th>
+            </tr>
+        </thead>
+        <tbody class="text-slate-300 divide-y divide-white/5">
+            <tr class="hover:bg-white/5 transition-colors duration-200">
+                <td class="p-5 font-semibold text-white">Reducción consumo 30% - 45%</td>
+                <td class="p-5">6.300 € / vivienda</td>
+                <td class="p-5 text-emerald-400 font-bold">40%</td>
+            </tr>
+            <tr class="hover:bg-white/5 transition-colors duration-200 bg-white/[0.02]">
+                <td class="p-5 font-semibold text-white">Reducción consumo 45% - 60%</td>
+                <td class="p-5">11.600 € / vivienda</td>
+                <td class="p-5 text-emerald-400 font-bold">65%</td>
+            </tr>
+            <tr class="hover:bg-white/5 transition-colors duration-200">
+                <td class="p-5 font-semibold text-white">Reducción consumo > 60%</td>
+                <td class="p-5">18.800 € / vivienda</td>
+                <td class="p-5 text-emerald-400 font-bold">80%</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    <strong>Requisitos:</strong> Edificio mayoritariamente residencial (50%+). Obligatorio disponer de ITE aprobada y Certificado de Eficiencia Energética previo. Las obras deben finalizar antes de mediados de 2026.
+</p>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    <strong>Plazo:</strong> Abierta hasta el 30 de junio de 2026.
+</p>
+
+<h3 class="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">Subvenciones para Edificios de oficinas y locales comerciales</h3>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    En Barcelona, estas ayudas provienen del Instituto Municipal del Paisaje Urbano (IMPU). Se enfocan en la rehabilitación de fachadas y medianeras con valor arquitectónico.
+</p>
+
+<div class="grid gap-4 my-8 not-prose">
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Fachadas y medianeras: Subvención base del 35% hasta el 60% en áreas de regeneración.</span>
+    </div>
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Locales comerciales: Hasta 20% (8.000 €) o 40% (15.000 €) en comercios históricos.</span>
+    </div>
+</div>
+
+<h2 class="text-4xl font-serif text-white mt-16 mb-8">Ayudas en el resto de Catalunya (Generalitat y municipios)</h2>
+
+<h3 class="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">Subvenciones para Viviendas unifamiliares (y pisos individuales)</h3>
+
+<h3 class="text-xl text-voltura-gold font-serif mt-12 mb-4 block">Programa Next Generation – Actuaciones en viviendas (Catalunya)</h3>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    Ayuda equivalente para el resto de Cataluña gestionada por la Agència de l’Habitatge de Catalunya.
+</p>
+
+<blockquote class="relative border-l-4 border-voltura-gold pl-8 py-6 my-12 bg-white/5 rounded-r-lg backdrop-blur-sm">
+    <p class="text-2xl font-serif italic text-slate-200 leading-relaxed m-0">
+        "La subvención cubre hasta el 40% del coste, con un límite de 3.000 € por vivienda."
+    </p>
+</blockquote>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    <strong>Requisitos:</strong> Reducción del 7% en demanda energética o 30% en consumo de energía primaria. Plazo hasta el segundo trimestre de 2026.
+</p>
+
+<h3 class="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">Subvenciones para comunidades de propietarios (edificios residenciales)</h3>
+
+<h3 class="text-xl text-voltura-gold font-serif mt-12 mb-4 block">Programa Next Generation – Rehabilitación de edificios (Catalunya)</h3>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    Financia actuaciones integrales sobre la fachada y aislamiento en edificios residenciales fuera de Barcelona capital.
+</p>
+
+<div class="grid gap-4 my-8 not-prose">
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Subvenciones del 40%, 65% u 80% según el ahorro energético conseguido.</span>
+    </div>
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Plazo de solicitud abierto hasta el 30 de junio de 2026.</span>
+    </div>
+</div>
+
+<h3 class="text-2xl text-voltura-gold font-serif mt-12 mb-4 block">Edificios de oficinas y locales comerciales</h3>
+
+<h3 class="text-xl text-voltura-gold font-serif mt-12 mb-4 block">Programa PREE 5000 (ICAEN)</h3>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    Específico para municipios de menos de 5.000 habitantes. Subvenciona mejoras en la envolvente térmica de edificios de cualquier uso (residencial o terciario).
+</p>
+
+<div class="grid gap-4 my-8 not-prose">
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Reducción mínima del 30% en consumo de energía primaria no renovable.</span>
+    </div>
+    <div class="flex items-center gap-4 p-5 rounded-r-md border-l-4 border-emerald-500 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-emerald-500 flex-shrink-0"><path d="M20 6 9 17 4 12"/></svg>
+        <span class="font-medium text-white text-lg">Solicitudes abiertas hasta el 31 de julio de 2026.</span>
+    </div>
+</div>
+
+<p class="text-xl leading-relaxed text-slate-300">
+    <strong>Subvenciones municipales:</strong> Muchos ayuntamientos ofrecen bonificaciones del ICIO o descuentos en el IBI para proyectos de rehabilitación energética. Se recomienda consultar directamente en el ayuntamiento de cada localidad.
+</p>
+
+<p class="text-sm text-slate-500 mt-2 italic text-center">
+    * Datos actualizados según convocatorias vigentes para el periodo 2026.
+</p>`;
+
+    const title = "Guía 2026: Ayudas y subvenciones para rehabilitar fachadas en Cataluña";
+    const slug = "guia-ayudas-rehabilitacion-fachadas-2026";
+
+    const post = await prisma.post.upsert({
+        where: { slug },
+        update: {
+            contentHtml: htmlContent,
+            title,
+            isPublished: true,
+        },
+        create: {
+            title,
+            slug,
+            metaTitle: title,
+            metaDescription: "Guía completa de ayudas y subvenciones públicas para la rehabilitación de fachadas en Cataluña durante el 2026.",
+            contentHtml: htmlContent,
+            isPublished: true,
+            categories: JSON.stringify(["Ayudas 2026", "Subvenciones"]),
+        }
+    });
+
+    console.log("Post inserted or updated successfully with id: ", post.id);
+}
+
+main()
+    .catch(e => {
+        console.error(e);
+        process.exit(1);
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });

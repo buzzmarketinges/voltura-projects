@@ -51,6 +51,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
     const [wordCount, setWordCount] = useState(0)
     const [savedSelection, setSavedSelection] = useState<Range | null>(null)
     const editorRef = useRef<HTMLDivElement>(null)
+    const [initialEditorContent] = useState(post?.contentHtml || post?.contentText || '')
 
     // Calculate initial word count
     useEffect(() => {
@@ -137,7 +138,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
         try {
             const payload = {
                 ...formData,
-                contentHtml: activeTab === 'text' && editorRef.current ? editorRef.current.innerHTML : formData.contentHtml,
+                contentHtml: activeTab === 'text' ? (editorRef.current?.innerHTML || formData.contentHtml) : formData.contentHtml,
                 categories: JSON.stringify(formData.categories),
                 faqs,
                 id: post?.id
@@ -312,12 +313,25 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                         const sel = window.getSelection();
                                         if (sel && sel.rangeCount > 0) {
                                             const range = sel.getRangeAt(0);
-                                            // Verificamos que la selección esté dentro del editor
+                                            // Verificamos que esté dentro del editor
                                             if (editorRef.current?.contains(range.commonAncestorContainer)) {
-                                                setSavedSelection(range.cloneRange());
+                                                // Insertamos un marcador temporal para saber dónde poner el link luego
+                                                const marker = document.createElement('span');
+                                                marker.id = 'temp-link-marker';
+                                                marker.className = 'bg-blue-100 transition-colors cursor-help';
+
+                                                if (!range.collapsed) {
+                                                    // Si hay selección, envolvemos el contenido
+                                                    marker.appendChild(range.extractContents());
+                                                    range.insertNode(marker);
+                                                } else {
+                                                    // Si es solo el cursor, insertamos el marcador vacío
+                                                    marker.textContent = '...'; // Pequeño placeholder visual
+                                                    range.insertNode(marker);
+                                                }
+                                                setIsLinkModalOpen(true);
                                             }
                                         }
-                                        setIsLinkModalOpen(true);
                                     }} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
                                         <LinkIcon size={16} />
                                     </button>
@@ -335,9 +349,11 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     contentEditable
                                     suppressContentEditableWarning
                                     className="min-h-[400px] w-full p-6 text-neutral-800 outline-none prose prose-blue max-w-none focus:outline-none"
-                                    onInput={(e) => handleWordCount(e.currentTarget.innerText)}
-                                    onBlur={(e) => onContentChange(e.currentTarget.innerHTML, 'html')}
-                                    dangerouslySetInnerHTML={{ __html: formData.contentHtml || formData.contentText }}
+                                    onInput={(e) => {
+                                        handleWordCount(e.currentTarget.innerText);
+                                        // No actualizamos formData aquí para evitar re-renders del div
+                                    }}
+                                    dangerouslySetInnerHTML={{ __html: initialEditorContent }}
                                 />
                             ) : (
                                 <textarea
@@ -541,59 +557,44 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 isOpen={isLinkModalOpen}
                 onClose={() => {
                     setIsLinkModalOpen(false);
-                    setSavedSelection(null);
+                    // Si cerramos sin seleccionar, quitamos el marcador y devolvemos el texto a la normalidad
+                    const marker = editorRef.current?.querySelector('#temp-link-marker');
+                    if (marker) {
+                        const parent = marker.parentNode;
+                        while (marker.firstChild) {
+                            parent?.insertBefore(marker.firstChild, marker);
+                        }
+                        parent?.removeChild(marker);
+                    }
                 }}
                 onSelect={(url) => {
                     setIsLinkModalOpen(false);
 
-                    if (editorRef.current && savedSelection) {
-                        try {
-                            // Restauramos el foco
-                            editorRef.current.focus();
-
-                            // Creamos el elemento de enlace
+                    if (editorRef.current) {
+                        const marker = editorRef.current.querySelector('#temp-link-marker');
+                        if (marker) {
                             const link = document.createElement('a');
                             link.href = url;
-                            link.className = 'text-blue-600 underline'; // Opcional: añadir clases del tema
+                            link.className = 'text-blue-600 underline hover:text-blue-800';
 
-                            const sel = window.getSelection();
-                            if (sel) {
-                                sel.removeAllRanges();
-                                sel.addRange(savedSelection);
-
-                                if (!savedSelection.collapsed) {
-                                    // Caso 1: Hay texto seleccionado. Lo movemos dentro del <a>
-                                    link.appendChild(savedSelection.extractContents());
-                                    savedSelection.insertNode(link);
-                                } else {
-                                    // Caso 2: Es solo una posición del cursor. Insertamos el <a> con la URL como texto
-                                    link.textContent = url;
-                                    savedSelection.insertNode(link);
+                            // Si el marcador tenía contenido (texto seleccionado), lo pasamos al link
+                            // Si era un marcador vacío (cursor), el link tendrá la URL como texto
+                            if (marker.textContent === '...') {
+                                link.textContent = url;
+                            } else {
+                                while (marker.firstChild) {
+                                    link.appendChild(marker.firstChild);
                                 }
-
-                                // Importante: Colocar el cursor al final del nuevo enlace
-                                const newRange = document.createRange();
-                                newRange.setStartAfter(link);
-                                newRange.collapse(true);
-                                sel.removeAllRanges();
-                                sel.addRange(newRange);
                             }
 
-                            // Sincronización PROFUNDA del estado
+                            marker.parentNode?.replaceChild(link, marker);
+
+                            // Sincronización del estado
                             const newHtml = editorRef.current.innerHTML;
                             setFormData(prev => ({ ...prev, contentHtml: newHtml }));
-
-                            // Actualizamos conteo de palabras y demás
-                            const textFormat = editorRef.current.innerText;
-                            handleWordCount(textFormat);
-
-                        } catch (err) {
-                            console.error("Error manual link insertion:", err);
-                            // Fallback al método clásico si falla el manual
-                            document.execCommand('createLink', false, url);
+                            handleWordCount(editorRef.current.innerText);
                         }
                     }
-                    setSavedSelection(null);
                 }}
             />
         </form>

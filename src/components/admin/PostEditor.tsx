@@ -539,31 +539,58 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
 
             <LinkSelectorModal
                 isOpen={isLinkModalOpen}
-                onClose={() => setIsLinkModalOpen(false)}
+                onClose={() => {
+                    setIsLinkModalOpen(false);
+                    setSavedSelection(null);
+                }}
                 onSelect={(url) => {
                     setIsLinkModalOpen(false);
 
                     if (editorRef.current && savedSelection) {
-                        editorRef.current.focus();
-                        const sel = window.getSelection();
-                        if (sel) {
-                            sel.removeAllRanges();
-                            sel.addRange(savedSelection);
+                        try {
+                            // Restauramos el foco
+                            editorRef.current.focus();
 
-                            // Si hay texto seleccionado, lo envolvemos manualmente para máxima fiabilidad
-                            if (!savedSelection.collapsed) {
-                                document.execCommand('createLink', false, url);
-                            } else {
-                                // Si no hay nada seleccionado, insertamos el enlace con el texto de la URL
-                                const linkHtml = `<a href="${url}">${url}</a>`;
-                                document.execCommand('insertHTML', false, linkHtml);
+                            // Creamos el elemento de enlace
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.className = 'text-blue-600 underline'; // Opcional: añadir clases del tema
+
+                            const sel = window.getSelection();
+                            if (sel) {
+                                sel.removeAllRanges();
+                                sel.addRange(savedSelection);
+
+                                if (!savedSelection.collapsed) {
+                                    // Caso 1: Hay texto seleccionado. Lo movemos dentro del <a>
+                                    link.appendChild(savedSelection.extractContents());
+                                    savedSelection.insertNode(link);
+                                } else {
+                                    // Caso 2: Es solo una posición del cursor. Insertamos el <a> con la URL como texto
+                                    link.textContent = url;
+                                    savedSelection.insertNode(link);
+                                }
+
+                                // Importante: Colocar el cursor al final del nuevo enlace
+                                const newRange = document.createRange();
+                                newRange.setStartAfter(link);
+                                newRange.collapse(true);
+                                sel.removeAllRanges();
+                                sel.addRange(newRange);
                             }
 
-                            // Sincronizamos el estado de React INMEDIATAMENTE
-                            // Esto evita que React sobreescriba el DOM con el estado antiguo al renderizar de nuevo
+                            // Sincronización PROFUNDA del estado
                             const newHtml = editorRef.current.innerHTML;
                             setFormData(prev => ({ ...prev, contentHtml: newHtml }));
-                            onContentChange(newHtml, 'html');
+
+                            // Actualizamos conteo de palabras y demás
+                            const textFormat = editorRef.current.innerText;
+                            handleWordCount(textFormat);
+
+                        } catch (err) {
+                            console.error("Error manual link insertion:", err);
+                            // Fallback al método clásico si falla el manual
+                            document.execCommand('createLink', false, url);
                         }
                     }
                     setSavedSelection(null);

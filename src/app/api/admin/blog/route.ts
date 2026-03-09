@@ -29,6 +29,9 @@ export async function POST(req: Request) {
 
         return NextResponse.json(newPost)
     } catch (err: any) {
+        if (err.code === 'P2002') {
+            return NextResponse.json({ error: 'Ya existe un artículo con esta misma URL (Slug). Por favor, cambia el título o usa el botón de editar.' }, { status: 400 })
+        }
         return NextResponse.json({ error: err.message }, { status: 500 })
     }
 }

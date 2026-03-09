@@ -149,7 +149,8 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 router.push('/admin/blog')
                 router.refresh()
             } else {
-                alert('Error al guardar el artículo.')
+                const errorData = await res.json().catch(() => null)
+                alert(errorData?.error || 'Error al guardar el artículo.')
             }
         } catch (err) {
             console.error(err)

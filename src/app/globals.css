@@ -42,3 +42,17 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+/* Estilos para el contenido de los artículos (prose) */
+.prose a {
+  color: var(--voltura-gold) !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.prose a:hover {
+  filter: brightness(1.2);
+  text-decoration-thickness: 2px;
+}

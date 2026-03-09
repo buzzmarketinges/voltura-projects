@@ -312,16 +312,9 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                         const sel = window.getSelection();
                                         if (sel && sel.rangeCount > 0) {
                                             const range = sel.getRangeAt(0);
-                                            // Check if the range is inside our editor
+                                            // Verificamos que la selección esté dentro del editor
                                             if (editorRef.current?.contains(range.commonAncestorContainer)) {
                                                 setSavedSelection(range.cloneRange());
-                                            } else {
-                                                // If not in editor, focus editor and select all (or just focus)
-                                                editorRef.current?.focus();
-                                                const newSel = window.getSelection();
-                                                if (newSel && newSel.rangeCount > 0) {
-                                                    setSavedSelection(newSel.getRangeAt(0).cloneRange());
-                                                }
                                             }
                                         }
                                         setIsLinkModalOpen(true);
@@ -550,25 +543,30 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 onSelect={(url) => {
                     setIsLinkModalOpen(false);
 
-                    setTimeout(() => {
-                        if (editorRef.current) {
-                            editorRef.current.focus();
+                    if (editorRef.current && savedSelection) {
+                        editorRef.current.focus();
+                        const sel = window.getSelection();
+                        if (sel) {
+                            sel.removeAllRanges();
+                            sel.addRange(savedSelection);
 
-                            const sel = window.getSelection();
-                            if (sel && savedSelection) {
-                                sel.removeAllRanges();
-                                sel.addRange(savedSelection);
-
-                                // Direct link creation
+                            // Si hay texto seleccionado, lo envolvemos manualmente para máxima fiabilidad
+                            if (!savedSelection.collapsed) {
                                 document.execCommand('createLink', false, url);
-
-                                // Update data immediately
-                                const newHtml = editorRef.current.innerHTML;
-                                onContentChange(newHtml, 'html');
+                            } else {
+                                // Si no hay nada seleccionado, insertamos el enlace con el texto de la URL
+                                const linkHtml = `<a href="${url}">${url}</a>`;
+                                document.execCommand('insertHTML', false, linkHtml);
                             }
+
+                            // Sincronizamos el estado de React INMEDIATAMENTE
+                            // Esto evita que React sobreescriba el DOM con el estado antiguo al renderizar de nuevo
+                            const newHtml = editorRef.current.innerHTML;
+                            setFormData(prev => ({ ...prev, contentHtml: newHtml }));
+                            onContentChange(newHtml, 'html');
                         }
-                        setSavedSelection(null);
-                    }, 10);
+                    }
+                    setSavedSelection(null);
                 }}
             />
         </form>

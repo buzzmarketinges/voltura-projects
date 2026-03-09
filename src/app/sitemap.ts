@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
 import { prisma } from '@/lib/prisma';
 
+export const revalidate = 0;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Use environment variable or default to production URL without www
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://volturaprojects.es';

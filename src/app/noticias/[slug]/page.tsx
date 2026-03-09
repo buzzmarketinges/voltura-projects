@@ -110,7 +110,6 @@ export default async function ArticlePage({ params }: PageProps) {
                         alt={articleData.title}
                         fill
                         priority
-                        unoptimized // Important: avoid domain issues for now
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-voltura-blue/60 via-voltura-blue/40 to-voltura-blue"></div>

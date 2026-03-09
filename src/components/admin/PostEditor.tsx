@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import slugify from 'slugify'
 import { Save, Plus, Trash2, Image as ImageIcon, ImagePlus, Bold, Italic, Underline, List, ListOrdered, Link as LinkIcon, Heading1, Heading2, Quote, RemoveFormatting, Calendar } from 'lucide-react'
@@ -49,6 +49,8 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
     const [isMediaModalOpen, setIsMediaModalOpen] = useState(false)
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
     const [wordCount, setWordCount] = useState(0)
+    const [savedSelection, setSavedSelection] = useState<Range | null>(null)
+    const editorRef = useRef<HTMLDivElement>(null)
 
     // Calculate initial word count
     useEffect(() => {
@@ -135,6 +137,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
         try {
             const payload = {
                 ...formData,
+                contentHtml: activeTab === 'text' && editorRef.current ? editorRef.current.innerHTML : formData.contentHtml,
                 categories: JSON.stringify(formData.categories),
                 faqs,
                 id: post?.id
@@ -305,7 +308,13 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     <button type="button" onClick={() => execCmd('formatBlock', 'BLOCKQUOTE')} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Cita">
                                         <Quote size={16} />
                                     </button>
-                                    <button type="button" onClick={() => setIsLinkModalOpen(true)} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
+                                    <button type="button" onClick={() => {
+                                        const sel = window.getSelection();
+                                        if (sel && sel.rangeCount > 0) {
+                                            setSavedSelection(sel.getRangeAt(0));
+                                        }
+                                        setIsLinkModalOpen(true);
+                                    }} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
                                         <LinkIcon size={16} />
                                     </button>
                                     <button type="button" onClick={() => execCmd('removeFormat')} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Borrar Formato">
@@ -318,6 +327,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                         <div className="p-0 border-none m-0 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent flex">
                             {activeTab === 'text' ? (
                                 <div
+                                    ref={editorRef}
                                     contentEditable
                                     suppressContentEditableWarning
                                     className="min-h-[400px] w-full p-6 text-neutral-800 outline-none prose prose-blue max-w-none focus:outline-none"
@@ -424,12 +434,19 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     type="text"
                                     value={formData.metaTitle}
                                     onChange={(e) => setFormData(prev => ({ ...prev, metaTitle: e.target.value }))}
-                                    className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
+                                    className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm ${(formData.metaTitle?.length || 0) > 60
+                                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                            : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
+                                        }`}
                                     placeholder="Ej: Comprar los mejores coches - Voltura"
                                 />
-                                <div className="mt-2 space-y-1 text-xs text-neutral-500">
-                                    <p>• <strong>Recomendado:</strong> Entre 50 y 60 caracteres.</p>
-                                    <p>• <strong>Técnico:</strong> Google corta a los ~600px. Si te excedes, aparecerán puntos suspensivos (...) y bajará el CTR.</p>
+                                <div className="mt-1 flex justify-between items-center text-xs">
+                                    <p className={`${(formData.metaTitle?.length || 0) > 60 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {(formData.metaTitle?.length || 0) > 60 && "¡El título excede el límite recomendado!"}
+                                    </p>
+                                    <p className={`${(formData.metaTitle?.length || 0) > 60 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {formData.metaTitle?.length || 0} / 60
+                                    </p>
                                 </div>
                             </div>
 
@@ -438,13 +455,19 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                 <textarea
                                     value={formData.metaDescription}
                                     onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
-                                    className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm min-h-[100px]"
+                                    className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm min-h-[100px] ${(formData.metaDescription?.length || 0) > 155
+                                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                            : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
+                                        }`}
                                     placeholder="Ej: Descubre la mejor guía en 2026..."
                                 />
-                                <div className="mt-2 space-y-1 text-xs text-neutral-500">
-                                    <p>• <strong>Recomendado:</strong> Entre 140 y 155 caracteres.</p>
-                                    <p>• <strong>Técnico:</strong> Aprox 960px en escritorio y 680px móvil.</p>
-                                    <p>• <strong>Nota vital:</strong> Google suele mostrar solo los primeros 155 caracteres. Coloca la Keyword al inicio.</p>
+                                <div className="mt-1 flex justify-between items-center text-xs">
+                                    <p className={`${(formData.metaDescription?.length || 0) > 155 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {(formData.metaDescription?.length || 0) > 155 && "¡La descripción excede el límite recomendado!"}
+                                    </p>
+                                    <p className={`${(formData.metaDescription?.length || 0) > 155 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {formData.metaDescription?.length || 0} / 155
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -514,6 +537,11 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 isOpen={isLinkModalOpen}
                 onClose={() => setIsLinkModalOpen(false)}
                 onSelect={(url) => {
+                    const sel = window.getSelection();
+                    if (savedSelection && sel) {
+                        sel.removeAllRanges();
+                        sel.addRange(savedSelection);
+                    }
                     execCmd('createLink', url);
                     setIsLinkModalOpen(false);
                 }}

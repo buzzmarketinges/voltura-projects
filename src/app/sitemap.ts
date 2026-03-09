@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next';
 import { projects } from '@/data/projects';
-import { articles } from '@/data/articles';
+import { prisma } from '@/lib/prisma';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Use environment variable or default to production URL without www
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://volturaprojects.es';
 
@@ -110,10 +110,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     };
 
-    // Dynamic article pages
-    const articlePages = articles.map((article) => ({
+    // Dynamic article pages from Database
+    let dbArticles: any[] = [];
+    try {
+        dbArticles = await prisma.post.findMany({
+            where: {
+                isPublished: true,
+                createdAt: { lte: new Date() }
+            },
+            select: { slug: true, updatedAt: true, createdAt: true }
+        });
+    } catch (e) {
+        console.error("Error fetching articles for sitemap:", e);
+    }
+
+    const articlePages = dbArticles.map((article) => ({
         url: `${baseUrl}/noticias/${article.slug}`,
-        lastModified: new Date(article.date),
+        lastModified: article.updatedAt || article.createdAt,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));

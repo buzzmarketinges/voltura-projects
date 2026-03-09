@@ -20,7 +20,10 @@ export default async function NoticiasPage() {
     try {
         // Attempt to fetch from DB with a timeout or just catch the failed connection
         const dbPosts = await prisma.post.findMany({
-            where: { isPublished: true },
+            where: {
+                isPublished: true,
+                createdAt: { lte: new Date() }
+            },
             orderBy: { createdAt: 'desc' },
         }).catch(err => {
             console.error("Prisma query failed:", err);

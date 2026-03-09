@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import slugify from 'slugify'
-import { Save, Plus, Trash2, Image as ImageIcon, ImagePlus, Bold, Italic, Underline, List, ListOrdered, Link as LinkIcon, Heading1, Heading2, Quote, RemoveFormatting } from 'lucide-react'
+import { Save, Plus, Trash2, Image as ImageIcon, ImagePlus, Bold, Italic, Underline, List, ListOrdered, Link as LinkIcon, Heading1, Heading2, Quote, RemoveFormatting, Calendar } from 'lucide-react'
 import { MediaSelectorModal } from './MediaSelectorModal'
+import { LinkSelectorModal } from './LinkSelectorModal'
 
 // Utilidad para limpiar el slug
 const createSlug = (text: string) => {
@@ -39,12 +40,14 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
         contentText: post?.contentText || '',
         isPublished: post ? post.isPublished : false,
         categories: post?.categories ? JSON.parse(post.categories) : [],
+        createdAt: post?.createdAt ? new Date(post.createdAt).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16)
     })
 
     // Tabs de contenido
     const [activeTab, setActiveTab] = useState<'text' | 'html'>('text')
     const [isSaving, setIsSaving] = useState(false)
     const [isMediaModalOpen, setIsMediaModalOpen] = useState(false)
+    const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
     const [wordCount, setWordCount] = useState(0)
 
     // Calculate initial word count
@@ -225,6 +228,23 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                 </div>
                                 <p className="mt-1 text-xs text-neutral-500">Se genera automáticamente solo con minúsculas, guiones y letras inglesas.</p>
                             </div>
+
+                            <div>
+                                <label className="mb-1 block text-sm font-medium text-neutral-700">Fecha de Publicación</label>
+                                <div className="flex rounded-md shadow-sm border border-neutral-300">
+                                    <span className="inline-flex items-center rounded-l-md border-r border-neutral-300 bg-neutral-50 px-3 text-neutral-500 sm:text-sm">
+                                        <Calendar size={16} />
+                                    </span>
+                                    <input
+                                        required
+                                        type="datetime-local"
+                                        value={formData.createdAt}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, createdAt: e.target.value }))}
+                                        className="block w-full min-w-0 flex-1 rounded-none rounded-r-md px-4 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
+                                    />
+                                </div>
+                                <p className="mt-1 text-xs text-neutral-500">Si fijas una fecha a futuro, la noticia quedará programada para mostrarse a partir de entonces.</p>
+                            </div>
                         </div>
                     </div>
 
@@ -285,10 +305,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     <button type="button" onClick={() => execCmd('formatBlock', 'BLOCKQUOTE')} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Cita">
                                         <Quote size={16} />
                                     </button>
-                                    <button type="button" onClick={() => {
-                                        const url = prompt('Introduce el enlace (URL):');
-                                        if (url) execCmd('createLink', url);
-                                    }} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
+                                    <button type="button" onClick={() => setIsLinkModalOpen(true)} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
                                         <LinkIcon size={16} />
                                     </button>
                                     <button type="button" onClick={() => execCmd('removeFormat')} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Borrar Formato">
@@ -410,7 +427,10 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
                                     placeholder="Ej: Comprar los mejores coches - Voltura"
                                 />
-                                <p className="mt-1 text-xs text-neutral-500">Recomendado: 50-60 caracteres.</p>
+                                <div className="mt-2 space-y-1 text-xs text-neutral-500">
+                                    <p>• <strong>Recomendado:</strong> Entre 50 y 60 caracteres.</p>
+                                    <p>• <strong>Técnico:</strong> Google corta a los ~600px. Si te excedes, aparecerán puntos suspensivos (...) y bajará el CTR.</p>
+                                </div>
                             </div>
 
                             <div>
@@ -421,7 +441,11 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm min-h-[100px]"
                                     placeholder="Ej: Descubre la mejor guía en 2026..."
                                 />
-                                <p className="mt-1 text-xs text-neutral-500">Recomendado: 150-160 caracteres.</p>
+                                <div className="mt-2 space-y-1 text-xs text-neutral-500">
+                                    <p>• <strong>Recomendado:</strong> Entre 140 y 155 caracteres.</p>
+                                    <p>• <strong>Técnico:</strong> Aprox 960px en escritorio y 680px móvil.</p>
+                                    <p>• <strong>Nota vital:</strong> Google suele mostrar solo los primeros 155 caracteres. Coloca la Keyword al inicio.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -483,6 +507,15 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 onSelect={(url) => {
                     setFormData(prev => ({ ...prev, mainImage: url }))
                     setIsMediaModalOpen(false)
+                }}
+            />
+
+            <LinkSelectorModal
+                isOpen={isLinkModalOpen}
+                onClose={() => setIsLinkModalOpen(false)}
+                onSelect={(url) => {
+                    execCmd('createLink', url);
+                    setIsLinkModalOpen(false);
                 }}
             />
         </form>

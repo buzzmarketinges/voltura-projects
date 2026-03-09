@@ -6,6 +6,10 @@ export async function POST(req: Request) {
         const body = await req.json()
         const { faqs, ...postData } = body
 
+        if (postData.createdAt) {
+            postData.createdAt = new Date(postData.createdAt)
+        }
+
         const newPost = await prisma.post.create({
             data: {
                 title: postData.title,
@@ -17,6 +21,7 @@ export async function POST(req: Request) {
                 contentHtml: postData.contentHtml,
                 contentText: postData.contentText,
                 isPublished: postData.isPublished,
+                createdAt: postData.createdAt || undefined,
                 faqs: {
                     create: faqs.map((f: any, i: number) => ({
                         question: f.question,
@@ -40,6 +45,10 @@ export async function PUT(req: Request) {
     try {
         const body = await req.json()
         const { faqs, id, ...postData } = body
+
+        if (postData.createdAt) {
+            postData.createdAt = new Date(postData.createdAt)
+        }
 
         if (!id) {
             return NextResponse.json({ error: 'Falta ID' }, { status: 400 })

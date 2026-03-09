@@ -309,9 +309,10 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                         <Quote size={16} />
                                     </button>
                                     <button type="button" onClick={() => {
+                                        editorRef.current?.focus();
                                         const sel = window.getSelection();
                                         if (sel && sel.rangeCount > 0) {
-                                            setSavedSelection(sel.getRangeAt(0));
+                                            setSavedSelection(sel.getRangeAt(0).cloneRange());
                                         }
                                         setIsLinkModalOpen(true);
                                     }} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
@@ -435,8 +436,8 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     value={formData.metaTitle}
                                     onChange={(e) => setFormData(prev => ({ ...prev, metaTitle: e.target.value }))}
                                     className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm ${(formData.metaTitle?.length || 0) > 60
-                                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                                            : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
+                                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                        : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
                                         }`}
                                     placeholder="Ej: Comprar los mejores coches - Voltura"
                                 />
@@ -456,8 +457,8 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     value={formData.metaDescription}
                                     onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
                                     className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm min-h-[100px] ${(formData.metaDescription?.length || 0) > 155
-                                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                                            : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
+                                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                        : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
                                         }`}
                                     placeholder="Ej: Descubre la mejor guía en 2026..."
                                 />
@@ -537,13 +538,23 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 isOpen={isLinkModalOpen}
                 onClose={() => setIsLinkModalOpen(false)}
                 onSelect={(url) => {
-                    const sel = window.getSelection();
-                    if (savedSelection && sel) {
-                        sel.removeAllRanges();
-                        sel.addRange(savedSelection);
-                    }
-                    execCmd('createLink', url);
                     setIsLinkModalOpen(false);
+
+                    // Delay execution slightly to ensure modal is closed and DOM is ready
+                    setTimeout(() => {
+                        editorRef.current?.focus();
+                        const sel = window.getSelection();
+                        if (savedSelection && sel) {
+                            sel.removeAllRanges();
+                            sel.addRange(savedSelection);
+                        }
+                        document.execCommand('createLink', false, url);
+
+                        // Force an update to React state from the editor
+                        if (editorRef.current) {
+                            onContentChange(editorRef.current.innerHTML, 'html');
+                        }
+                    }, 50);
                 }}
             />
         </form>

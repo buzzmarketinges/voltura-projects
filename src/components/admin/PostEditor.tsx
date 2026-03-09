@@ -53,13 +53,24 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
     const editorRef = useRef<HTMLDivElement>(null)
     const [initialEditorContent] = useState(post?.contentHtml || post?.contentText || '')
 
-    // Calculate initial word count
+    // Establecer contenido inicial solo una vez al montar
     useEffect(() => {
-        if (formData.contentText) {
-            const text = formData.contentText.trim()
-            setWordCount(text ? text.split(/\s+/).length : 0)
+        if (editorRef.current) {
+            editorRef.current.innerHTML = initialEditorContent;
+            handleWordCount(editorRef.current.innerText);
         }
     }, [])
+
+    const handleTabChange = (newTab: 'text' | 'html') => {
+        if (newTab === 'html' && activeTab === 'text' && editorRef.current) {
+            // Pasamos de visual a código: capturamos el HTML actual
+            setFormData(prev => ({ ...prev, contentHtml: editorRef.current!.innerHTML }));
+        } else if (newTab === 'text' && activeTab === 'html' && editorRef.current) {
+            // Pasamos de código a visual: inyectamos el HTML modificado
+            editorRef.current.innerHTML = formData.contentHtml;
+        }
+        setActiveTab(newTab);
+    }
 
     const handleWordCount = (text: string) => {
         const trimmed = text.trim()
@@ -259,7 +270,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                 <div>
                                     <button
                                         type="button"
-                                        onClick={() => setActiveTab('text')}
+                                        onClick={() => handleTabChange('text')}
                                         className={`rounded-md px-4 py-1.5 text-sm font-medium transition ${activeTab === 'text' ? 'bg-white text-blue-600 shadow-sm' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
                                             }`}
                                     >
@@ -267,7 +278,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={() => setActiveTab('html')}
+                                        onClick={() => handleTabChange('html')}
                                         className={`ml-2 rounded-md px-4 py-1.5 text-sm font-medium transition ${activeTab === 'html' ? 'bg-white text-blue-600 shadow-sm' : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
                                             }`}
                                     >
@@ -318,7 +329,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                                 // Insertamos un marcador temporal para saber dónde poner el link luego
                                                 const marker = document.createElement('span');
                                                 marker.id = 'temp-link-marker';
-                                                marker.className = 'bg-blue-100 transition-colors cursor-help';
+                                                marker.className = 'bg-blue-200 border-b-2 border-blue-500 transition-colors cursor-help px-1 rounded';
 
                                                 if (!range.collapsed) {
                                                     // Si hay selección, envolvemos el contenido
@@ -342,8 +353,8 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                             )}
                         </div>
 
-                        <div className="p-0 border-none m-0 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent flex">
-                            {activeTab === 'text' ? (
+                        <div className="p-0 border-none m-0 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent flex flex-col">
+                            <div className={`w-full ${activeTab === 'text' ? 'block' : 'hidden'}`}>
                                 <div
                                     ref={editorRef}
                                     contentEditable
@@ -351,17 +362,16 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                     className="min-h-[400px] w-full p-6 text-neutral-800 outline-none prose prose-blue max-w-none focus:outline-none"
                                     onInput={(e) => {
                                         handleWordCount(e.currentTarget.innerText);
-                                        // No actualizamos formData aquí para evitar re-renders del div
                                     }}
-                                    dangerouslySetInnerHTML={{ __html: initialEditorContent }}
                                 />
-                            ) : (
+                            </div>
+                            <div className={`w-full ${activeTab === 'html' ? 'block' : 'hidden'}`}>
                                 <textarea
                                     className="min-h-[400px] w-full border-none p-6 font-mono text-sm text-neutral-800 outline-none focus:ring-0 whitespace-pre"
                                     value={formData.contentHtml}
                                     onChange={(e) => onContentChange(e.target.value, 'html')}
                                 />
-                            )}
+                            </div>
                         </div>
                     </div>
 

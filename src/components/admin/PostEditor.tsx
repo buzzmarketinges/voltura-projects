@@ -309,10 +309,20 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                         <Quote size={16} />
                                     </button>
                                     <button type="button" onClick={() => {
-                                        editorRef.current?.focus();
                                         const sel = window.getSelection();
                                         if (sel && sel.rangeCount > 0) {
-                                            setSavedSelection(sel.getRangeAt(0).cloneRange());
+                                            const range = sel.getRangeAt(0);
+                                            // Check if the range is inside our editor
+                                            if (editorRef.current?.contains(range.commonAncestorContainer)) {
+                                                setSavedSelection(range.cloneRange());
+                                            } else {
+                                                // If not in editor, focus editor and select all (or just focus)
+                                                editorRef.current?.focus();
+                                                const newSel = window.getSelection();
+                                                if (newSel && newSel.rangeCount > 0) {
+                                                    setSavedSelection(newSel.getRangeAt(0).cloneRange());
+                                                }
+                                            }
                                         }
                                         setIsLinkModalOpen(true);
                                     }} className="p-2 text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 rounded" title="Añadir Enlace">
@@ -540,21 +550,25 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 onSelect={(url) => {
                     setIsLinkModalOpen(false);
 
-                    // Delay execution slightly to ensure modal is closed and DOM is ready
                     setTimeout(() => {
-                        editorRef.current?.focus();
-                        const sel = window.getSelection();
-                        if (savedSelection && sel) {
-                            sel.removeAllRanges();
-                            sel.addRange(savedSelection);
-                        }
-                        document.execCommand('createLink', false, url);
-
-                        // Force an update to React state from the editor
                         if (editorRef.current) {
-                            onContentChange(editorRef.current.innerHTML, 'html');
+                            editorRef.current.focus();
+
+                            const sel = window.getSelection();
+                            if (sel && savedSelection) {
+                                sel.removeAllRanges();
+                                sel.addRange(savedSelection);
+
+                                // Direct link creation
+                                document.execCommand('createLink', false, url);
+
+                                // Update data immediately
+                                const newHtml = editorRef.current.innerHTML;
+                                onContentChange(newHtml, 'html');
+                            }
                         }
-                    }, 50);
+                        setSavedSelection(null);
+                    }, 10);
                 }}
             />
         </form>

@@ -7,13 +7,13 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 
 export const metadata = {
     alternates: {
-        canonical: "/proyectos",
+        canonical: "/ca/projectes",
     },
-    title: "Proyectos Realizados | Voltura Projects Barcelona",
-    description: "Descubre nuestra selección de proyectos de reformas integrales, instalaciones y rehabilitaciones en Barcelona.",
+    title: "Projectes Realitzats | Voltura Projects Barcelona",
+    description: "Descobreix la nostra selecció de projectes de reformes integrals, instal·lacions i rehabilitacions a Barcelona.",
 };
 
-export default async function ProyectosPage() {
+export default async function ProjectesPage() {
     const dbProjects = await prisma.project.findMany({
         orderBy: { createdAt: 'desc' }
     });
@@ -25,10 +25,10 @@ export default async function ProyectosPage() {
             {/* Header */}
             <section className="pt-32 pb-16 px-4 text-center">
                 <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    Nuestros Proyectos
+                    Els Nostres Projectes
                 </h1>
                 <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-                    Una muestra de nuestro compromiso con la excelencia, el diseño y la eficiencia energética.
+                    Una mostra del nostre compromís amb l'excel·lència, el disseny i l'eficiència energètica.
                 </p>
             </section>
 
@@ -36,11 +36,15 @@ export default async function ProyectosPage() {
             <section className="pb-24 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {dbProjects.map((project, idx) => {
-                        const tagsList = project.tags ? JSON.parse(project.tags) : [];
+                        const tagsList = project.tags_ca ? JSON.parse(project.tags_ca) : [];
+                        const title = project.title_ca || project.title;
+                        const summary = project.summary_ca || project.summary;
+                        const slug = project.slug_ca || project.slug;
+
                         return (
                             <Link
                                 key={project.id}
-                                href={`/proyectos/${project.slug}`}
+                                href={`/ca/projectes/${slug}`}
                                 className="group block relative bg-voltura-slate border border-white/5 rounded-sm overflow-hidden hover:border-voltura-gold/50 transition-all duration-300 animate-in fade-in zoom-in"
                                 style={{ animationDelay: `${idx * 100}ms` }}
                             >
@@ -48,7 +52,7 @@ export default async function ProyectosPage() {
                                     {project.mainImage && (
                                         <Image
                                             src={project.mainImage}
-                                            alt={project.title || ''}
+                                            alt={title || ''}
                                             fill
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
@@ -65,16 +69,16 @@ export default async function ProyectosPage() {
 
                                 <div className="p-6">
                                     <div className="flex justify-between items-start mb-4">
-                                        <div className="text-xs text-gray-500 flex items-center gap-1">
+                                        <div className="text-xs text-gray-400 flex items-center gap-1">
                                             <MapPin className="w-3 h-3" /> {project.location}
                                         </div>
-                                        <ArrowUpRight className="w-5 h-5 text-gray-600 group-hover:text-voltura-gold transition-colors" />
+                                        <ArrowUpRight className="w-5 h-5 text-gray-500 group-hover:text-voltura-gold transition-colors" />
                                     </div>
                                     <h2 className="text-xl font-serif font-bold text-white mb-2 group-hover:text-voltura-gold transition-colors">
-                                        {project.title}
+                                        {title}
                                     </h2>
                                     <p className="text-gray-400 text-sm line-clamp-2">
-                                        {project.summary}
+                                        {summary}
                                     </p>
                                 </div>
                             </Link>

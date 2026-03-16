@@ -249,7 +249,7 @@ export default function ReformasBanosPage() {
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">¿Hablamos de tu nuevo baño?</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Reforma de Baños en Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                         Convierte tu rutina diaria en una experiencia de lujo. Solicita visita técnica sin compromiso.
                     </p>

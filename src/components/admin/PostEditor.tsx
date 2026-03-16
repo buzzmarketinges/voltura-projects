@@ -32,19 +32,27 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
 
     const [formData, setFormData] = useState({
         title: post?.title || '',
+        title_ca: post?.title_ca || '',
         slug: post?.slug || '',
+        slug_ca: post?.slug_ca || '',
         metaTitle: post?.metaTitle || '',
+        metaTitle_ca: post?.metaTitle_ca || '',
         metaDescription: post?.metaDescription || '',
+        metaDescription_ca: post?.metaDescription_ca || '',
         mainImage: post?.mainImage || '',
         contentHtml: post?.contentHtml || '',
+        contentHtml_ca: post?.contentHtml_ca || '',
         contentText: post?.contentText || '',
+        contentText_ca: post?.contentText_ca || '',
         isPublished: post ? post.isPublished : false,
         categories: post?.categories ? JSON.parse(post.categories) : [],
         createdAt: post?.createdAt ? new Date(post.createdAt).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16)
     })
 
+
     // Tabs de contenido
     const [activeTab, setActiveTab] = useState<'text' | 'html'>('text')
+    const [activeLang, setActiveLang] = useState<'es' | 'ca'>('es')
     const [isSaving, setIsSaving] = useState(false)
     const [isMediaModalOpen, setIsMediaModalOpen] = useState(false)
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false)
@@ -61,16 +69,33 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
         }
     }, [])
 
+    // Sincronizar editor cuando cambia el idioma
+    useEffect(() => {
+        if (editorRef.current) {
+            if (activeLang === 'es') {
+                editorRef.current.innerHTML = formData.contentHtml || '';
+            } else {
+                editorRef.current.innerHTML = formData.contentHtml_ca || '';
+            }
+            handleWordCount(editorRef.current.innerText);
+        }
+    }, [activeLang])
+
     const handleTabChange = (newTab: 'text' | 'html') => {
         if (newTab === 'html' && activeTab === 'text' && editorRef.current) {
             // Pasamos de visual a código: capturamos el HTML actual
-            setFormData(prev => ({ ...prev, contentHtml: editorRef.current!.innerHTML }));
+            if (activeLang === 'es') {
+                setFormData(prev => ({ ...prev, contentHtml: editorRef.current!.innerHTML }));
+            } else {
+                setFormData(prev => ({ ...prev, contentHtml_ca: editorRef.current!.innerHTML }));
+            }
         } else if (newTab === 'text' && activeTab === 'html' && editorRef.current) {
             // Pasamos de código a visual: inyectamos el HTML modificado
-            editorRef.current.innerHTML = formData.contentHtml;
+            editorRef.current.innerHTML = activeLang === 'es' ? formData.contentHtml : formData.contentHtml_ca;
         }
         setActiveTab(newTab);
     }
+
 
     const handleWordCount = (text: string) => {
         const trimmed = text.trim()
@@ -78,9 +103,10 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
     }
 
     // FAQs
-    const [faqs, setFaqs] = useState<{ id?: string, question: string, answer: string }[]>(
+    const [faqs, setFaqs] = useState<{ id?: string, question: string, answer: string, question_ca?: string, answer_ca?: string }[]>(
         post?.faqs || []
     )
+
 
     // Autogenerar slug al cambiar el titulo si el slug no ha sido modificado  manualmente
     useEffect(() => {
@@ -107,33 +133,52 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
     // Sincronizar texto o html basico de forma rudimentaria o simplemente mantener separados
     // Para un editor avanzado normalmente se usa un WYSIWYG, aquí el usuario pidio: 
     // "Habrá una pestaña que pondra Texto y otra que ponga HTML. Si se escribe en HTML y despues se pasa a la pestaña texto, saldrá el mismo texto pero formateado."
+    const switchLanguage = (lang: 'es' | 'ca') => {
+        if (editorRef.current && activeTab === 'text') {
+            if (activeLang === 'es') {
+                setFormData(prev => ({ ...prev, contentHtml: editorRef.current!.innerHTML }));
+            } else {
+                setFormData(prev => ({ ...prev, contentHtml_ca: editorRef.current!.innerHTML }));
+            }
+        }
+        setActiveLang(lang);
+    }
+
     const onContentChange = (val: string, type: 'html' | 'text') => {
         if (type === 'html') {
-            // simple strip html para texto plano como preview
             const textFormat = val.replace(/<[^>]*>?/gm, '')
-            setFormData(prev => ({ ...prev, contentHtml: val, contentText: textFormat }))
+            if (activeLang === 'es') {
+                setFormData(prev => ({ ...prev, contentHtml: val, contentText: textFormat }))
+            } else {
+                setFormData(prev => ({ ...prev, contentHtml_ca: val, contentText_ca: textFormat }))
+            }
             handleWordCount(textFormat)
         } else {
-            // Convertir nl2br para html basico si editan el texto
             const htmlFormat = val.split('\n').map(p => `<p>${p}</p>`).join('')
-            setFormData(prev => ({ ...prev, contentText: val, contentHtml: htmlFormat }))
+            if (activeLang === 'es') {
+                setFormData(prev => ({ ...prev, contentText: val, contentHtml: htmlFormat }))
+            } else {
+                setFormData(prev => ({ ...prev, contentText_ca: val, contentHtml_ca: htmlFormat }))
+            }
             handleWordCount(val)
         }
     }
+
 
     const execCmd = (cmd: string, val: string = '') => {
         document.execCommand(cmd, false, val);
     }
 
     const addFaq = () => {
-        setFaqs([...faqs, { question: '', answer: '' }])
+        setFaqs([...faqs, { question: '', answer: '', question_ca: '', answer_ca: '' }])
     }
 
-    const updateFaq = (index: number, key: 'question' | 'answer', value: string) => {
-        const newFaqs = [...faqs]
+    const updateFaq = (index: number, key: 'question' | 'answer' | 'question_ca' | 'answer_ca', value: string) => {
+        const newFaqs = [...faqs] as any[]
         newFaqs[index][key] = value
         setFaqs(newFaqs)
     }
+
 
     const removeFaq = (index: number) => {
         const newFaqs = [...faqs]
@@ -149,11 +194,13 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
         try {
             const payload = {
                 ...formData,
-                contentHtml: activeTab === 'text' ? (editorRef.current?.innerHTML || formData.contentHtml) : formData.contentHtml,
+                contentHtml: activeTab === 'text' && activeLang === 'es' ? (editorRef.current?.innerHTML || formData.contentHtml) : formData.contentHtml,
+                contentHtml_ca: activeTab === 'text' && activeLang === 'ca' ? (editorRef.current?.innerHTML || formData.contentHtml_ca) : formData.contentHtml_ca,
                 categories: JSON.stringify(formData.categories),
                 faqs,
                 id: post?.id
             };
+
 
             const res = await fetch('/api/admin/blog', {
                 method: post ? 'PUT' : 'POST',
@@ -205,7 +252,28 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                 </div>
             </div>
 
+            {/* Language Switcher Tabs */}
+            <div className="flex border-b border-neutral-200">
+                <button
+                    type="button"
+                    onClick={() => switchLanguage('es')}
+                    className={`px-6 py-3 text-sm font-medium border-b-2 transition ${activeLang === 'es' ? 'border-blue-600 text-blue-600' : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                        }`}
+                >
+                    Castellano
+                </button>
+                <button
+                    type="button"
+                    onClick={() => switchLanguage('ca')}
+                    className={`px-6 py-3 text-sm font-medium border-b-2 transition ${activeLang === 'ca' ? 'border-blue-600 text-blue-600' : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                        }`}
+                >
+                    Català
+                </button>
+            </div>
+
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+
                 {/* Main Content Area (Left col) */}
                 <div className="lg:col-span-2 space-y-8">
                     {/* Main Info */}
@@ -214,28 +282,28 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
 
                         <div className="space-y-5">
                             <div>
-                                <label className="mb-1 block text-sm font-medium text-neutral-700">Título (H1)</label>
+                                <label className="mb-1 block text-sm font-medium text-neutral-700">Título (H1) - {activeLang === 'es' ? 'Castellano' : 'Català'}</label>
                                 <input
                                     required
                                     type="text"
-                                    value={formData.title}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                                    value={activeLang === 'es' ? formData.title : formData.title_ca}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, [activeLang === 'es' ? 'title' : 'title_ca']: e.target.value }))}
                                     className="block w-full rounded-md border border-neutral-300 px-4 py-2 align-middle text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 font-sans"
-                                    placeholder="El fascinante título de tu post"
+                                    placeholder={activeLang === 'es' ? "El fascinante título de tu post" : "El títol del teu post"}
                                 />
-                            </div>
+                             </div>
 
                             <div>
                                 <label className="mb-1 block text-sm font-medium text-neutral-700">Slug (URL)</label>
                                 <div className="flex rounded-md shadow-sm">
                                     <span className="inline-flex items-center rounded-l-md border border-r-0 border-neutral-300 bg-neutral-50 px-3 text-neutral-500 sm:text-sm">
-                                        /blog/
+                                        {activeLang === 'es' ? '/blog/' : '/ca/blog/'}
                                     </span>
                                     <input
                                         required
                                         type="text"
-                                        value={formData.slug}
-                                        onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
+                                        value={activeLang === 'es' ? formData.slug : formData.slug_ca}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, [activeLang === 'es' ? 'slug' : 'slug_ca']: e.target.value }))}
                                         onBlur={handleSlugBlur}
                                         className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border border-neutral-300 px-4 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
                                         placeholder="mi-super-post"
@@ -261,6 +329,7 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                 <p className="mt-1 text-xs text-neutral-500">Si fijas una fecha a futuro, la noticia quedará programada para mostrarse a partir de entonces.</p>
                             </div>
                         </div>
+
                     </div>
 
                     {/* Content Editor */}
@@ -368,9 +437,10 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                             <div className={`w-full ${activeTab === 'html' ? 'block' : 'hidden'}`}>
                                 <textarea
                                     className="min-h-[400px] w-full border-none p-6 font-mono text-sm text-neutral-800 outline-none focus:ring-0 whitespace-pre"
-                                    value={formData.contentHtml}
+                                    value={activeLang === 'es' ? formData.contentHtml : formData.contentHtml_ca}
                                     onChange={(e) => onContentChange(e.target.value, 'html')}
                                 />
+
                             </div>
                         </div>
                     </div>
@@ -403,25 +473,26 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
                                         </button>
                                         <div className="space-y-4 pr-8">
                                             <div>
-                                                <label className="mb-1 block text-sm font-medium text-neutral-700">Pregunta</label>
+                                                <label className="mb-1 block text-sm font-medium text-neutral-700">Pregunta ({activeLang === 'es' ? 'Castellano' : 'Català'})</label>
                                                 <input
                                                     type="text"
-                                                    value={faq.question}
-                                                    onChange={(e) => updateFaq(index, 'question', e.target.value)}
+                                                    value={activeLang === 'es' ? faq.question : (faq.question_ca || '')}
+                                                    onChange={(e) => updateFaq(index, activeLang === 'es' ? 'question' : 'question_ca', e.target.value)}
                                                     className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
                                                     required
                                                 />
                                             </div>
                                             <div>
-                                                <label className="mb-1 block text-sm font-medium text-neutral-700">Respuesta</label>
+                                                <label className="mb-1 block text-sm font-medium text-neutral-700">Respuesta ({activeLang === 'es' ? 'Castellano' : 'Català'})</label>
                                                 <textarea
-                                                    value={faq.answer}
-                                                    onChange={(e) => updateFaq(index, 'answer', e.target.value)}
+                                                    value={activeLang === 'es' ? faq.answer : (faq.answer_ca || '')}
+                                                    onChange={(e) => updateFaq(index, activeLang === 'es' ? 'answer' : 'answer_ca', e.target.value)}
                                                     className="block w-full rounded-md border border-neutral-300 px-3 py-2 text-neutral-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm min-h-[80px]"
                                                     required
                                                 />
                                             </div>
                                         </div>
+
                                     </div>
                                 ))}
                             </div>
@@ -459,48 +530,49 @@ export default function PostEditor({ post, mediaList = [] }: { post?: any, media
 
                         <div className="space-y-5">
                             <div>
-                                <label className="mb-1 block text-sm font-medium text-neutral-700">Meta Title</label>
+                                <label className="mb-1 block text-sm font-medium text-neutral-700">Meta Title ({activeLang === 'es' ? 'Castellano' : 'Català'})</label>
                                 <input
                                     type="text"
-                                    value={formData.metaTitle}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, metaTitle: e.target.value }))}
-                                    className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm ${(formData.metaTitle?.length || 0) > 60
+                                    value={activeLang === 'es' ? (formData.metaTitle || '') : (formData.metaTitle_ca || '')}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, [activeLang === 'es' ? 'metaTitle' : 'metaTitle_ca']: e.target.value }))}
+                                    className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm ${(activeLang === 'es' ? (formData.metaTitle?.length || 0) : (formData.metaTitle_ca?.length || 0)) > 60
                                         ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                                         : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
                                         }`}
                                     placeholder="Ej: Comprar los mejores coches - Voltura"
                                 />
                                 <div className="mt-1 flex justify-between items-center text-xs">
-                                    <p className={`${(formData.metaTitle?.length || 0) > 60 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
-                                        {(formData.metaTitle?.length || 0) > 60 && "¡El título excede el límite recomendado!"}
+                                    <p className={`${(activeLang === 'es' ? (formData.metaTitle?.length || 0) : (formData.metaTitle_ca?.length || 0)) > 60 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {(activeLang === 'es' ? (formData.metaTitle?.length || 0) : (formData.metaTitle_ca?.length || 0)) > 60 && "¡El título excede el límite recomendado!"}
                                     </p>
-                                    <p className={`${(formData.metaTitle?.length || 0) > 60 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
-                                        {formData.metaTitle?.length || 0} / 60
+                                    <p className={`${(activeLang === 'es' ? (formData.metaTitle?.length || 0) : (formData.metaTitle_ca?.length || 0)) > 60 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {activeLang === 'es' ? (formData.metaTitle?.length || 0) : (formData.metaTitle_ca?.length || 0)} / 60
                                     </p>
                                 </div>
                             </div>
 
                             <div>
-                                <label className="mb-1 block text-sm font-medium text-neutral-700">Meta Description</label>
+                                <label className="mb-1 block text-sm font-medium text-neutral-700">Meta Description ({activeLang === 'es' ? 'Castellano' : 'Català'})</label>
                                 <textarea
-                                    value={formData.metaDescription}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, metaDescription: e.target.value }))}
-                                    className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm min-h-[100px] ${(formData.metaDescription?.length || 0) > 155
+                                    value={activeLang === 'es' ? (formData.metaDescription || '') : (formData.metaDescription_ca || '')}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, [activeLang === 'es' ? 'metaDescription' : 'metaDescription_ca']: e.target.value }))}
+                                    className={`block w-full rounded-md border px-3 py-2 text-neutral-900 focus:outline-none focus:ring-1 sm:text-sm min-h-[100px] ${(activeLang === 'es' ? (formData.metaDescription?.length || 0) : (formData.metaDescription_ca?.length || 0)) > 155
                                         ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                                         : 'border-neutral-300 focus:border-blue-500 focus:ring-blue-500'
                                         }`}
                                     placeholder="Ej: Descubre la mejor guía en 2026..."
                                 />
                                 <div className="mt-1 flex justify-between items-center text-xs">
-                                    <p className={`${(formData.metaDescription?.length || 0) > 155 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
-                                        {(formData.metaDescription?.length || 0) > 155 && "¡La descripción excede el límite recomendado!"}
+                                    <p className={`${(activeLang === 'es' ? (formData.metaDescription?.length || 0) : (formData.metaDescription_ca?.length || 0)) > 155 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {(activeLang === 'es' ? (formData.metaDescription?.length || 0) : (formData.metaDescription_ca?.length || 0)) > 155 && "¡La descripción excede el límite recomendado!"}
                                     </p>
-                                    <p className={`${(formData.metaDescription?.length || 0) > 155 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
-                                        {formData.metaDescription?.length || 0} / 155
+                                    <p className={`${(activeLang === 'es' ? (formData.metaDescription?.length || 0) : (formData.metaDescription_ca?.length || 0)) > 155 ? 'text-red-500 font-medium' : 'text-neutral-500'}`}>
+                                        {activeLang === 'es' ? (formData.metaDescription?.length || 0) : (formData.metaDescription_ca?.length || 0)} / 155
                                     </p>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     {/* Media Option */}

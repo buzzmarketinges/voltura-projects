@@ -10,26 +10,35 @@ datasource db {
 model Post {
   id              String   @id @default(cuid())
   title           String
+  title_ca        String?
   slug            String   @unique
+  slug_ca         String?  @unique
   metaTitle       String?
+  metaTitle_ca    String?
   metaDescription String?
+  metaDescription_ca String?
   contentHtml     String?
+  contentHtml_ca  String?
   contentText     String?
+  contentText_ca  String?
   mainImage       String?
   isPublished     Boolean  @default(false)
   categories      String?  @default("[]") // Stored as JSON string
+  categories_ca   String?  @default("[]") // Stored as JSON string for Catalan
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   faqs            Faq[]
 }
 
 model Faq {
-  id        String @id @default(cuid())
-  postId    String
-  post      Post   @relation(fields: [postId], references: [id])
-  question  String
-  answer    String
-  order     Int    @default(0)
+  id          String @id @default(cuid())
+  postId      String
+  post        Post   @relation(fields: [postId], references: [id])
+  question    String
+  question_ca String?
+  answer      String
+  answer_ca   String?
+  order       Int    @default(0)
 }
 
 model Media {
@@ -40,3 +49,29 @@ model Media {
   type      String   // e.g "image", "video", "icon"
   createdAt DateTime @default(now())
 }
+
+model Project {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  slug_ca         String?  @unique
+  title           String
+  title_ca        String?
+  summary         String?
+  summary_ca      String?
+  description     String?
+  description_ca  String?
+  challenge       String?
+  challenge_ca    String?
+  solution        String?
+  solution_ca     String?
+  tags            String?  @default("[]") // JSON string
+  tags_ca         String?  @default("[]") // JSON string
+  mainImage       String?
+  gallery         String?  @default("[]") // JSON string
+  location        String?
+  year            String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+

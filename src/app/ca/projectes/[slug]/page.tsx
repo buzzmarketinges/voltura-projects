@@ -15,43 +15,60 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-    const dbProjects = await prisma.project.findMany({ select: { slug: true } });
+    const dbProjects = await prisma.project.findMany({ select: { slug_ca: true } });
     return dbProjects.map((project) => ({
-        slug: project.slug,
-    }));
+        slug: project.slug_ca || '',
+    })).filter(p => p.slug !== '');
 }
 
 export async function generateMetadata({ params }: Props) {
     const { slug } = await params;
-    const project = await prisma.project.findUnique({ where: { slug } });
+    const project = await prisma.project.findFirst({
+        where: { OR: [{ slug_ca: slug }, { slug: slug }] }
+    });
+    
     if (!project) return {
-        title: "Proyecto no encontrado",
-        alternates: { canonical: `/proyectos/${slug}` }
+        title: "Projecte no trobat",
+        alternates: { canonical: `/ca/projectes/${slug}` }
     };
 
+    const title = project.title_ca || project.title;
+    const summary = project.summary_ca || project.summary;
+
     return {
-        title: `${project.title} | Voltura Projects`,
-        description: project.summary || '',
-        alternates: { canonical: `/proyectos/${slug}` }
+        title: `${title} | Voltura Projects`,
+        description: summary || '',
+        alternates: { canonical: `/ca/projectes/${slug}` }
     };
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
     const { slug } = await params;
-    const project = await prisma.project.findUnique({ where: { slug } });
+    const project = await prisma.project.findFirst({
+        where: { OR: [{ slug_ca: slug }, { slug: slug }] }
+    });
 
     if (!project) {
         notFound();
     }
 
-    const tagsList = project.tags ? JSON.parse(project.tags) : [];
+    const tagsList = project.tags_ca ? JSON.parse(project.tags_ca) : [];
     const galleryList = project.gallery ? JSON.parse(project.gallery) : [];
+
+    const title = project.title_ca || project.title;
+    const summary = project.summary_ca || project.summary;
+    const description = project.description_ca || project.description;
+    const challenge = project.challenge_ca || project.challenge;
+    const solution = project.solution_ca || project.solution;
 
     // Logic for "Next Project"
     const nextProject = await prisma.project.findFirst({
         where: { id: { not: project.id } },
         orderBy: { createdAt: 'desc' }
-    }) || project; // Fallback to current if only 1
+    }) || project;
+
+    const nextTitle = nextProject.title_ca || nextProject.title;
+    const nextSlug = nextProject.slug_ca || nextProject.slug;
 
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
@@ -61,9 +78,9 @@ export default async function ProjectDetailPage({ params }: Props) {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Project",
-                    "name": project.title,
-                    "description": project.summary,
-                    "url": `https://volturaprojects.es/proyectos/${project.slug}`,
+                    "name": title,
+                    "description": summary,
+                    "url": `https://volturaprojects.es/ca/projectes/${project.slug_ca || project.slug}`,
                     "location": {
                         "@type": "Place",
                         "name": project.location,
@@ -87,7 +104,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 {project.mainImage && (
                     <Image
                         src={project.mainImage}
-                        alt={project.title}
+                        alt={title || ''}
                         fill
                         className="object-cover"
                         priority
@@ -97,11 +114,11 @@ export default async function ProjectDetailPage({ params }: Props) {
 
                 <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
                     <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
-                        <Link href="/proyectos" className="inline-flex items-center text-voltura-gold hover:text-white mb-6 transition-colors text-sm uppercase tracking-widest font-bold gap-2">
-                            <ArrowLeft className="w-4 h-4" /> Volver a Proyectos
+                        <Link href="/ca/projectes" className="inline-flex items-center text-voltura-gold hover:text-white mb-6 transition-colors text-sm uppercase tracking-widest font-bold gap-2">
+                            <ArrowLeft className="w-4 h-4" /> Tornar a Projectes
                         </Link>
                         <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
-                            {project.title}
+                            {title}
                         </h1>
                         <div className="flex flex-wrap gap-4 md:gap-8 text-sm md:text-base text-gray-300">
                             <div className="flex items-center gap-2">
@@ -130,18 +147,18 @@ export default async function ProjectDetailPage({ params }: Props) {
 
                             {/* General Desc */}
                             <div>
-                                <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-4">El Proyecto</h3>
+                                <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-4">El Projecte</h3>
                                 <p className="text-xl text-white font-serif leading-relaxed mb-6">
-                                    {project.summary}
+                                    {summary}
                                 </p>
                                 <div className="text-gray-400 space-y-4 leading-relaxed text-lg">
-                                    <p>{project.description}</p>
+                                    <p>{description}</p>
                                 </div>
                             </div>
 
                             <div className="pt-8 border-t border-white/10">
                                 <ContactButton className="w-full py-4 text-center justify-center">
-                                    Consultar Proyecto Similar
+                                    Consultar Projecte Similar
                                 </ContactButton>
                             </div>
                         </div>
@@ -150,26 +167,26 @@ export default async function ProjectDetailPage({ params }: Props) {
                         <div className="lg:col-span-2 space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
 
                             {/* Reto y Solución Block */}
-                            {(project.challenge || project.solution) && (
+                            {(challenge || solution) && (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                                    {project.challenge && (
+                                    {challenge && (
                                         <div className="bg-voltura-slate p-8 border border-white/5 rounded-sm">
                                             <div className="flex items-start gap-4">
                                                 <Lightbulb className="w-6 h-6 text-voltura-gold mt-1 shrink-0" />
                                                 <div>
-                                                    <h3 className="text-lg font-bold text-white mb-2">El Reto</h3>
-                                                    <p className="text-gray-400 text-sm leading-relaxed">{project.challenge}</p>
+                                                    <h3 className="text-lg font-bold text-white mb-2">El Repte</h3>
+                                                    <p className="text-gray-400 text-sm leading-relaxed">{challenge}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     )}
-                                    {project.solution && (
+                                    {solution && (
                                         <div className="bg-voltura-slate p-8 border border-white/5 rounded-sm">
                                             <div className="flex items-start gap-4">
                                                 <CheckCircle2 className="w-6 h-6 text-voltura-gold mt-1 shrink-0" />
                                                 <div>
-                                                    <h3 className="text-lg font-bold text-white mb-2">La Solución</h3>
-                                                    <p className="text-gray-400 text-sm leading-relaxed">{project.solution}</p>
+                                                    <h3 className="text-lg font-bold text-white mb-2">La Solució</h3>
+                                                    <p className="text-gray-400 text-sm leading-relaxed">{solution}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +199,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                                 <div key={idx} className="relative h-[50vh] md:h-[70vh] w-full rounded-sm overflow-hidden group border border-white/5 shadow-2xl">
                                     <Image
                                         src={img}
-                                        alt={`Detalle ${project.title} - ${idx + 1}`}
+                                        alt={`Detalle ${title} - ${idx + 1}`}
                                         fill
                                         className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                     />
@@ -197,13 +214,13 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* Next Project Navigation */}
             <section className="py-24 bg-voltura-slate border-t border-white/5">
                 <div className="max-w-7xl mx-auto px-4 text-center">
-                    <p className="text-gray-500 mb-4 uppercase tracking-widest text-sm">Siguiente Proyecto</p>
-                    <Link href={`/proyectos/${nextProject.slug}`} className="group inline-block">
+                    <p className="text-gray-500 mb-4 uppercase tracking-widest text-sm">Següent Projecte</p>
+                    <Link href={`/ca/projectes/${nextSlug}`} className="group inline-block">
                         <h2 className="text-4xl md:text-6xl font-serif text-white group-hover:text-voltura-gold transition-colors mb-6">
-                            {nextProject.title}
+                            {nextTitle}
                         </h2>
                         <div className="inline-flex items-center gap-3 text-voltura-gold uppercase tracking-widest font-bold text-sm border-b border-voltura-gold pb-1 group-hover:gap-6 transition-all duration-300">
-                            Ver Proyecto <ArrowRight className="w-4 h-4" />
+                            Veure Projecte <ArrowRight className="w-4 h-4" />
                         </div>
                     </Link>
                 </div>

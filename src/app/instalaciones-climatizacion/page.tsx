@@ -246,7 +246,7 @@ export default function InstalacionesClimatizacionPage() {
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">¿Pasas calor en verano?</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Climatización en Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                         Climatiza tu hogar con los mejores profesionales. Comienza hoy mismo.
                     </p>

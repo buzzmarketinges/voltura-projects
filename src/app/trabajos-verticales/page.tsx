@@ -248,7 +248,7 @@ export default function TrabajosVerticalesPage() {
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">¿Necesitas rehabilitar tu fachada?</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Trabajos Verticales en Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                         Pide presupuesto sin compromiso y descubre cuánto puedes ahorrar con nuestros sistemas verticales.
                     </p>

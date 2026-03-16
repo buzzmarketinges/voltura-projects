@@ -245,7 +245,7 @@ export default function InstalacionesAerotermiaPage() {
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">¿Quieres ahorrar en tu factura?</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Instalación de Aerotermia en Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                         Pásate a la aerotermia y empieza a amortizar tu inversión desde el primer mes.
                     </p>

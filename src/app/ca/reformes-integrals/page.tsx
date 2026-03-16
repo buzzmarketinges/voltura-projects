@@ -9,56 +9,48 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/reformas-integrales",
+        canonical: "https://volturaprojects.es/ca/reformes-integrals",
     },
-    title: "Reformas Integrales en Barcelona | Voltura Projects",
-    description: "Especialistas en reformas integrales de viviendas y locales en Barcelona. Proyectos llave en mano, arquitectura técnica y diseño de interiores de alta gama.",
+    title: "Reformes Integrals a Barcelona | Voltura Projects",
+    description: "Especialistes en reformes integrals d'habitatges i locals a Barcelona. Projectes clau en mà, arquitectura tècnica i disseny d'interiors d'alta gamma.",
 };
 
 const faqs = [
     {
-        question: "¿Cuánto cuesta una reforma integral en Barcelona?",
-        answer: "El precio varía según las calidades y el estado inicial del inmueble. En Voltura Projects realizamos un estudio previo gratuito para ofrecerte un presupuesto detallado y ajustado a tus necesidades, sin costes ocultos."
+        question: "Quant costa una reforma integral a Barcelona?",
+        answer: "El preu varia segons les qualitats i l'estat inicial de l'immoble. A Voltura Projects realitzem un estudi previ gratuït per oferir-te un pressupost detallat i ajustat a les teves necessitats, sense costos ocults."
     },
     {
-        question: "¿Tramitáis los permisos de obra?",
-        answer: "Sí. Nos encargamos de toda la gestión burocrática con el Ayuntamiento de Barcelona, ya sea un 'Assabentat' (obra menor) o una Licencia de Obra Mayor, asegurando que tu proyecto cumple con toda la normativa vigente."
+        question: "Tramiteu els permisos d'obra?",
+        answer: "Sí. Ens encarreguem de tota la gestió burocràtica amb l'Ajuntament de Barcelona, ja sigui un 'Assabentat' (obra menor) o una llicència d'obra major, assegurant que el teu projecte compleix tota la normativa vigent."
     },
     {
-        question: "¿Cuánto tiempo tarda una reforma completa?",
-        answer: "El plazo medio para una reforma integral de un piso estándar (80-100m2) suele oscilar entre 3 y 4 meses. Establecemos un cronograma riguroso antes de empezar para garantizar la fecha de entrega."
+        question: "Quant de temps triga una reforma completa?",
+        answer: "El termini mitjà per a una reforma integral d'un pis estàndard (80-100m2) sol oscil·lar entre 3 i 4 mesos. Establim un cronograma rigorós abans de començar per garantir la data de lliurament."
     },
     {
-        question: "¿Qué garantía ofrecéis en las reformas?",
-        answer: "Ofrecemos total tranquilidad con garantías legales sobre la ejecución y los materiales. Además, nuestro servicio post-venta asegura una respuesta rápida ante cualquier incidencia que pueda surgir tras la entrega de llaves."
+        question: "Quina garantia oferiu a les reformes?",
+        answer: "Ofereims total tranquil·litat amb garanties legals sobre l'execució i els materials. A més, el nostre servei post-venda assegura una resposta ràpida davant qualsevol incidència que pugui sorgir."
     },
     {
-        question: "¿Puedo seguir viviendo en la casa durante la reforma?",
-        answer: "Para una reforma integral, recomendamos que la vivienda esté vacía para agilizar los trabajos y garantizar la seguridad. Si es una reforma parcial, podemos planificar fases para minimizar las molestias, aunque siempre es preferible despejar la zona de trabajo."
+        question: "Puc seguir vivint a casa durant la reforma?",
+        answer: "Per a una reforma integral, recomanem que l'habitatge estigui buit per agilitzar els treballs i garantir la seguretat. Si és una reforma parcial, podem planificar fases per minimitzar les molèsties."
     },
     {
-        question: "¿Os encargáis del diseño de interiores?",
-        answer: "Absolutamente. Contamos con un equipo de diseño e interiorismo que te asesorará en la distribución, selección de materiales, iluminación y mobiliario para crear un espacio coherente, funcional y estéticamente impecable."
+        question: "Us encarregueu del disseny d'interiors?",
+        answer: "Absolutament. Comptem amb un equip de disseny i interiorisme que t'assessorarà en la distribució, selecció de materials, il·luminació i mobiliari per a crear un espai coherent, funcional i estèticament impecable."
     },
     {
-        question: "¿Realizáis reformas en locales comerciales u oficinas?",
-        answer: "Sí, somos especialistas en reformar espacios comerciales y oficinas en Barcelona. Entendemos la importancia de los plazos en estos proyectos para minimizar el tiempo de inactividad de tu negocio."
+        question: "Realitzeu reformes en locals comercials o oficines?",
+        answer: "Sí, som especialistes en reformar espais comercials i oficines a Barcelona. Entenem la importància dels terminis en aquests projectes per a minimitzar el temps d'inactivitat del teu negoci."
     },
     {
-        question: "¿Cómo controláis los costes imprevistos?",
-        answer: "La clave es una fase de planificación técnica exhaustiva. Al realizar un estudio detallado previo, minimizamos la aparición de imprevistos. En caso de surgir vicios ocultos (estructurales o de instalaciones antiguas), lo comunicamos inmediatamente con soluciones y presupuestos claros."
-    },
-    {
-        question: "¿Trabajáis con marcas específicas de materiales?",
-        answer: "Trabajamos con una amplia gama de proveedores de confianza y marcas de alta calidad. Sin embargo, no estamos atados a ninguna exclusiva, lo que nos permite adaptarnos a tus preferencias y prescribir los materiales que mejor se ajusten a tu proyecto y presupuesto."
-    },
-    {
-        question: "¿Es posible mejorar la eficiencia energética de mi piso antiguo en Barcelona?",
-        answer: "Sí, es una de nuestras prioridades. Mejoramos el aislamiento térmico y acústico, instalamos ventanas de altas prestaciones y sistemas de climatización eficientes (como aerotermia) para reducir el consumo energético y aumentar el confort."
+        question: "Com controleu els costos imprevistos?",
+        answer: "La clau és una fase de planificació tècnica exhaustiva. Al realitzar un estudi detallat previ, minimitzem l'aparició d'imprevistos. En cas de sorgir vicis ocults, ho comuniquem immediatament amb solucions clares."
     }
 ];
 
-export default function ReformasIntegralesPage() {
+export default function ReformesIntegralesPage() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -83,13 +75,13 @@ export default function ReformasIntegralesPage() {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Service",
-                    "name": "Reformas Integrales en Barcelona",
+                    "name": "Reformes Integrals a Barcelona",
                     "provider": {
                         "@type": "HomeAndConstructionBusiness",
                         "name": "Voltura Projects"
                     },
                     "areaServed": "Barcelona",
-                    "description": "Servicio de reformas integrales llave en mano para viviendas y locales en Barcelona. Incluye diseño, gestión de licencias y ejecución de obra."
+                    "description": "Servei de reformes integrals clau en mà per a habitatges i locals a Barcelona. Inclou disseny, gestió de llicències i execució d'obra."
                 })}
             </Script>
 
@@ -104,17 +96,17 @@ export default function ReformasIntegralesPage() {
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 animate-in fade-in zoom-in duration-700">
                     <div className="inline-block border-b-2 border-voltura-gold pb-2 mb-4">
-                        <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Servicio Premium</span>
+                        <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Servei Premium</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
-                        Reformas Integrales en Barcelona
+                        Reformes Integrals a Barcelona
                     </h1>
                     <h2 className="block text-2xl md:text-3xl font-sans font-light text-gray-300 mt-4 normal-case max-w-3xl mx-auto">
-                        Diseño, Arquitectura y Ejecución Llave en Mano
+                        Disseny, Arquitectura i Execució Clau en Mà
                     </h2>
                     <div className="pt-8">
                         <ContactButton className="px-8 py-3 inline-flex items-center gap-2">
-                            Solicitar Presupuesto Gratuito <ArrowRight className="w-5 h-5" />
+                            Sol·licitar Pressupost Gratuït <ArrowRight className="w-5 h-5" />
                         </ContactButton>
                     </div>
                 </div>
@@ -124,13 +116,13 @@ export default function ReformasIntegralesPage() {
             <section className="py-20 bg-voltura-blue">
                 <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
                     <h2 className="text-3xl md:text-4xl font-serif text-white">
-                        Transformamos espacios con <span className="text-voltura-gold italic">excelencia técnica</span>
+                        Transformem espais amb <span className="text-voltura-gold italic">excel·lència tècnica</span>
                     </h2>
                     <p className="text-lg text-gray-300 leading-relaxed">
-                        En <strong>Voltura Projects</strong>, entendemos que una reforma integral no es solo una obra, es la materialización de un nuevo estilo de vida. Como empresa líder en <strong>reformas en Barcelona</strong>, combinamos la visión arquitectónica con una ejecución impecable.
+                        A <strong>Voltura Projects</strong>, entenem que una reforma integral no és només una obra, és la materialització d'un nou estil de vida. Combinem visió arquitectònica amb execució impecable per a oferir-te els millors serveis de <strong>reformes a Barcelona</strong>.
                     </p>
                     <p className="text-gray-400">
-                        Gestionamos todo el proceso: desde el diseño inicial y la tramitación de licencias en el Ayuntamiento de Barcelona, hasta la entrega de llaves. Nuestro compromiso es la tranquilidad absoluta del cliente.
+                        Gestionem tot el procés: des del disseny inicial i la tramitació de llicències a l'Ajuntament de Barcelona, fins al lliurament de claus. El nostre compromís és la tranquil·litat absoluta del client.
                     </p>
                 </div>
             </section>
@@ -141,23 +133,23 @@ export default function ReformasIntegralesPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <Ruler className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Proyecto a Medida</h3>
-                            <p className="text-gray-400 text-sm">Diseño personalizado adaptado a tus necesidades y a las características estructurales de tu vivienda.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Projecte a Mida</h3>
+                            <p className="text-gray-400 text-sm">Disseny personalitzat adaptat a les teves necessitats i a les característiques estructurals de la teva vivenda.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <Clock className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Plazos Garantizados</h3>
-                            <p className="text-gray-400 text-sm">Cronograma de obra detallado y compromiso de entrega en la fecha acordada por contrato.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Terminis Garantits</h3>
+                            <p className="text-gray-400 text-sm">Cronograma d'obra detallat i compromís de lliurament en la data acordada per contracte.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <ShieldCheck className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Garantía Total</h3>
-                            <p className="text-gray-400 text-sm">Seguimiento post-obra y garantías legales en todos nuestros trabajos e instalaciones.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Garantia Total</h3>
+                            <p className="text-gray-400 text-sm">Seguiment post-obra i garanties legals en tots els nostres treballs i instal·lacions.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <CheckCircle2 className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Presupuesto Cerrado</h3>
-                            <p className="text-gray-400 text-sm">Sin sorpresas. Transparencia total en costes desde el inicio hasta la finalización.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Pressupost Tancat</h3>
+                            <p className="text-gray-400 text-sm">Sense sorpreses. Transparència total en costos des de l'inici fins a la finalització.</p>
                         </div>
                     </div>
                 </div>
@@ -167,33 +159,33 @@ export default function ReformasIntegralesPage() {
             <section className="py-24 bg-voltura-blue relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="mb-16 md:w-1/2">
-                        <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodología</h3>
-                        <h2 className="text-4xl font-serif text-white mb-6">Nuestro Proceso de Reforma</h2>
+                        <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodologia</h3>
+                        <h2 className="text-4xl font-serif text-white mb-6">El nostre Procés de Reforma</h2>
                         <p className="text-gray-300">
-                            Simplificamos lo complejo. Un sistema paso a paso diseñado para eliminar la incertidumbre y garantizar resultados de alta gama.
+                            Simplifiquem el complex. Un sistema pas a pas dissenyat per a eliminar la incertesa i garantir resultats d'alta gamma.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">01</div>
-                            <h3 className="text-2xl font-serif text-white">Estudio y Diseño</h3>
+                            <h3 className="text-2xl font-serif text-white">Estudi i Disseny</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Visitamos tu inmueble para entender el espacio. Realizamos mediciones, propuestas de distribución y moodboards de materiales.
+                                Visitem el teu immoble per a entendre l'espai. Realitzem mesuraments, propostes de distribució i moodboards de materials.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">02</div>
-                            <h3 className="text-2xl font-serif text-white">Gestión Técnica</h3>
+                            <h3 className="text-2xl font-serif text-white">Gestió Tècnica</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Tramitación de licencias de obras mayores o menores, cédulas de habitabilidad y proyectos ejecutivos visados.
+                                Tramitació de llicències d'obres majors o menores, cèdules d'habitabilitat i projectes executius visats.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">03</div>
-                            <h3 className="text-2xl font-serif text-white">Ejecución Experta</h3>
+                            <h3 className="text-2xl font-serif text-white">Execució Experta</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Coordinación de gremios propios (albañiles, fontaneros, electricistas) bajo la supervisión de un jefe de obra dedicado.
+                                Coordinació de gremis propis (paletes, llauners, electricistes) sota la supervisió d'un cap d'obra dedicat.
                             </p>
                         </div>
                     </div>
@@ -204,7 +196,7 @@ export default function ReformasIntegralesPage() {
             <section className="py-24 bg-white/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Alcance de nuestras Reformas Integrales</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Abast de les nostres Reformes Integrals</h2>
                         <div className="w-20 h-1 bg-voltura-gold mx-auto"></div>
                     </div>
 
@@ -213,8 +205,8 @@ export default function ReformasIntegralesPage() {
                             <div className="flex items-start gap-4">
                                 <Home className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Redistribución de Espacios</h3>
-                                    <p className="text-gray-400">Demolición de tabiquería, apertura de cocinas al salón (concepto abierto), creación de suites con baño y vestidor.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Redistribució d'Espais</h3>
+                                    <p className="text-gray-400">Demolició de tabiqueria, obertura de cuines al saló (concepte obert), creació de suites amb bany i vestidor.</p>
                                 </div>
                             </div>
                         </div>
@@ -222,8 +214,8 @@ export default function ReformasIntegralesPage() {
                             <div className="flex items-start gap-4">
                                 <Paintbrush className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Acabados Premium</h3>
-                                    <p className="text-gray-400">Instalación de suelos de madera natural, porcelánicos de gran formato, alisado de paredes y pintura decorativa.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Acabats Premium</h3>
+                                    <p className="text-gray-400">Instal·lació de terres de fusta natural, porcellànics de gran format, allisat de parets i pintura decorativa.</p>
                                 </div>
                             </div>
                         </div>
@@ -231,8 +223,8 @@ export default function ReformasIntegralesPage() {
                             <div className="flex items-start gap-4">
                                 <Hammer className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Carpintería a Medida</h3>
-                                    <p className="text-gray-400">Puertas de paso de suelo a techo, armarios empotrados, cocinas de diseño y mobiliario de baño personalizado.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Fusteria a Mida</h3>
+                                    <p className="text-gray-400">Portes de pas de terra a sostre, armaris encastats, cuines de disseny i mobiliari de bany personalitzat.</p>
                                 </div>
                             </div>
                         </div>
@@ -240,8 +232,8 @@ export default function ReformasIntegralesPage() {
                             <div className="flex items-start gap-4">
                                 <CheckCircle2 className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Instalaciones Certificadas</h3>
-                                    <p className="text-gray-400">Renovación completa de electricidad (Boletín Azul/Blanco), fontanería, gas y sistemas de Aerotermia.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Instal·lacions Certificades</h3>
+                                    <p className="text-gray-400">Renovació completa d'electricitat (Butlletí Blau/Blanc), fontaneria, gas i sistemes d'Aerotèrmia.</p>
                                 </div>
                             </div>
                         </div>
@@ -249,17 +241,17 @@ export default function ReformasIntegralesPage() {
                 </div>
             </section>
 
-            <RelatedProjects tag="Reformas Integrales" title="Proyectos de Reformas Integrales" />
+            <RelatedProjects tag="Reformas Integrales" title="Projectes de Reformes Integrals" isCatalan={true} />
 
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Reforma Integral en Barcelona</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Pressupost de Reforma Integral a Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                        Convierte tu vivienda en el hogar que mereces. Sin compromiso, nuestros técnicos valorarán tu reforma.
+                        Converteix la teva vivenda en la llar que mereixes. Sense compromís, els nostres tècnics valoraran la teva reforma.
                     </p>
                     <ContactButton className="px-10 py-4 text-lg shadow-lg shadow-voltura-gold/20">
-                        Solicitar Visita Técnica
+                        Sol·licitar Visita Tècnica
                     </ContactButton>
                 </div>
             </section>
@@ -267,7 +259,7 @@ export default function ReformasIntegralesPage() {
             {/* FAQ Section with JSON-LD and correct headers */}
             <section className="py-20 bg-voltura-blue border-t border-white/10">
                 <div className="max-w-4xl mx-auto px-4">
-                    <h2 className="text-3xl font-serif text-white mb-10 text-center">Preguntas sobre reformas integrales en Barcelona</h2>
+                    <h2 className="text-3xl font-serif text-white mb-10 text-center">Preguntes sobre reformes integrals a Barcelona</h2>
                     <FaqAccordion items={faqs} />
                 </div>
             </section>

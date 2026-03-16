@@ -246,7 +246,7 @@ export default function InstalacionesElectricasPage() {
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">¿Necesitas un electricista experto?</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Instalación Eléctrica en Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
                         Actualiza tu instalación con total seguridad y garantía. Solicita tu presupuesto sin compromiso.
                     </p>

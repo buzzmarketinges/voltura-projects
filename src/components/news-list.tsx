@@ -9,6 +9,7 @@ import { ArticleCTAButton } from "@/components/article-cta-button";
 
 interface NewsListProps {
     initialArticles: (Article & { allCategories?: string[] })[];
+    basePath?: string;
 }
 
 const CATEGORIES = [
@@ -20,7 +21,8 @@ const CATEGORIES = [
     "Guías"
 ];
 
-export function NewsList({ initialArticles }: NewsListProps) {
+export function NewsList({ initialArticles, basePath = "noticias" }: NewsListProps) {
+
     const [selectedCategory, setSelectedCategory] = useState("Todos");
 
     // Filter articles
@@ -91,7 +93,7 @@ export function NewsList({ initialArticles }: NewsListProps) {
                                 </h2>
                             </div>
 
-                            <Link href={`/noticias/${featuredArticle.slug}`} className="group">
+                            <Link href={`/${basePath}/${featuredArticle.slug}`} className="group">
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-voltura-slate/50 rounded-sm overflow-hidden border border-white/5 hover:border-voltura-gold/30 transition-all duration-500 shadow-2xl">
                                     <div className="relative h-[400px] overflow-hidden">
                                         <div className="absolute inset-0 bg-voltura-blue/20 group-hover:bg-transparent transition-colors z-10"></div>
@@ -149,7 +151,7 @@ export function NewsList({ initialArticles }: NewsListProps) {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {recentArticles.map((article) => (
-                                    <Link key={article.slug} href={`/noticias/${article.slug}`} className="group bg-voltura-slate/30 border border-white/5 hover:border-voltura-gold/30 transition-all duration-300 rounded-sm overflow-hidden flex flex-col">
+                                    <Link key={article.slug} href={`/${basePath}/${article.slug}`} className="group bg-voltura-slate/30 border border-white/5 hover:border-voltura-gold/30 transition-all duration-300 rounded-sm overflow-hidden flex flex-col">
                                         <div className="relative h-[240px] overflow-hidden">
                                             <div className="absolute inset-0 bg-voltura-blue/20 group-hover:bg-transparent transition-colors z-10"></div>
                                             <Image

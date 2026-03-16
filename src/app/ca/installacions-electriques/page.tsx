@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { CheckCircle2, Clock, ShieldCheck, Ruler, ArrowRight, Utensils, ChefHat, Zap, Layout } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck, Ruler, ArrowRight, Zap, Lightbulb, FileText, Home } from "lucide-react";
 import Script from "next/script";
 import Image from "next/image";
 import { FaqAccordion } from "@/components/faq-accordion";
@@ -9,44 +9,40 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/reformas-cocinas",
+        canonical: "https://volturaprojects.es/ca/installacions-electriques",
     },
-    title: "Reformas de Cocinas en Barcelona | Diseño Gourmet y Funcional",
-    description: "Expertos en reformas de cocinas en Barcelona. Diseñamos cocinas modernas, abiertas al salón, con isla y acabados premium.",
+    title: "Instal·lacions Elèctriques a Barcelona | Butlletins i Reformes",
+    description: "Electricistes autoritzats a Barcelona. Realitzem instal·lacions elèctriques completes, canvis de quadre, il·luminació LED i butlletins (blau/blanc).",
 };
 
 const faqs = [
     {
-        question: "¿Cuánto cuesta reformar una cocina en Barcelona?",
-        answer: "El coste depende de las dimensiones, los materiales de la encimera, los muebles y los electrodomésticos. En Voltura Projects realizamos un diseño 3D previo y un presupuesto desglosado para que tengas el control total de la inversión."
+        question: "Quan és necessari canviar la instal·lació elèctrica d'un habitatge?",
+        answer: "Es recomana renovar la instal·lació si té més de 30 anys, si els cables són de tela o si pateixes talls de llum freqüents. També és obligatori si vols augmentar la potència significativament o reformar la cuina i el bany."
     },
     {
-        question: "¿Podéis abrir la cocina al salón (cocina americana)?",
-        answer: "Sí, es nuestra especialidad. Analizamos los muros de carga, gestionamos los permisos necesarios y redistribuimos el espacio para crear zonas de día diáfanas y luminosas."
+        question: "Tramiteu el Butlletí Elèctric (CIE)?",
+        answer: "Sí, som instal·ladors autoritzats. Tramitem tant el Butlletí Blau (per a canvis de nom o alta nova) com el Butlletí Blanc (memòria tècnica per a augments de potència), gestionant-ho tot amb Indústria."
     },
     {
-        question: "¿Cuánto tiempo se tarda en reformar una cocina?",
-        answer: "Una reforma integral de cocina suele durar entre 3 y 4 semanas. Planificamos la fabricación de los muebles con antelación para que el montaje sea lo más rápido posible una vez terminada la obra civil."
+        question: "Quant costa una instal·lació elèctrica nova a Barcelona?",
+        answer: "El preu varia segons els punts de llum i la mida de l'immoble. Realitzem un estudi de les necessitats de la teva llar per oferir-te un pressupost tancat que inclogui regates, cablejat, mecanismes i quadre elèctric."
     },
     {
-        question: "¿Os encargáis de los electrodomésticos?",
-        answer: "Sí. Podemos suministrar e instalar electrodomésticos de todas las marcas (Bosch, Siemens, Balay, Neff, etc.) integrándolos perfectamente en el mobiliario para un acabado limpio y moderno."
+        question: "Instal·leu il·luminació LED i domòtica?",
+        answer: "Sí. Dissenyem estudis lumínics per a l'estalvi energètic i integrem sistemes de domòtica per al control de persianes, llums i climatització des del teu mòbil."
     },
     {
-        question: "¿Qué tipos de encimeras instaláis?",
-        answer: "Trabajamos con materiales de alta resistencia como Silestone, Dekton, granito nacional o de importación, y porcelánicos de gran formato. Te asesoramos sobre cuál es la mejor opción según tu uso y presupuesto."
+        question: "Quant de temps es triga a realitzar la instal·lació?",
+        answer: "Per a un pis estàndard de 80m2, el canvi complet de cablejat i mecanismes sol portar entre 5 i 7 dies hàbils, coordinats amb els paletes si és necessari obrir regates."
     },
     {
-        question: "¿Fabricáis muebles a medida?",
-        answer: "Sí, adaptamos el mobiliario a cualquier rincón, columna o falsa escuadra. Ofrecemos columnas extraíbles, esquineros mágicos y sistemas de organización interior para maximizar el almacenamiento."
-    },
-    {
-        question: "¿Es necesario cambiar las instalaciones?",
-        answer: "En cocinas antiguas, es fundamental renovar la instalación eléctrica (para soportar hornos y placas de inducción modernas) y la fontanería, garantizando la seguridad y el cumplimiento de la normativa actual."
+        question: "Quina garantia té la instal·lació?",
+        answer: "Totes les nostres instal·lacions compleixen estrictament el Reglament Electrotècnic de Baixa Tensió (REBT) i oferim garantia total sobre la mà d'obra i els materials instal·lats."
     }
 ];
 
-export default function ReformasCocinasPage() {
+export default function InstalacionsElectriquesPage() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -71,13 +67,13 @@ export default function ReformasCocinasPage() {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Service",
-                    "name": "Reformas de Cocinas en Barcelona",
+                    "name": "Instal·lacions Elèctriques a Barcelona",
                     "provider": {
                         "@type": "HomeAndConstructionBusiness",
                         "name": "Voltura Projects"
                     },
                     "areaServed": "Barcelona",
-                    "description": "Diseño y reforma de cocinas modernas, abiertas al salón, con isla y acabados premium."
+                    "description": "Instal·lacions elèctriques completes, canvis de quadre, il·luminació LED i butlletins elèctrics."
                 })}
             </Script>
 
@@ -87,8 +83,8 @@ export default function ReformasCocinasPage() {
             <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/imagenes/reforma-de-cocina-en-barcelona.webp"
-                        alt="Reforma de cocinas en Barcelona"
+                        src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop"
+                        alt="Instal·lacions elèctriques a Barcelona"
                         fill
                         className="object-cover"
                         priority
@@ -99,17 +95,17 @@ export default function ReformasCocinasPage() {
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 animate-in fade-in zoom-in duration-700">
                     <div className="inline-block border-b-2 border-voltura-gold pb-2 mb-4">
-                        <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Alta Cocina en Tu Hogar</span>
+                        <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Electricistes Autoritzats</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
-                        Reformas de Cocinas en Barcelona
+                        Instal·lacions Elèctriques a Barcelona
                     </h1>
                     <h2 className="block text-2xl md:text-3xl font-sans font-light text-gray-300 mt-4 normal-case max-w-5xl mx-auto">
-                        Diseño Gourmet, Funcionalidad y Estilo
+                        Seguretat Normativa, Eficiència i Certificacions
                     </h2>
                     <div className="pt-8">
                         <ContactButton className="px-8 py-3 inline-flex items-center gap-2">
-                            Solicitar Presupuesto Gratuito <ArrowRight className="w-5 h-5" />
+                            Sol·licitar Pressupost Gratuït <ArrowRight className="w-5 h-5" />
                         </ContactButton>
                     </div>
                 </div>
@@ -119,14 +115,14 @@ export default function ReformasCocinasPage() {
             <section className="py-20 bg-voltura-blue">
                 <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
                     <h2 className="text-3xl md:text-4xl font-serif text-white">
-                        El corazón de tu hogar: <span className="text-voltura-gold italic">Diseño y Convivencia</span>
+                        Potència i seguretat per a <span className="text-voltura-gold italic">la teva llar</span>
                     </h2>
                     <p className="text-lg text-gray-300 leading-relaxed">
-                        La cocina ha dejado de ser un espacio de trabajo para convertirse en el centro social de la vivienda. En <strong>Voltura Projects</strong> diseñamos cocinas que invitan a quedarse.
-                        Especialistas en <strong>cocinas abiertas al salón</strong> en Barcelona, creamos espacios fluidos donde cocinar y convivir se unen en perfecta armonía.
+                        A <strong>Voltura Projects</strong> actualitzem la infraestructura elèctrica de la teva vivenda o local per a adaptar-la a les noves necessitats de consum.
+                        Especialistes en <strong>instal·lacions elèctriques a Barcelona</strong>, garantim el compliment estricte del REBT, prioritzant la seguretat contra incendis i l'eficiència energètica.
                     </p>
                     <p className="text-gray-400">
-                        Fusionamos ergonomía, capacidad de almacenaje y materiales nobles para crear cocinas que resisten el paso del tiempo y las tendencias.
+                        Des de canvis de quadre elèctric fins a recablejats complets, ens encarreguem de tot el procés tècnic i burocràtic.
                     </p>
                 </div>
             </section>
@@ -136,24 +132,24 @@ export default function ReformasCocinasPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
-                            <Layout className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Diseño 3D</h3>
-                            <p className="text-gray-400 text-sm">Visualiza tu nueva cocina antes de empezar. Distribuciones optimizadas para tu espacio.</p>
-                        </div>
-                        <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
-                            <Clock className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Coordinación Total</h3>
-                            <p className="text-gray-400 text-sm">Gestión integral de albañiles, marmolistas y montadores para cumplir los plazos.</p>
+                            <FileText className="w-10 h-10 text-voltura-gold mb-4" />
+                            <h3 className="text-xl font-serif text-white mb-2">Butlletins Oficials</h3>
+                            <p className="text-gray-400 text-sm">Tramitació ràpida de Butlletins Blaus i Blancs per a altes de subministrament i legalitzacions.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <ShieldCheck className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Calidad Garantizada</h3>
-                            <p className="text-gray-400 text-sm">Herrajes de primeras marcas con cierre amortiguado y encimeras resistentes al calor.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Quadres Segurs</h3>
+                            <p className="text-gray-400 text-sm">Instal·lació de quadres de comandament i protecció amb diferencials moderns i protecció contra sobretensions.</p>
+                        </div>
+                        <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
+                            <Lightbulb className="w-10 h-10 text-voltura-gold mb-4" />
+                            <h3 className="text-xl font-serif text-white mb-2">Il·luminació LED</h3>
+                            <p className="text-gray-400 text-sm">Projectes d'il·luminació tècnica i decorativa per a reduir el consum i millorar el confort visual.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <CheckCircle2 className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Presupuesto Cerrado</h3>
-                            <p className="text-gray-400 text-sm">Precio final garantizado por contrato, sin desviaciones ni sorpresas de última hora.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Instal·lador Certificat</h3>
+                            <p className="text-gray-400 text-sm">Tècnics titulats amb carnet d'instal·lador autoritzat. Sense intrusisme, màxima garantia.</p>
                         </div>
                     </div>
                 </div>
@@ -163,33 +159,33 @@ export default function ReformasCocinasPage() {
             <section className="py-24 bg-voltura-blue relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="mb-16 md:w-1/2">
-                        <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodología</h3>
-                        <h2 className="text-4xl font-serif text-white mb-6">Creamos tu Cocina Ideal</h2>
+                        <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodologia</h3>
+                        <h2 className="text-4xl font-serif text-white mb-6">La teva Nova Instal·lació</h2>
                         <p className="text-gray-300">
-                            Desde el primer boceto hasta el último ajuste del cajón, cuidamos cada fase del proyecto.
+                            Un procés tècnic rigorós per garantir que la teva electricitat és segura, legal i eficient.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">01</div>
-                            <h3 className="text-2xl font-serif text-white">Planificación</h3>
+                            <h3 className="text-2xl font-serif text-white">Diagnòstic</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Estudio de necesidades y triangulo de trabajo. Selección de materiales en showroom especializado.
+                                Revisió de l'estat actual, mesura de terres i càlcul de càrregues per a dimensionar la nova instal·lació.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">02</div>
-                            <h3 className="text-2xl font-serif text-white">Obra e Instalaciones</h3>
+                            <h3 className="text-2xl font-serif text-white">Execució Tècnica</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Renovación de instalaciones y preparación de paramentos. Todo listo para el montaje.
+                                Obertura de regates, estès de cablejat lliure d'halògens i muntatge de mecanismes de primeres marques.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">03</div>
-                            <h3 className="text-2xl font-serif text-white">Montaje y Equipamiento</h3>
+                            <h3 className="text-2xl font-serif text-white">Certificació</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Instalación precisa del mobiliario, encimera y electrodomésticos. Puesta en marcha y limpieza.
+                                Proves de funcionament, emissió del Certificat d'Instal·lació Elèctrica (CIE) i lliurament de documentació.
                             </p>
                         </div>
                     </div>
@@ -200,44 +196,44 @@ export default function ReformasCocinasPage() {
             <section className="py-24 bg-white/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Ingredientes de una Cocina Voltura</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Serveis Elèctrics Integrals</h2>
                         <div className="w-20 h-1 bg-voltura-gold mx-auto"></div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
                             <div className="flex items-start gap-4">
-                                <Utensils className="w-8 h-8 text-voltura-gold mt-1" />
-                                <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Islas y Penínsulas</h3>
-                                    <p className="text-gray-400">Diseñamos islas centrales con zona de cocción o lavado, barras de desayuno y almacenamiento extra.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
-                            <div className="flex items-start gap-4">
-                                <ShieldCheck className="w-8 h-8 text-voltura-gold mt-1" />
-                                <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Encimeras Indestructibles</h3>
-                                    <p className="text-gray-400">Instalación de Dekton, Neolith o Silestone. Superficies antibacterianas, resistentes al rayado y al calor extremo.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
-                            <div className="flex items-start gap-4">
                                 <Zap className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Iluminación LED Integrada</h3>
-                                    <p className="text-gray-400">Tiras LED bajo muebles altos para iluminar la zona de trabajo y vitrinas iluminadas para un toque elegante.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Càrrega de Vehicle Elèctric</h3>
+                                    <p className="text-gray-400">Instal·lació de punts de recàrrega (Wallbox) en garatges comunitaris i privats segons normativa ITC-BT-52.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
                             <div className="flex items-start gap-4">
-                                <ChefHat className="w-8 h-8 text-voltura-gold mt-1" />
+                                <Home className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Electrodomésticos Integrados</h3>
-                                    <p className="text-gray-400">Totalmente ocultos tras los frentes de los muebles para una estética minimalista y uniforme.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Domòtica i Smart Home</h3>
+                                    <p className="text-gray-400">Control intel·ligent de persianes, climatització i accessos per a augmentar el confort i la seguretat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
+                            <div className="flex items-start gap-4">
+                                <FileText className="w-8 h-8 text-voltura-gold mt-1" />
+                                <div>
+                                    <h3 className="text-xl font-bold text-white mb-2">Augments de Potència</h3>
+                                    <p className="text-gray-400">Adaptació de la instal·lació i gestió de l'expedient amb la companyia distribuïdora per a pujar la potència contractada.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
+                            <div className="flex items-start gap-4">
+                                <CheckCircle2 className="w-8 h-8 text-voltura-gold mt-1" />
+                                <div>
+                                    <h3 className="text-xl font-bold text-white mb-2">Mecanismes de Disseny</h3>
+                                    <p className="text-gray-400">Instal·lació de sèries de mecanismes moderns (Simon, Jung, Niessen) que aporten el toc final de disseny.</p>
                                 </div>
                             </div>
                         </div>
@@ -245,17 +241,17 @@ export default function ReformasCocinasPage() {
                 </div>
             </section>
 
-            <RelatedProjects tag="Reforma de cocina" title="Proyectos de Cocinas" />
+            <RelatedProjects tag="Electricidad" title="Projectes d'Instal·lacions Elèctriques" isCatalan={true} />
 
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Reforma de Cocinas en Barcelona</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Pressupost d'Instal·lació Elèctrica a Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                        Diseñamos la cocina donde nacen los grandes momentos. Solicita tu estudio gratuito hoy mismo.
+                        Actualitza la teva instal·lació amb total seguretat i garantia. Sol·licita el teu pressupost sense compromís.
                     </p>
                     <ContactButton className="px-10 py-4 text-lg shadow-lg shadow-voltura-gold/20">
-                        Solicitar Visita Técnica
+                        Contactar Ara
                     </ContactButton>
                 </div>
             </section>
@@ -263,7 +259,7 @@ export default function ReformasCocinasPage() {
             {/* FAQ Section with JSON-LD and correct headers */}
             <section className="py-20 bg-voltura-blue border-t border-white/10">
                 <div className="max-w-4xl mx-auto px-4">
-                    <h2 className="text-3xl font-serif text-white mb-10 text-center">Preguntas sobre reformas de cocinas en Barcelona</h2>
+                    <h2 className="text-3xl font-serif text-white mb-10 text-center">Preguntes sobre instal·lacions elèctriques a Barcelona</h2>
                     <FaqAccordion items={faqs} />
                 </div>
             </section>

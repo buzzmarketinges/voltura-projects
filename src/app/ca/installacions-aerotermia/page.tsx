@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { CheckCircle2, Clock, ShieldCheck, Ruler, ArrowRight, Utensils, ChefHat, Zap, Layout } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck, Ruler, ArrowRight, Sun, Thermometer, Leaf, Layers } from "lucide-react";
 import Script from "next/script";
 import Image from "next/image";
 import { FaqAccordion } from "@/components/faq-accordion";
@@ -9,44 +9,40 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/reformas-cocinas",
+        canonical: "https://volturaprojects.es/ca/installacions-aerotermia",
     },
-    title: "Reformas de Cocinas en Barcelona | Diseño Gourmet y Funcional",
-    description: "Expertos en reformas de cocinas en Barcelona. Diseñamos cocinas modernas, abiertas al salón, con isla y acabados premium.",
+    title: "Aerotèrmia a Barcelona | Calefacció i Refrigeració Sostenible",
+    description: "Especialistes en instal·lacions d'aerotèrmia a Barcelona. Estalvia fins a un 70% en la teva factura amb terra radiant i bombes de calor d'alta eficiència.",
 };
 
 const faqs = [
     {
-        question: "¿Cuánto cuesta reformar una cocina en Barcelona?",
-        answer: "El coste depende de las dimensiones, los materiales de la encimera, los muebles y los electrodomésticos. En Voltura Projects realizamos un diseño 3D previo y un presupuesto desglosado para que tengas el control total de la inversión."
+        question: "Què és l'aerotèrmia i quant s'estalvia?",
+        answer: "L'aerotèrmia és un sistema que extreu energia de l'aire exterior per a climatitzar la vivenda i escalfar aigua. És una energia renovable que pot reduir la teva factura energètica fins a un 70% comparat amb el gas o radiadors elèctrics."
     },
     {
-        question: "¿Podéis abrir la cocina al salón (cocina americana)?",
-        answer: "Sí, es nuestra especialidad. Analizamos los muros de carga, gestionamos los permisos necesarios y redistribuimos el espacio para crear zonas de día diáfanas y luminosas."
+        question: "Es pot instal·lar aerotèrmia en un pis?",
+        answer: "Sí, sempre que hi hagi espai per a la unitat exterior (similar a un aire condicionat) i la interior (mida nevera o mural). És ideal per a reformes integrals."
     },
     {
-        question: "¿Cuánto tiempo se tarda en reformar una cocina?",
-        answer: "Una reforma integral de cocina suele durar entre 3 y 4 semanas. Planificamos la fabricación de los muebles con antelación para que el montaje sea lo más rápido posible una vez terminada la obra civil."
+        question: "És compatible amb els meus radiadors actuals?",
+        answer: "Depèn. L'aerotèrmia funciona millor a baixa temperatura (terra radiant o radiadors de baixa temperatura). Si tens radiadors convencionals, existeixen equips d'aerotèrmia d'alta temperatura, tot i que el rendiment és lleugerament menor."
     },
     {
-        question: "¿Os encargáis de los electrodomésticos?",
-        answer: "Sí. Podemos suministrar e instalar electrodomésticos de todas las marcas (Bosch, Siemens, Balay, Neff, etc.) integrándolos perfectamente en el mobiliario para un acabado limpio y moderno."
+        question: "Què és millor: terra radiant o fancoils?",
+        answer: "El terra radiant ofereix el màxim confort i eficiència per a calefacció, però requereix obra al terra. Els fancoils són ideals si vols també refrigeració potent a l'estiu i no vols aixecar el paviment."
     },
     {
-        question: "¿Qué tipos de encimeras instaláis?",
-        answer: "Trabajamos con materiales de alta resistencia como Silestone, Dekton, granito nacional o de importación, y porcelánicos de gran formato. Te asesoramos sobre cuál es la mejor opción según tu uso y presupuesto."
+        question: "Gestioneu les subvencions per a aerotèrmia?",
+        answer: "Sí, us assessorem sobre les ajudes vigents (Fons Next Generation, etc.) i preparem la memòria tècnica necessària per a sol·licitar-les."
     },
     {
-        question: "¿Fabricáis muebles a medida?",
-        answer: "Sí, adaptamos el mobiliario a cualquier rincón, columna o falsa escuadra. Ofrecemos columnas extraíbles, esquineros mágicos y sistemas de organización interior para maximizar el almacenamiento."
-    },
-    {
-        question: "¿Es necesario cambiar las instalaciones?",
-        answer: "En cocinas antiguas, es fundamental renovar la instalación eléctrica (para soportar hornos y placas de inducción modernas) y la fontanería, garantizando la seguridad y el cumplimiento de la normativa actual."
+        question: "Quant costa una instal·lació d'aerotèrmia?",
+        answer: "La inversió inicial és més alta que una caldera de gas, però s'amortitza en 4-6 anys gràcies a l'estalvi mensual. El preu depèn de la potència de la màquina i si inclou terra radiant."
     }
 ];
 
-export default function ReformasCocinasPage() {
+export default function InstalacionsAerotermiaPage() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -71,13 +67,13 @@ export default function ReformasCocinasPage() {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Service",
-                    "name": "Reformas de Cocinas en Barcelona",
+                    "name": "Instal·lació d'Aerotèrmia a Barcelona",
                     "provider": {
                         "@type": "HomeAndConstructionBusiness",
                         "name": "Voltura Projects"
                     },
                     "areaServed": "Barcelona",
-                    "description": "Diseño y reforma de cocinas modernas, abiertas al salón, con isla y acabados premium."
+                    "description": "Instal·lació de sistemes d'aerotèrmia per a calefacció, refrigeració i ACS amb terra radiant."
                 })}
             </Script>
 
@@ -87,8 +83,8 @@ export default function ReformasCocinasPage() {
             <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/imagenes/reforma-de-cocina-en-barcelona.webp"
-                        alt="Reforma de cocinas en Barcelona"
+                        src="/imagenes/instalar-aerotermia-en-barcelona.webp"
+                        alt="Instal·lació d'aerotèrmia a Barcelona"
                         fill
                         className="object-cover"
                         priority
@@ -99,17 +95,17 @@ export default function ReformasCocinasPage() {
 
                 <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 animate-in fade-in zoom-in duration-700">
                     <div className="inline-block border-b-2 border-voltura-gold pb-2 mb-4">
-                        <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Alta Cocina en Tu Hogar</span>
+                        <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Energia Renovable</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
-                        Reformas de Cocinas en Barcelona
+                        Aerotèrmia a Barcelona
                     </h1>
                     <h2 className="block text-2xl md:text-3xl font-sans font-light text-gray-300 mt-4 normal-case max-w-5xl mx-auto">
-                        Diseño Gourmet, Funcionalidad y Estilo
+                        Climatització Integral, Estalvi Màxim i Sostenibilitat
                     </h2>
                     <div className="pt-8">
                         <ContactButton className="px-8 py-3 inline-flex items-center gap-2">
-                            Solicitar Presupuesto Gratuito <ArrowRight className="w-5 h-5" />
+                            Sol·licitar Estudi Energètic <ArrowRight className="w-5 h-5" />
                         </ContactButton>
                     </div>
                 </div>
@@ -119,14 +115,13 @@ export default function ReformasCocinasPage() {
             <section className="py-20 bg-voltura-blue">
                 <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
                     <h2 className="text-3xl md:text-4xl font-serif text-white">
-                        El corazón de tu hogar: <span className="text-voltura-gold italic">Diseño y Convivencia</span>
+                        El futur del confort ja és <span className="text-voltura-gold italic">aquí</span>
                     </h2>
                     <p className="text-lg text-gray-300 leading-relaxed">
-                        La cocina ha dejado de ser un espacio de trabajo para convertirse en el centro social de la vivienda. En <strong>Voltura Projects</strong> diseñamos cocinas que invitan a quedarse.
-                        Especialistas en <strong>cocinas abiertas al salón</strong> en Barcelona, creamos espacios fluidos donde cocinar y convivir se unen en perfecta armonía.
+                        A <strong>Voltura Projects</strong> apostem per la eficiència energètica. Som instal·ladors certificats d'<strong>aerotèrmia a Barcelona</strong>, la tecnologia que utilitza l'aire exterior per aportar calefacció a l'hivern, refrigeració a l'estiu i aigua calenta tot l'any.
                     </p>
                     <p className="text-gray-400">
-                        Fusionamos ergonomía, capacidad de almacenaje y materiales nobles para crear cocinas que resisten el paso del tiempo y las tendencias.
+                        Oblida't del gas i les factures elevades. Transforma la teva llar en un espai sostenible i d'alt confort.
                     </p>
                 </div>
             </section>
@@ -136,24 +131,24 @@ export default function ReformasCocinasPage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
-                            <Layout className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Diseño 3D</h3>
-                            <p className="text-gray-400 text-sm">Visualiza tu nueva cocina antes de empezar. Distribuciones optimizadas para tu espacio.</p>
+                            <Leaf className="w-10 h-10 text-voltura-gold mb-4" />
+                            <h3 className="text-xl font-serif text-white mb-2">Energia Verda</h3>
+                            <p className="text-gray-400 text-sm">Sistema respectuós amb el medi ambient que redueix dràsticament les emissions de CO2 de la teva vivenda.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
-                            <Clock className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Coordinación Total</h3>
-                            <p className="text-gray-400 text-sm">Gestión integral de albañiles, marmolistas y montadores para cumplir los plazos.</p>
+                            <Layers className="w-10 h-10 text-voltura-gold mb-4" />
+                            <h3 className="text-xl font-serif text-white mb-2">Tot en Un</h3>
+                            <p className="text-gray-400 text-sm">Un únic equip per a calefacció, aire condicionat i aigua calenta sanitària.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <ShieldCheck className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Calidad Garantizada</h3>
-                            <p className="text-gray-400 text-sm">Herrajes de primeras marcas con cierre amortiguado y encimeras resistentes al calor.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Mínim Manteniment</h3>
+                            <p className="text-gray-400 text-sm">A diferència de les calderes de gas, l'aerotèrmia és més segura (sense combustió) i requereix revisions senzilles.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <CheckCircle2 className="w-10 h-10 text-voltura-gold mb-4" />
-                            <h3 className="text-xl font-serif text-white mb-2">Presupuesto Cerrado</h3>
-                            <p className="text-gray-400 text-sm">Precio final garantizado por contrato, sin desviaciones ni sorpresas de última hora.</p>
+                            <h3 className="text-xl font-serif text-white mb-2">Alta Rendibilitat</h3>
+                            <p className="text-gray-400 text-sm">El retorn de la inversió és ràpid gràcies al dràstic estalvi mensual en subministraments.</p>
                         </div>
                     </div>
                 </div>
@@ -163,33 +158,33 @@ export default function ReformasCocinasPage() {
             <section className="py-24 bg-voltura-blue relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="mb-16 md:w-1/2">
-                        <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodología</h3>
-                        <h2 className="text-4xl font-serif text-white mb-6">Creamos tu Cocina Ideal</h2>
+                        <h3 className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodologia</h3>
+                        <h2 className="text-4xl font-serif text-white mb-6">Instal·lació Aerotèrmica</h2>
                         <p className="text-gray-300">
-                            Desde el primer boceto hasta el último ajuste del cajón, cuidamos cada fase del proyecto.
+                            Dissenyem el sistema hidràulic perfecte per a la teva vivenda.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">01</div>
-                            <h3 className="text-2xl font-serif text-white">Planificación</h3>
+                            <h3 className="text-2xl font-serif text-white">Estudi Energètic</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Estudio de necesidades y triangulo de trabajo. Selección de materiales en showroom especializado.
+                                Analitzem la demanda tèrmica de la teva casa per recomanar-te la potència (kW) i marca més adequada.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">02</div>
-                            <h3 className="text-2xl font-serif text-white">Obra e Instalaciones</h3>
+                            <h3 className="text-2xl font-serif text-white">Muntatge Hidràulic</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Renovación de instalaciones y preparación de paramentos. Todo listo para el montaje.
+                                Instal·lació d'unitats i connexió amb terra radiant o fancoils, incloent dipòsit d'inèrcia si és necessari.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">03</div>
-                            <h3 className="text-2xl font-serif text-white">Montaje y Equipamiento</h3>
+                            <h3 className="text-2xl font-serif text-white">Configuració</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Instalación precisa del mobiliario, encimera y electrodomésticos. Puesta en marcha y limpieza.
+                                Ajust de corbes de calefacció i termòstats per optimitzar el rendiment estacional (SCOP).
                             </p>
                         </div>
                     </div>
@@ -200,44 +195,44 @@ export default function ReformasCocinasPage() {
             <section className="py-24 bg-white/5">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Ingredientes de una Cocina Voltura</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">Sistemes Compatibles</h2>
                         <div className="w-20 h-1 bg-voltura-gold mx-auto"></div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
                             <div className="flex items-start gap-4">
-                                <Utensils className="w-8 h-8 text-voltura-gold mt-1" />
+                                <Layers className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Islas y Penínsulas</h3>
-                                    <p className="text-gray-400">Diseñamos islas centrales con zona de cocción o lavado, barras de desayuno y almacenamiento extra.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Terra Radiant-Refrescant</h3>
+                                    <p className="text-gray-400">La combinació perfecta. Calor uniforme a l'hivern i, amb la mateixa instal·lació, terra fresc a l'estiu. Invisible i silenciós.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
                             <div className="flex items-start gap-4">
-                                <ShieldCheck className="w-8 h-8 text-voltura-gold mt-1" />
+                                <Thermometer className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Encimeras Indestructibles</h3>
-                                    <p className="text-gray-400">Instalación de Dekton, Neolith o Silestone. Superficies antibacterianas, resistentes al rayado y al calor extremo.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Radiadors de Baixa Temperatura</h3>
+                                    <p className="text-gray-400">Radiadors especialment dissenyats per a treballar amb aigua a 35-45ºC, aprofitant l'eficiència de la bomba de calor.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
                             <div className="flex items-start gap-4">
-                                <Zap className="w-8 h-8 text-voltura-gold mt-1" />
+                                <Sun className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Iluminación LED Integrada</h3>
-                                    <p className="text-gray-400">Tiras LED bajo muebles altos para iluminar la zona de trabajo y vitrinas iluminadas para un toque elegante.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">Panells Solars (Fotovoltaica)</h3>
+                                    <p className="text-gray-400">Hibridem aerotèrmia amb plaques solars. Si produeixes la teva pròpia electricitat, la teva calefacció pot sortir-te pràcticament gratis.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="bg-voltura-blue/50 p-8 rounded-sm border border-white/5">
                             <div className="flex items-start gap-4">
-                                <ChefHat className="w-8 h-8 text-voltura-gold mt-1" />
+                                <CheckCircle2 className="w-8 h-8 text-voltura-gold mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-white mb-2">Electrodomésticos Integrados</h3>
-                                    <p className="text-gray-400">Totalmente ocultos tras los frentes de los muebles para una estética minimalista y uniforme.</p>
+                                    <h3 className="text-xl font-bold text-white mb-2">ACS (Aigua Calenta)</h3>
+                                    <p className="text-gray-400">Dipòsits d'aigua calenta integrats d'alta eficiència, amb cicles anti-legionel·la programats.</p>
                                 </div>
                             </div>
                         </div>
@@ -245,17 +240,17 @@ export default function ReformasCocinasPage() {
                 </div>
             </section>
 
-            <RelatedProjects tag="Reforma de cocina" title="Proyectos de Cocinas" />
+            <RelatedProjects tag="Aerotermia" title="Projectes d'Aerotèrmia" isCatalan={true} />
 
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">Presupuesto de Reforma de Cocinas en Barcelona</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">Pressupost d'Instal·lació d'Aerotèrmia a Barcelona</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                        Diseñamos la cocina donde nacen los grandes momentos. Solicita tu estudio gratuito hoy mismo.
+                        Passa't a l'aerotèrmia i comença a amortitzar la teva inversió des del primer mes.
                     </p>
                     <ContactButton className="px-10 py-4 text-lg shadow-lg shadow-voltura-gold/20">
-                        Solicitar Visita Técnica
+                        Sol·licitar Estudi Gratuït
                     </ContactButton>
                 </div>
             </section>
@@ -263,7 +258,7 @@ export default function ReformasCocinasPage() {
             {/* FAQ Section with JSON-LD and correct headers */}
             <section className="py-20 bg-voltura-blue border-t border-white/10">
                 <div className="max-w-4xl mx-auto px-4">
-                    <h2 className="text-3xl font-serif text-white mb-10 text-center">Preguntas sobre reformas de cocinas en Barcelona</h2>
+                    <h2 className="text-3xl font-serif text-white mb-10 text-center">Preguntes sobre aerotèrmia a Barcelona</h2>
                     <FaqAccordion items={faqs} />
                 </div>
             </section>

@@ -66,15 +66,11 @@ export default function InstalacionesElectricasPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Instalaciones eléctricas de alta gama",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/instalaciones-electricas"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/instalaciones-electricas",
                         "description": "Expertos en instalaciones eléctricas para proyectos de alta gama y domótica. En Voltura Projects garantizamos seguridad, eficiencia energética y tecnología avanzada en cada punto de luz de su hogar o negocio.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -88,7 +84,8 @@ export default function InstalacionesElectricasPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Presupuesto gratuito para instalaciones eléctricas"
+                                        "name": "Presupuesto gratuito para instalaciones eléctricas",
+                                        "serviceType": "Instalaciones eléctricas de alta gama"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -101,7 +98,7 @@ export default function InstalacionesElectricasPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

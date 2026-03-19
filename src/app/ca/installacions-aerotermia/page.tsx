@@ -66,15 +66,11 @@ export default function InstalacionsAerotermiaPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Instal·lació d'Aerotèrmia i energies renovables",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/ca/installacions-aerotermia"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/ca/installacions-aerotermia",
                         "description": "Especialistes en aerotèrmia per a llars sostenibles d'alta gama. A Voltura Projects aconseguim el màxim estalvi energètic integrant solucions d'energia renovable en la seva reforma amb estètica d'alt nivell.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -88,7 +84,8 @@ export default function InstalacionsAerotermiaPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Pressupost sense compromís d'aerotèrmia"
+                                        "name": "Pressupost sense compromís d'aerotèrmia",
+                                        "serviceType": "Instal·lació d'Aerotèrmia i energies renovables"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -101,7 +98,7 @@ export default function InstalacionsAerotermiaPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

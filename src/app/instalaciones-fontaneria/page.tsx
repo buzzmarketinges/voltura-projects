@@ -66,15 +66,11 @@ export default function InstalacionesFontaneriaPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Instalaciones de fontanería especializada",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/instalaciones-fontaneria"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/instalaciones-fontaneria",
                         "description": "Servicios de fontanería técnica para reformas de lujo. En Voltura Projects realizamos instalaciones duraderas con materiales premium y acabados impecables, asegurando la máxima fiabilidad en sistemas de agua y saneamiento.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -88,7 +84,8 @@ export default function InstalacionesFontaneriaPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Presupuesto personalizado de fontanería"
+                                        "name": "Presupuesto personalizado de fontanería",
+                                        "serviceType": "Instalaciones de fontanería especializada"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -101,7 +98,7 @@ export default function InstalacionesFontaneriaPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

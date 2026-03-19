@@ -66,15 +66,11 @@ export default function InstalacionesClimatizacionPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Sistemas de Climatización de alto standing",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/instalaciones-climatizacion"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/instalaciones-climatizacion",
                         "description": "Diseño e instalación de sistemas de climatización invisibles y altamente eficientes para viviendas de lujo. En Voltura Projects priorizamos el confort térmico mediante la tecnología más avanzada y silenciosa.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -88,7 +84,8 @@ export default function InstalacionesClimatizacionPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Estudio de climatización gratuito"
+                                        "name": "Estudio de climatización gratuito",
+                                        "serviceType": "Sistemas de Climatización de alto standing"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -101,7 +98,7 @@ export default function InstalacionesClimatizacionPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

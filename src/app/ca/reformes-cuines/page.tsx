@@ -70,15 +70,11 @@ export default function ReformesCuinesPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Reformes de cuines de luxe",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/ca/reformes-cuines"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/ca/reformes-cuines",
                         "description": "Disseny i execució de cuines de luxe a mida. A Voltura Projects combinem funcionalitat avançada amb estètica d'alt nivell per crear la cuina dels seus somnis.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -92,7 +88,8 @@ export default function ReformesCuinesPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Pressupost gratuït per a reforma de cuina"
+                                        "name": "Pressupost gratuït per a reforma de cuina",
+                                        "serviceType": "Reformes de cuines de luxe"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -105,7 +102,7 @@ export default function ReformesCuinesPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

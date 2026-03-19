@@ -82,15 +82,11 @@ export default function ReformasIntegralesPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Reformas integrales de alto standing",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/reformas-integrales"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/reformas-integrales",
                         "description": "En Voltura Project somos una empresa especialista en reformas integrales de alto standing con materiales de primera categoría y acabados de alta calidad.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -104,7 +100,8 @@ export default function ReformasIntegralesPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Presupuesto gratuito para reforma integral"
+                                        "name": "Presupuesto gratuito para reforma integral",
+                                        "serviceType": "Reformas integrales de alto standing"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -117,7 +114,7 @@ export default function ReformasIntegralesPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

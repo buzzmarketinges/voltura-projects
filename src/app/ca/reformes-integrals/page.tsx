@@ -74,15 +74,11 @@ export default function ReformesIntegralesPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Reformes integrals d'alt standing",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/ca/reformes-integrals"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/ca/reformes-integrals",
                         "description": "A Voltura Projects som una empresa especialista en reformes integrals d'alt standing amb materials de primera categoria i acabats d'alta qualitat.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -96,7 +92,8 @@ export default function ReformesIntegralesPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Pressupost gratuït per a reforma integral"
+                                        "name": "Pressupost gratuït per a reforma integral",
+                                        "serviceType": "Reformes integrals d'alt standing"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -109,7 +106,7 @@ export default function ReformesIntegralesPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

@@ -66,15 +66,11 @@ export default function TrabajosVerticalesPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Trabajos verticales y rehabilitación de fachadas",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/trabajos-verticales"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/trabajos-verticales",
                         "description": "Expertos en trabajos verticales y mantenimiento de edificios de alto standing. En Voltura Projects realizamos intervenciones técnicas en altura con máxima seguridad, rapidez y acabados de alta calidad sin necesidad de andamios complejos.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -88,7 +84,8 @@ export default function TrabajosVerticalesPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Presupuesto gratuito para trabajos verticales"
+                                        "name": "Presupuesto gratuito para trabajos verticales",
+                                        "serviceType": "Trabajos verticales y rehabilitación de fachadas"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -101,7 +98,7 @@ export default function TrabajosVerticalesPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

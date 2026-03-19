@@ -70,15 +70,11 @@ export default function ReformasCocinasPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Reformas de cocinas de lujo",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/reformas-cocinas"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/reformas-cocinas",
                         "description": "Diseño y ejecución de cocinas de lujo a medida. En Voltura Projects combinamos funcionalidad avanzada con estética de alto nivel para crear la cocina de sus sueños.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -92,7 +88,8 @@ export default function ReformasCocinasPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Presupuesto gratuito para reforma de cocina"
+                                        "name": "Presupuesto gratuito para reforma de cocina",
+                                        "serviceType": "Reformas de cocinas de lujo"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -105,7 +102,7 @@ export default function ReformasCocinasPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

@@ -70,15 +70,11 @@ export default function ReformesBanysPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Reformes de banys de luxe",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/ca/reformes-banys"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/ca/reformes-banys",
                         "description": "Especialistes en la creació de banys de disseny i luxe. A Voltura Projects transformem el seu lavabo en un espai de benestar exclusiu amb acabats premium i materials nobles.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -92,7 +88,8 @@ export default function ReformesBanysPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Pressupost personalitzat per a reforma de bany"
+                                        "name": "Pressupost personalitzat per a reforma de bany",
+                                        "serviceType": "Reformes de banys de luxe"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -105,7 +102,7 @@ export default function ReformesBanysPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

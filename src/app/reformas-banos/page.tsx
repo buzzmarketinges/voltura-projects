@@ -70,15 +70,11 @@ export default function ReformasBanosPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Reformas de baños de lujo",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/reformas-banos"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/reformas-banos",
                         "description": "Especialistas en la creación de baños de diseño y lujo. En Voltura Projects transformamos su aseo en un espacio de bienestar exclusivo con acabados premium y materiales nobles.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -92,7 +88,8 @@ export default function ReformasBanosPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Presupuesto personalizado para reforma de baño"
+                                        "name": "Presupuesto personalizado para reforma de baño",
+                                        "serviceType": "Reformas de baños de lujo"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -105,7 +102,7 @@ export default function ReformasBanosPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

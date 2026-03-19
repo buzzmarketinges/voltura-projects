@@ -66,15 +66,11 @@ export default function EnergiaFotovoltaicaPage() {
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
                         "@context": "https://schema.org/",
-                        "@type": "Service",
-                        "serviceType": "Instal·lació d'energia fotovoltaica d'alt rendiment",
-                        "provider": {
-                            "@type": "HomeAndConstructionBusiness",
-                            "name": "Voltura Projects",
-                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-                            "url": "https://volturaprojects.es/ca/energia-fotovoltaica"
-                        },
+                        "@type": "HomeAndConstructionBusiness",
+                        "name": "Voltura Projects",
+                        "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                        "url": "https://volturaprojects.es/ca/energia-fotovoltaica",
                         "description": "Especialistes en solucions d'energia solar fotovoltaica per a habitatges exclusius i projectes sostenibles. A Voltura Projects integrem panells d'alta eficiència amb un disseny arquitectònic impecable per al màxim estalvi energètic.",
                         "areaServed": {
                             "@type": "AdministrativeArea",
@@ -88,7 +84,8 @@ export default function EnergiaFotovoltaicaPage() {
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
-                                        "name": "Estudi fotovoltaic i pressupost gratuït"
+                                        "name": "Estudi fotovoltaic i pressupost gratuït",
+                                        "serviceType": "Instal·lació d'energia fotovoltaica d'alt rendiment"
                                     },
                                     "priceCurrency": "EUR",
                                     "price": "0",
@@ -101,7 +98,7 @@ export default function EnergiaFotovoltaicaPage() {
                             "ratingValue": "4.9",
                             "reviewCount": "19",
                             "bestRating": "5",
-                            "worstRating": "1"
+                            "worstRating": "4"
                         }
                     })}
             </Script>

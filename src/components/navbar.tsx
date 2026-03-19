@@ -8,7 +8,11 @@ import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useContactModal } from "@/context/contact-modal-context";
 
-export function Navbar() {
+interface NavbarProps {
+    switchLanguagePath?: string;
+}
+
+export function Navbar({ switchLanguagePath }: NavbarProps = {}) {
     const [isOpen, setIsOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const { openModal } = useContactModal();
@@ -94,6 +98,7 @@ export function Navbar() {
 
     // Get the other language path
     const getSwitchLanguagePath = () => {
+        if (switchLanguagePath) return switchLanguagePath;
         // ES → CA exact slug mapping based on real filesystem routes
         const ES_TO_CA: Record<string, string> = {
             "/":                          "/ca",

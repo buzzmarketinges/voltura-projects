@@ -70,9 +70,11 @@ export default async function ProjectDetailPage({ params }: Props) {
     const nextTitle = nextProject.title_ca || nextProject.title;
     const nextSlug = nextProject.slug_ca || nextProject.slug;
 
+    const switchPath = project?.slug ? `/proyectos/${project.slug}` : undefined;
+
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
-            <Navbar />
+            <Navbar switchLanguagePath={switchPath} />
 
             <Script id="json-ld-project" type="application/ld+json">
                 {JSON.stringify({

@@ -55,8 +55,10 @@ export default async function ArticlePage({ params }: PageProps) {
     let content = "";
     let faqs: any[] = [];
 
+    let dbPost: any = null;
+
     try {
-        const dbPost = await prisma.post.findFirst({
+        dbPost = await prisma.post.findFirst({
             where: { slug_ca: slug },
             include: { faqs: true }
         }).catch(() => null);
@@ -106,9 +108,11 @@ export default async function ArticlePage({ params }: PageProps) {
         isHtml = false;
     }
 
+    const switchPath = dbPost ? `/noticias/${dbPost.slug}` : undefined;
+
     return (
         <main className="bg-voltura-blue text-slate-300 font-sans selection:bg-voltura-gold selection:text-white min-h-screen">
-            <Navbar />
+            <Navbar switchLanguagePath={switchPath} />
 
             <header className="relative min-h-[70vh] flex flex-col justify-end overflow-hidden pt-32">
                 <div className="absolute inset-0 z-0">

@@ -53,9 +53,11 @@ export default async function ProjectDetailPage({ params }: Props) {
         orderBy: { createdAt: 'desc' }
     }) || project; // Fallback to current if only 1
 
+    const switchPath = project?.slug_ca ? `/ca/projectes/${project.slug_ca}` : undefined;
+
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
-            <Navbar />
+            <Navbar switchLanguagePath={switchPath} />
 
             <Script id="json-ld-project" type="application/ld+json">
                 {JSON.stringify({

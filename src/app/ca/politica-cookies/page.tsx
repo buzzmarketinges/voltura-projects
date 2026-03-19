@@ -5,7 +5,7 @@ export const metadata = {
     alternates: {
         canonical: "/ca/politica-cookies",
     },
-    title: "Política de Cookies | Voltura Projects",
+    title: "Política de Cookies a Catalunya | Voltura Projects",
     description: "Informació sobre l'ús de cookies a Voltura Projects.",
 };
 

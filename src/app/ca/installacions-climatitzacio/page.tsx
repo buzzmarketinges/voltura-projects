@@ -65,16 +65,45 @@ export default function InstalacionsClimatizacionPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Instal·lació d'Aire Condicionat a Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Instal·lació d'aire condicionat per conductes, splits i sistemes de zonificació Airzone."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Sistemes de Climatització d'alt standing",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/ca/installacions-climatitzacio"
+                        },
+                        "description": "Disseny i instal·lació de sistemes de climatització invisibles i altament eficients per a habitatges de luxe. A Voltura Projects prioritzem el confort tèrmic mitjançant la tecnologia més avançada i silenciosa.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonès, Barcelona i voltants"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Serveis de Climatització",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Estudi de climatització gratuït"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Proposta tècnica personalitzada per al control de temperatura en llars exclusives."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

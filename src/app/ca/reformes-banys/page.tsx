@@ -69,16 +69,45 @@ export default function ReformesBanysPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Reformes de Banys a Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Reforma integral de banys amb dissenys moderns, microciment, aixeteria encastada i sanitaris suspesos."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Reformes de banys de luxe",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/ca/reformes-banys"
+                        },
+                        "description": "Especialistes en la creació de banys de disseny i luxe. A Voltura Projects transformem el seu lavabo en un espai de benestar exclusiu amb acabats premium i materials nobles.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonès, Barcelona i voltants"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Serveis de Banys",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Pressupost personalitzat per a reforma de bany"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Estudi i pressupost sense compromís per a projectes de bany d'alta gamma."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

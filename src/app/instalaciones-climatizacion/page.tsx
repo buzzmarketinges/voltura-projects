@@ -65,16 +65,45 @@ export default function InstalacionesClimatizacionPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Instalación de Aire Acondicionado en Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Instalación de aire acondicionado por conductos, splits y sistemas de zonificación Airzone."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Sistemas de Climatización de alto standing",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/instalaciones-climatizacion"
+                        },
+                        "description": "Diseño e instalación de sistemas de climatización invisibles y altamente eficientes para viviendas de lujo. En Voltura Projects priorizamos el confort térmico mediante la tecnología más avanzada y silenciosa.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonés, Barcelona y alrededores"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Servicios de Climatización",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Estudio de climatización gratuito"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Propuesta técnica personalizada para el control de temperatura en hogares exclusivos."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

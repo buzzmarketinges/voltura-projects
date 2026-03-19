@@ -73,16 +73,45 @@ export default function ReformesIntegralesPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Reformes Integrals a Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Servei de reformes integrals clau en mà per a habitatges i locals a Barcelona. Inclou disseny, gestió de llicències i execució d'obra."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Reformes integrals d'alt standing",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/ca/reformes-integrals"
+                        },
+                        "description": "A Voltura Projects som una empresa especialista en reformes integrals d'alt standing amb materials de primera categoria i acabats d'alta qualitat.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonès, Barcelona i voltants"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Serveis de Reforma",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Pressupost gratuït per a reforma integral"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Oferim pressupostos personalitzats segons projecte per a reformes d'alta gamma."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

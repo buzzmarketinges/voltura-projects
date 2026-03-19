@@ -65,16 +65,45 @@ export default function InstalacionsElectriquesPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Instal·lacions Elèctriques a Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Instal·lacions elèctriques completes, canvis de quadre, il·luminació LED i butlletins elèctrics."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Instal·lacions elèctriques d'alta gamma",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/ca/installacions-electriques"
+                        },
+                        "description": "Experts en instal·lacions elèctriques per a projectes d'alta gamma i domòtica. A Voltura Projects garantim seguretat, eficiència energètica i tecnologia avançada en cada punt de llum de la seva llar o negoci.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonès, Barcelona i voltants"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Serveis d'Electricitat",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Pressupost gratuït per a instal·lacions elèctriques"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Estudi tècnic i pressupost sense compromís per a projectes elèctrics integrals."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

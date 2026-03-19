@@ -65,16 +65,45 @@ export default function InstalacionsAerotermiaPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Instal·lació d'Aerotèrmia a Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Instal·lació de sistemes d'aerotèrmia per a calefacció, refrigeració i ACS amb terra radiant."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Instal·lació d'Aerotèrmia i energies renovables",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/ca/installacions-aerotermia"
+                        },
+                        "description": "Especialistes en aerotèrmia per a llars sostenibles d'alta gama. A Voltura Projects aconseguim el màxim estalvi energètic integrant solucions d'energia renovable en la seva reforma amb estètica d'alt nivell.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonès, Barcelona i voltants"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Serveis d'Aerotèrmia",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Pressupost sense compromís d'aerotèrmia"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Càlcul d'eficiència energètica i pressupost per a sistemes d'aerotèrmia d'última generació."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

@@ -65,16 +65,45 @@ export default function TrabajosVerticalesPage() {
             />
             <Script id="service-schema" type="application/ld+json">
                 {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "Service",
-                    "name": "Trabajos Verticales en Barcelona",
-                    "provider": {
-                        "@type": "HomeAndConstructionBusiness",
-                        "name": "Voltura Projects"
-                    },
-                    "areaServed": "Barcelona",
-                    "description": "Rehabilitación de fachadas, pintura de patios de luces y reparaciones en altura sin andamios."
-                })}
+                        "@context": "https://schema.org/",
+                        "@type": "Service",
+                        "serviceType": "Trabajos verticales y rehabilitación de fachadas",
+                        "provider": {
+                            "@type": "HomeAndConstructionBusiness",
+                            "name": "Voltura Projects",
+                            "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
+                            "url": "https://volturaprojects.es/trabajos-verticales"
+                        },
+                        "description": "Expertos en trabajos verticales y mantenimiento de edificios de alto standing. En Voltura Projects realizamos intervenciones técnicas en altura con máxima seguridad, rapidez y acabados de alta calidad sin necesidad de andamios complejos.",
+                        "areaServed": {
+                            "@type": "AdministrativeArea",
+                            "name": "Barcelonés, Barcelona y alrededores"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Servicios en Altura",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Presupuesto gratuito para trabajos verticales"
+                                    },
+                                    "priceCurrency": "EUR",
+                                    "price": "0",
+                                    "description": "Valoración técnica sin compromiso para rehabilitaciones, limpieza y reparaciones en altura."
+                                }
+                            ]
+                        },
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "19",
+                            "bestRating": "5",
+                            "worstRating": "1"
+                        }
+                    })}
             </Script>
 
             <Navbar />

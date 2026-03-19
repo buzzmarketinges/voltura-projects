@@ -90,7 +90,7 @@ export default async function ArticlePage({ params }: PageProps) {
             };
             content = String(dbPost.contentHtml_ca || dbPost.contentHtml || dbPost.contentText_ca || dbPost.contentText || "");
             
-            faqs = (dbPost.faqs || []).map(f => ({
+            faqs = (dbPost.faqs || []).map((f: any) => ({
                 question: String(f.question_ca || f.question),
                 answer: String(f.answer_ca || f.answer)
             }));

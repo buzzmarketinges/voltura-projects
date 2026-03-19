@@ -83,7 +83,7 @@ export default async function ArticlePage({ params }: PageProps) {
                 image: String(dbPost.mainImage || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80"),
             };
             content = String(dbPost.contentHtml || dbPost.contentText || "");
-            faqs = (dbPost.faqs || []).map(f => ({
+            faqs = (dbPost.faqs || []).map((f: any) => ({
                 question: String(f.question),
                 answer: String(f.answer)
             }));

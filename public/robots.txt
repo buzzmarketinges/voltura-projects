@@ -2,14 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /_next/
-Disallow: /*.json$
 
-# AI Crawler limits
-# - Disallow heavy data endpoints
-Disallow: /api/
-Disallow: /admin/
-
+# Limit aggressive AI and scraping bots
 User-agent: GPTBot
 Disallow: /admin/
 Disallow: /api/

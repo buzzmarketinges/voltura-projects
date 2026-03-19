@@ -71,6 +71,15 @@ export default function InstalacionsElectriquesPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/ca/installacions-electriques",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Experts en instal·lacions elèctriques per a projectes d'alta gamma i domòtica. A Voltura Projects garantim seguretat, eficiència energètica i tecnologia avançada en cada punt de llum de la seva llar o negoci.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

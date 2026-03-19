@@ -87,6 +87,15 @@ export default function ReformasIntegralesPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/reformas-integrales",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "En Voltura Project somos una empresa especialista en reformas integrales de alto standing con materiales de primera categoría y acabados de alta calidad.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

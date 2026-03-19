@@ -71,6 +71,15 @@ export default function InstalacionesClimatizacionPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/instalaciones-climatizacion",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Diseño e instalación de sistemas de climatización invisibles y altamente eficientes para viviendas de lujo. En Voltura Projects priorizamos el confort térmico mediante la tecnología más avanzada y silenciosa.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

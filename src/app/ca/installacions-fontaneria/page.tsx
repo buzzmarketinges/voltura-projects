@@ -71,6 +71,15 @@ export default function InstalacionsFontaneriaPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/ca/installacions-fontaneria",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Serveis de fontaneria tècnica per a reformes de luxe. A Voltura Projects realitzem instal·lacions duradores amb materials premium i acabats impecables, assegurant la màxima fiabilitat en sistemes d'aigua i sanejament.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

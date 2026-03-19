@@ -75,6 +75,15 @@ export default function ReformesBanysPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/ca/reformes-banys",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Especialistes en la creació de banys de disseny i luxe. A Voltura Projects transformem el seu lavabo en un espai de benestar exclusiu amb acabats premium i materials nobles.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

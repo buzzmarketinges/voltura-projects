@@ -71,6 +71,15 @@ export default function InstalacionesAerotermiaPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/instalaciones-aerotermia",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Especialistas en aerotermia para hogares sostenibles de alta gama. En Voltura Projects logramos el máximo ahorro energético integrando soluciones de energía renovable en su reforma con estética de alto nivel.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

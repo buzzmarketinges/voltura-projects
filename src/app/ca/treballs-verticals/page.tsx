@@ -71,6 +71,15 @@ export default function TrabajosVerticalesPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/ca/treballs-verticals",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Experts en treballs verticals i manteniment d'edificis d'alt standing. A Voltura Projects realitzem intervencions tècniques en alçada amb màxima seguretat, rapidesa i acabats d'alta qualitat sense necessitat d'andamis complexos.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

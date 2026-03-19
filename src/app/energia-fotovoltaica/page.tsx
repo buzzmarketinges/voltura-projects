@@ -71,6 +71,15 @@ export default function EnergiaFotovoltaicaPage() {
                         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
                         "url": "https://volturaprojects.es/energia-fotovoltaica",
+                        "telephone": "+34 640 80 14 91",
+                        "priceRange": "€€€",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Carrer de Bernat Metge, 14",
+                            "addressLocality": "Barcelona",
+                            "postalCode": "08019",
+                            "addressCountry": "ES"
+                        },
                         "description": "Especialistas en soluciones de energía solar fotovoltaica para viviendas exclusivas y proyectos sostenibles. En Voltura Projects integramos paneles de alta eficiencia con un diseño arquitectónico impecable para el máximo ahorro energético.",
                         "areaServed": {
                             "@type": "AdministrativeArea",

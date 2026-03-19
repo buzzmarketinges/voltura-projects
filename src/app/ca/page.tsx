@@ -249,7 +249,7 @@ export default function CatalanHomePage() {
             ))}
 
             {/* CTA Card */}
-            <div className="flex flex-col justify-center items-center text-center p-8 bg-gradient-to-br from-white/10 to-transparent border border-white/5 rounded-sm">
+            <div className="md:col-span-2 lg:col-span-3 flex flex-col justify-center items-center text-center p-8 bg-gradient-to-br from-white/10 to-transparent border border-white/5 rounded-sm">
               <h3 className="text-2xl font-serif text-white mb-6">
                 ¿Necessites un pressupost per a la teva reforma?
               </h3>

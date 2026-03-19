@@ -1,0 +1,82 @@
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+- Experiments (use with caution):
+  ✓ optimizeCss
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.5s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/57) ...
+  Generating static pages using 11 workers (14/57) 
+  Generating static pages using 11 workers (28/57) 
+  Generating static pages using 11 workers (42/57) 
+✓ Generating static pages using 11 workers (57/57) in 2.6s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ○ /admin
+├ ƒ /admin/blog
+├ ƒ /admin/blog/[id]
+├ ○ /admin/blog/new
+├ ○ /admin/login
+├ ○ /admin/media
+├ ƒ /api/admin/blog
+├ ƒ /api/admin/media
+├ ƒ /api/admin/search-urls
+├ ƒ /api/admin/upload
+├ ƒ /api/contact
+├ ƒ /blog/[slug]
+├ ƒ /ca
+├ ○ /ca/energia-fotovoltaica
+├ ○ /ca/installacions-aerotermia
+├ ○ /ca/installacions-climatitzacio
+├ ○ /ca/installacions-electriques
+├ ○ /ca/installacions-fontaneria
+├ ƒ /ca/noticies
+├ ƒ /ca/noticies/[slug]
+├ ○ /ca/politica-cookies
+├ ○ /ca/politica-privacidad
+├ ○ /ca/projectes
+├ ● /ca/projectes/[slug]
+│ ├ /ca/projectes/reforma-integral-atic-eixample
+│ ├ /ca/projectes/bany-luxury-spa-sarria
+│ ├ /ca/projectes/cuina-industrial-illa-poblenou
+│ └ [+7 more paths]
+├ ○ /ca/reformes-banys
+├ ○ /ca/reformes-cuines
+├ ○ /ca/reformes-integrals
+├ ƒ /ca/sitemap.xml
+├ ○ /ca/treballs-verticals
+├ ○ /energia-fotovoltaica
+├ ○ /gracias
+├ ○ /instalaciones-aerotermia
+├ ○ /instalaciones-climatizacion
+├ ○ /instalaciones-electricas
+├ ○ /instalaciones-fontaneria
+├ ƒ /noticias
+├ ƒ /noticias/[slug]
+├ ○ /politica-cookies
+├ ○ /politica-privacidad
+├ ○ /proyectos
+├ ● /proyectos/[slug]
+│ ├ /proyectos/reforma-integral-penthouse-eixample
+│ ├ /proyectos/bano-luxury-spa-sarria
+│ ├ /proyectos/cocina-isla-industrial-poblenou
+│ └ [+7 more paths]
+├ ○ /reformas-banos
+├ ○ /reformas-cocinas
+├ ○ /reformas-integrales
+├ ƒ /sitemap.xml
+├ ○ /terminos-condiciones
+└ ○ /trabajos-verticales
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

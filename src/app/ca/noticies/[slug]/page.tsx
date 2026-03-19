@@ -25,10 +25,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         }).catch(() => null);
 
         if (dbPost && dbPost.isPublished) {
-            const title = dbPost.metaTitle_ca || dbPost.title_ca || `${dbPost.title} | Voltura Projects`;
+            const rawTitle = dbPost.metaTitle_ca || dbPost.title_ca || `${dbPost.title}`;
+            const metaTitle = String(rawTitle).includes('Voltura Projects') ? String(rawTitle) : `${rawTitle} | Voltura Projects`;
             const description = dbPost.metaDescription_ca || dbPost.metaDescription || "";
             return {
-                title: String(title),
+                title: metaTitle,
                 description: String(description),
                 alternates: { canonical: `https://volturaprojects.es/ca/noticies/${slug}` },
             };

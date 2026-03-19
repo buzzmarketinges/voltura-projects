@@ -25,8 +25,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         }).catch(() => null);
 
         if (dbPost && dbPost.isPublished) {
+            const rawTitle = dbPost.metaTitle || dbPost.title;
+            const metaTitle = String(rawTitle).includes('Voltura Projects') ? String(rawTitle) : `${rawTitle} | Voltura Projects`;
             return {
-                title: String(dbPost.metaTitle || `${dbPost.title} | Voltura Projects`),
+                title: metaTitle,
                 description: String(dbPost.metaDescription || ""),
                 alternates: { canonical: `https://volturaprojects.es/noticias/${slug}` },
             };

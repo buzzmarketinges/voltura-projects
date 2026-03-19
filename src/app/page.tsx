@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { FileText, Building2, Zap, Home, Palette, ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Home, Bath, CookingPot, Droplets, Wind, Fan, Sun, Mountain } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
@@ -21,35 +21,59 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const services = [
     {
-      icon: <FileText className="w-8 h-8 text-voltura-gold" />,
-      title: "Planificación y Fase Técnica",
-      desc: "Proyectos realizados por arquitectos titulados y gestión completa de licencias.",
+      icon: <Home className="w-8 h-8 text-voltura-gold" />,
+      title: "Reformas Integrales",
+      desc: "Transformamos viviendas por completo con diseño de vanguardia, gestión de licencias y acabados de máxima calidad.",
       href: "/reformas-integrales"
     },
     {
-      icon: <Building2 className="w-8 h-8 text-voltura-gold" />,
-      title: "Estructura y Albañilería",
-      desc: "Desde la demolición hasta la ejecución de forjados y trabajos verticales.",
-      href: "/trabajos-verticales"
+      icon: <Bath className="w-8 h-8 text-voltura-gold" />,
+      title: "Reformas de Baños",
+      desc: "Diseño y ejecución de baños modernos y funcionales. Cambios de bañera por plato de ducha y acabados de lujo.",
+      href: "/reformas-banos"
+    },
+    {
+      icon: <CookingPot className="w-8 h-8 text-voltura-gold" />,
+      title: "Reformas de Cocina",
+      desc: "Cocinas premium a medida. Maximizamos el espacio y la luminosidad con materiales de alta gama y electrodomésticos eficientes.",
+      href: "/reformas-cocinas"
     },
     {
       icon: <Zap className="w-8 h-8 text-voltura-gold" />,
-      title: "Instalaciones de Vanguardia",
-      desc: "Especialistas en aerotermia, fontanería, electricidad y climatización.",
-      href: "/instalaciones/electricidad"
+      title: "Instalación Eléctrica",
+      desc: "Boletines de luz, cuadros eléctricos y cableado general. Soluciones seguras y conformes a la normativa actual.",
+      href: "/instalaciones-electricas"
     },
     {
-      icon: <Home className="w-8 h-8 text-voltura-gold" />,
-      title: "Reformas e Interiores",
-      desc: "Transformación de cocinas, baños, pladur y pavimentos de alta calidad.",
-      href: "/reformas-integrales"
+      icon: <Droplets className="w-8 h-8 text-voltura-gold" />,
+      title: "Instalación de Fontanería",
+      desc: "Sistemas de agua sanitaria, bajantes y grifería. Reparación e instalación con materiales de alta durabilidad.",
+      href: "/instalaciones-fontaneria"
     },
     {
-      icon: <Palette className="w-8 h-8 text-voltura-gold" />,
-      title: "Carpintería y Acabados",
-      desc: "Detalles finales: pintura, alisados y carpintería exterior/interior.",
-      href: "/reformas-integrales"
+      icon: <Wind className="w-8 h-8 text-voltura-gold" />,
+      title: "Instalación de Climatización",
+      desc: "Aire acondicionado por conductos, splits y calefacción. Confort térmico con la mayor eficiencia energética.",
+      href: "/instalaciones-climatizacion"
     },
+    {
+      icon: <Fan className="w-8 h-8 text-voltura-gold" />,
+      title: "Instalación de Aerotermia",
+      desc: "Energía limpia para agua caliente y calefacción. Reduce tu factura eléctrica con sistemas de última generación.",
+      href: "/instalaciones-aerotermia"
+    },
+    {
+      icon: <Sun className="w-8 h-8 text-voltura-gold" />,
+      title: "Energía Fotovoltaica",
+      desc: "Instalación de paneles solares para autoconsumo. Energía renovable y sostenible para tu hogar o negocio.",
+      href: "/energia-fotovoltaica"
+    },
+    {
+      icon: <Mountain className="w-8 h-8 text-voltura-gold" />,
+      title: "Trabajos Verticales",
+      desc: "Rehabilitación de fachadas, patios de luces y trabajos en altura sin necesidad de andamios aparatosos.",
+      href: "/trabajos-verticales"
+    }
   ];
 
   return (

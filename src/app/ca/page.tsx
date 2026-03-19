@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { FileText, Building2, Zap, Home, Palette, ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Home, Bath, CookingPot, Droplets, Wind, Fan, Sun, Mountain } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
@@ -25,35 +25,59 @@ export const metadata: Metadata = {
 export default function CatalanHomePage() {
   const services = [
     {
-      icon: <FileText className="w-8 h-8 text-voltura-gold" />,
-      title: "Planificació i Fase Tècnica",
-      desc: "Projectes realitzats per arquitectes titulats i gestió completa de llicències.",
+      icon: <Home className="w-8 h-8 text-voltura-gold" />,
+      title: "Reformes Integrals",
+      desc: "Transformem habitatges per complet amb disseny d'avantguarda, gestió de llicències i acabats de màxima qualitat.",
       href: "/ca/reformes-integrals"
     },
     {
-      icon: <Building2 className="w-8 h-8 text-voltura-gold" />,
-      title: "Estructura i Paleta",
-      desc: "Des de la demolició fins a l'execució de forjats i treballs verticals.",
-      href: "/ca/treballs-verticals"
+      icon: <Bath className="w-8 h-8 text-voltura-gold" />,
+      title: "Reformes de Banys",
+      desc: "Disseny i execució de banys moderns i funcionals. Canvis de banyera per plat de dutxa i acabats de luxe.",
+      href: "/ca/reformes-banys"
+    },
+    {
+      icon: <CookingPot className="w-8 h-8 text-voltura-gold" />,
+      title: "Reformes de Cuina",
+      desc: "Cuines premium a mida. Maximitzem l'espai i la lluminositat amb materials d'alta gamma i electrodomèstics eficients.",
+      href: "/ca/reformes-cuines"
     },
     {
       icon: <Zap className="w-8 h-8 text-voltura-gold" />,
-      title: "Instal·lacions de Vanguarda",
-      desc: "Especialistes en aerotèrmia, fontaneria, electricitat i climatització.",
+      title: "Instal·lació Elèctrica",
+      desc: "Butlletins de llum, quadres elèctrics i cablejat general. Solucions segures i conformes a la normativa actual.",
       href: "/ca/installacions-electriques"
     },
     {
-      icon: <Home className="w-8 h-8 text-voltura-gold" />,
-      title: "Reformes i Interiors",
-      desc: "Transformació de cuines, banys, pladur i paviments d'alta qualitat.",
-      href: "/ca/reformes-integrals"
+      icon: <Droplets className="w-8 h-8 text-voltura-gold" />,
+      title: "Instal·lació de Fontaneria",
+      desc: "Sistemes d'aigua sanitària, baixants i aixeteria. Reparació i instal·lació amb materials d'alta durabilitat.",
+      href: "/ca/installacions-fontaneria"
     },
     {
-      icon: <Palette className="w-8 h-8 text-voltura-gold" />,
-      title: "Fusteria i Acabats",
-      desc: "Detalls finals: pintura, allisats i fusteria exterior/interior.",
-      href: "/ca/reformes-integrals"
+      icon: <Wind className="w-8 h-8 text-voltura-gold" />,
+      title: "Instal·lació de Climatització",
+      desc: "Aire condicionat per conductes, splits i calefacció. Confort tèrmic amb la major eficiència energètica.",
+      href: "/ca/installacions-climatitzacio"
     },
+    {
+      icon: <Fan className="w-8 h-8 text-voltura-gold" />,
+      title: "Instal·lació d'Aerotèrmia",
+      desc: "Energia neta per a aigua calenta i calefacció. Redueix la teva factura elèctrica amb sistemes de darrera generació.",
+      href: "/ca/installacions-aerotermia"
+    },
+    {
+      icon: <Sun className="w-8 h-8 text-voltura-gold" />,
+      title: "Energia Fotovoltaica",
+      desc: "Instal·lació de panells solars per a autoconsum. Energia renovable i sostenible per a la teva llar o negoci.",
+      href: "/ca/energia-fotovoltaica"
+    },
+    {
+      icon: <Mountain className="w-8 h-8 text-voltura-gold" />,
+      title: "Treballs Verticals",
+      desc: "Rehabilitació de façanes, patis de llums i treballs en alçada sense necessitat de bastides aparatosas.",
+      href: "/ca/treballs-verticals"
+    }
   ];
 
   return (

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     try {
         const { slug } = await params;
         const dbPost = await prisma.post.findFirst({
-            where: { OR: [{ slug_ca: slug }, { slug: slug }] }
+            where: { slug_ca: slug }
         }).catch(() => null);
 
         if (dbPost && dbPost.isPublished) {
@@ -57,7 +57,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
     try {
         const dbPost = await prisma.post.findFirst({
-            where: { OR: [{ slug_ca: slug }, { slug: slug }] },
+            where: { slug_ca: slug },
             include: { faqs: true }
         }).catch(() => null);
 

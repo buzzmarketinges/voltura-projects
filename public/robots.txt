@@ -1,0 +1,41 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /*.json$
+
+# AI Crawler limits
+# - Disallow heavy data endpoints
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: GPTBot
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 10
+
+User-agent: ChatGPT-User
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Claude-Bot
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 10
+
+User-agent: Google-Extended
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: CCBot
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 10
+
+# Sitemap
+Sitemap: https://volturaprojects.es/sitemap.xml

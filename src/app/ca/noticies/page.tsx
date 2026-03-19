@@ -21,7 +21,8 @@ export default async function NoticiesPage() {
         const dbPosts = await prisma.post.findMany({
             where: {
                 isPublished: true,
-                createdAt: { lte: new Date() }
+                createdAt: { lte: new Date() },
+                slug_ca: { not: null }
             },
             orderBy: { createdAt: 'desc' },
         }).catch(err => {
@@ -48,7 +49,7 @@ export default async function NoticiesPage() {
                 }
 
                 const title = post.title_ca || post.title;
-                const slug = post.slug_ca || post.slug;
+                const slug = post.slug_ca; // Since we filtered, it is guaranteed
                 const excerpt = post.metaDescription_ca || post.metaDescription || "Notícia destacada sobre les nostres obres i instal·lacions.";
 
                 return {

@@ -15,6 +15,7 @@ export const metadata = {
 
 export default async function ProjectesPage() {
     const dbProjects = await prisma.project.findMany({
+        where: { slug_ca: { not: null } },
         orderBy: { createdAt: 'desc' }
     });
 
@@ -39,7 +40,7 @@ export default async function ProjectesPage() {
                         const tagsList = project.tags_ca ? JSON.parse(project.tags_ca) : [];
                         const title = project.title_ca || project.title;
                         const summary = project.summary_ca || project.summary;
-                        const slug = project.slug_ca || project.slug;
+                        const slug = project.slug_ca; // Since we filtered, it is guaranteed
 
                         return (
                             <Link

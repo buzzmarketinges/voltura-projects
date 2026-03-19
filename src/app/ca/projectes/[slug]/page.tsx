@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
     const { slug } = await params;
     const project = await prisma.project.findFirst({
-        where: { OR: [{ slug_ca: slug }, { slug: slug }] }
+        where: { slug_ca: slug }
     });
     
     if (!project) return {
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function ProjectDetailPage({ params }: Props) {
     const { slug } = await params;
     const project = await prisma.project.findFirst({
-        where: { OR: [{ slug_ca: slug }, { slug: slug }] }
+        where: { slug_ca: slug }
     });
 
     if (!project) {

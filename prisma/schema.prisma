@@ -1,4 +1,4 @@
-Qgenerator client {
+generator client {
   provider = "prisma-client-js"
 }
 
@@ -10,7 +10,7 @@ datasource db {
 model Post {
   id              String   @id @default(cuid())
   title           String
-  title_ca        String?Q
+  title_ca        String?
   slug            String   @unique
   slug_ca         String?  @unique
   metaTitle       String?

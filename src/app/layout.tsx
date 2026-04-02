@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { ContactProvider } from "@/context/contact-modal-context";
 import { CookieConsent } from "@/components/cookie-consent";
+import { ContactProvider } from "@/context/contact-modal-context";
+import { Suspense } from "react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -53,7 +54,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
-        <CookieConsent />
+        <Suspense fallback={null}>
+          <CookieConsent />
+        </Suspense>
         <ContactProvider>
           {children}
         </ContactProvider>

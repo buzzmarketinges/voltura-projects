@@ -85,9 +85,16 @@ export function Footer() {
             <div className="w-[88%] mx-auto mt-12 py-6 border-t border-white/5 text-center">
                 <p className="text-xs text-slate-500 font-light tracking-wide">
                     {isCatalan ? "Pàgina web desenvolupada per l'" : "Página web desarrollada por la "}
-                    <a href="https://buzzmarketing.es/agencia-de-marketing-digital-en-barcelona/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-voltura-gold transition-all duration-300">
-                        {isCatalan ? "agència de màrqueting digital de Barcelona" : "agencia de marketing digital de Barcelona"}
-                    </a> BuzzMarketing.
+                    {pathname === "/" || pathname === "/ca" || pathname === "/ca/" ? (
+                        <a href="https://novamarketing.es/agencia-de-marketing-digital-en-barcelona/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-voltura-gold transition-all duration-300">
+                            {isCatalan ? "agència de màrqueting de Barcelona Nova Marketing" : "agencia de marketing de Barcelona Nova Marketing"}
+                        </a>
+                    ) : (
+                        <span className="text-slate-400">
+                            {isCatalan ? "agència de màrqueting de Barcelona Nova Marketing" : "agencia de marketing de Barcelona Nova Marketing"}
+                        </span>
+                    )}
+                    .
                 </p>
             </div>
         </footer>

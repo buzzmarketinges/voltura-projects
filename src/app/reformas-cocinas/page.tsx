@@ -9,7 +9,12 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/reformas-cocinas",
+        canonical: "https://volturaprojects.es/reformas-cocinas",
+        languages: {
+            "es": "https://volturaprojects.es/reformas-cocinas",
+            "ca": "https://volturaprojects.es/ca/reformes-cuines",
+            "x-default": "https://volturaprojects.es/reformas-cocinas",
+        },
     },
     title: "Reformas de Cocinas en Barcelona | Diseño Gourmet y Funcional",
     description: "Expertos en reformas de cocinas en Barcelona. Diseñamos cocinas modernas, abiertas al salón, con isla y acabados premium.",

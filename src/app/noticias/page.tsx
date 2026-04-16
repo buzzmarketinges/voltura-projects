@@ -7,6 +7,11 @@ import { prisma } from '@/lib/prisma';
 export const metadata: Metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/noticias",
+        languages: {
+            "es": "https://volturaprojects.es/noticias",
+            "ca": "https://volturaprojects.es/ca/noticies",
+            "x-default": "https://volturaprojects.es/noticias",
+        },
     },
     title: "Noticias y Blog | Voltura Projects - Reformas y Construcción",
     description: "Artículos, guías y consejos sobre reformas integrales, instalaciones y construcción. Mantente informado con las últimas tendencias del sector.",

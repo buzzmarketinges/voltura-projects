@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/reformes-cuines",
+        languages: {
+            "es": "https://volturaprojects.es/reformas-cocinas",
+            "ca": "https://volturaprojects.es/ca/reformes-cuines",
+            "x-default": "https://volturaprojects.es/reformas-cocinas",
+        },
     },
     title: "Reformes de Cuines a Barcelona | Disseny Gourmet i Funcional",
     description: "Experts en reformes de cuines a Barcelona. Dissenyem cuines modernes, obertes al saló, amb illa i acabats premium.",

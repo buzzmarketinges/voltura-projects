@@ -15,7 +15,8 @@ export const metadata: Metadata = {
     canonical: "https://volturaprojects.es/ca",
     languages: {
       "es": "https://volturaprojects.es/",
-      "ca": "https://volturaprojects.es/ca"
+      "ca": "https://volturaprojects.es/ca",
+      "x-default": "https://volturaprojects.es/",
     }
   },
   title: "Voltura Projects | Reformes i Solucions Tècniques a Barcelona",

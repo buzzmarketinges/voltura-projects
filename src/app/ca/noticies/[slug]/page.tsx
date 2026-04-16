@@ -28,10 +28,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             const rawTitle = dbPost.metaTitle_ca || dbPost.title_ca || `${dbPost.title}`;
             const metaTitle = String(rawTitle).includes('Voltura Projects') ? String(rawTitle) : `${rawTitle} | Voltura Projects`;
             const description = dbPost.metaDescription_ca || dbPost.metaDescription || "";
+            const languages: Record<string, string> = {
+                "ca": `https://volturaprojects.es/ca/noticies/${slug}`,
+                "x-default": `https://volturaprojects.es/noticias/${dbPost.slug}`,
+            };
+            if (dbPost.slug) {
+                languages["es"] = `https://volturaprojects.es/noticias/${dbPost.slug}`;
+            }
             return {
                 title: metaTitle,
                 description: String(description),
-                alternates: { canonical: `https://volturaprojects.es/ca/noticies/${slug}` },
+                alternates: {
+                    canonical: `https://volturaprojects.es/ca/noticies/${slug}`,
+                    languages,
+                },
             };
         }
 

@@ -26,13 +26,24 @@ export async function generateMetadata({ params }: Props) {
     const project = await prisma.project.findUnique({ where: { slug } });
     if (!project) return {
         title: "Proyecto no encontrado",
-        alternates: { canonical: `/proyectos/${slug}` }
+        alternates: { canonical: `https://volturaprojects.es/proyectos/${slug}` }
     };
+
+    const languages: Record<string, string> = {
+        "es": `https://volturaprojects.es/proyectos/${slug}`,
+        "x-default": `https://volturaprojects.es/proyectos/${slug}`,
+    };
+    if (project.slug_ca) {
+        languages["ca"] = `https://volturaprojects.es/ca/projectes/${project.slug_ca}`;
+    }
 
     return {
         title: `${project.title} | Voltura Projects`,
         description: project.summary || '',
-        alternates: { canonical: `/proyectos/${slug}` }
+        alternates: {
+            canonical: `https://volturaprojects.es/proyectos/${slug}`,
+            languages,
+        },
     };
 }
 

@@ -7,7 +7,12 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/ca/rehabilitacio-actius-immobiliaris",
+        canonical: "https://volturaprojects.es/ca/rehabilitacio-actius-immobiliaris",
+        languages: {
+            "es": "https://volturaprojects.es/rehabilitacion-activos-inmobiliarios",
+            "ca": "https://volturaprojects.es/ca/rehabilitacio-actius-immobiliaris",
+            "x-default": "https://volturaprojects.es/rehabilitacion-activos-inmobiliarios",
+        },
     },
     title: "Rehabilitació d'Edificis i Actius Immobiliaris a Barcelona",
     description: "Sòci estrategic en rehabilitació integral d'edificis per a grups d'inversió i family offices. Projectes clau en mà amb enfocament en ROI i eficiència tèrmica.",

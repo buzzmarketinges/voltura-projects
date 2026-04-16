@@ -9,7 +9,12 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/instalaciones-electricas",
+        canonical: "https://volturaprojects.es/instalaciones-electricas",
+        languages: {
+            "es": "https://volturaprojects.es/instalaciones-electricas",
+            "ca": "https://volturaprojects.es/ca/installacions-electriques",
+            "x-default": "https://volturaprojects.es/instalaciones-electricas",
+        },
     },
     title: "Instalaciones Eléctricas en Barcelona | Boletines y Reformas",
     description: "Electricistas autorizados en Barcelona. Realizamos instalaciones eléctricas completas, cambios de cuadro, iluminación LED y boletines (azul/blanco).",

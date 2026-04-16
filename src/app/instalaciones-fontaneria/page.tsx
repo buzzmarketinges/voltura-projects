@@ -9,7 +9,12 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/instalaciones-fontaneria",
+        canonical: "https://volturaprojects.es/instalaciones-fontaneria",
+        languages: {
+            "es": "https://volturaprojects.es/instalaciones-fontaneria",
+            "ca": "https://volturaprojects.es/ca/installacions-fontaneria",
+            "x-default": "https://volturaprojects.es/instalaciones-fontaneria",
+        },
     },
     title: "Instalaciones de Fontanería en Barcelona | Reformas y Reparaciones",
     description: "Fontaneros expertos en Barcelona. Cambio de tuberías (cobre, multicapa), bajantes, instalación de termos y descalcificadores.",

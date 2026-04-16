@@ -3,7 +3,12 @@ import { Footer } from "@/components/footer";
 
 export const metadata = {
     alternates: {
-        canonical: "/ca/politica-privacidad",
+        canonical: "https://volturaprojects.es/ca/politica-privacidad",
+        languages: {
+            "es": "https://volturaprojects.es/politica-privacidad",
+            "ca": "https://volturaprojects.es/ca/politica-privacidad",
+            "x-default": "https://volturaprojects.es/politica-privacidad",
+        },
     },
     title: "Política de Privacitat | Voltura Projects",
     description: "Política de privacitat i protecció de dades de Voltura Projects.",

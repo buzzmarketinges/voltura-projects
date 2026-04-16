@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/treballs-verticals",
+        languages: {
+            "es": "https://volturaprojects.es/trabajos-verticales",
+            "ca": "https://volturaprojects.es/ca/treballs-verticals",
+            "x-default": "https://volturaprojects.es/trabajos-verticales",
+        },
     },
     title: "Treballs Verticals a Barcelona | Rehabilitació de Façanes",
     description: "Empresa de treballs verticals a Barcelona. Rehabilitació de façanes, patis de llums i pintura sense bastides. Ràpids, segurs i econòmics.",

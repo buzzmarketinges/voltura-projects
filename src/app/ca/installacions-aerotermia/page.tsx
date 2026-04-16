@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/installacions-aerotermia",
+        languages: {
+            "es": "https://volturaprojects.es/instalaciones-aerotermia",
+            "ca": "https://volturaprojects.es/ca/installacions-aerotermia",
+            "x-default": "https://volturaprojects.es/instalaciones-aerotermia",
+        },
     },
     title: "Aerotèrmia a Barcelona | Calefacció i Refrigeració Sostenible",
     description: "Especialistes en instal·lacions d'aerotèrmia a Barcelona. Estalvia fins a un 70% en la teva factura amb terra radiant i bombes de calor d'alta eficiència.",

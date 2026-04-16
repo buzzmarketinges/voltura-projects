@@ -13,6 +13,11 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://volturaprojects.es/",
+    languages: {
+      "es": "https://volturaprojects.es/",
+      "ca": "https://volturaprojects.es/ca",
+      "x-default": "https://volturaprojects.es/",
+    },
   },
   title: "Voltura Projects | Reformas y Soluciones Técnicas en Barcelona",
   description: "Empresa de reformas integrales y soluciones técnicas de alta gama en Barcelona. Calidad, diseño y seguridad en cada proyecto.",

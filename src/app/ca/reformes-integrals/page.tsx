@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/reformes-integrals",
+        languages: {
+            "es": "https://volturaprojects.es/reformas-integrales",
+            "ca": "https://volturaprojects.es/ca/reformes-integrals",
+            "x-default": "https://volturaprojects.es/reformas-integrales",
+        },
     },
     title: "Reformes Integrals a Barcelona | Voltura Projects",
     description: "Especialistes en reformes integrals d'habitatges i locals a Barcelona. Projectes clau en mà, arquitectura tècnica i disseny d'interiors d'alta gamma.",

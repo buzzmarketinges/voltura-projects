@@ -7,7 +7,12 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/rehabilitacion-activos-inmobiliarios",
+        canonical: "https://volturaprojects.es/rehabilitacion-activos-inmobiliarios",
+        languages: {
+            "es": "https://volturaprojects.es/rehabilitacion-activos-inmobiliarios",
+            "ca": "https://volturaprojects.es/ca/rehabilitacio-actius-immobiliaris",
+            "x-default": "https://volturaprojects.es/rehabilitacion-activos-inmobiliarios",
+        },
     },
     title: "Rehabilitación de Edificios y Activos Inmobiliarios en Barcelona",
     description: "Socio estratégico en rehabilitación integral de edificios para grupos de inversión y family offices. Proyectos llave en mano con enfoque en ROI y eficiencia térmica.",

@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/installacions-climatitzacio",
+        languages: {
+            "es": "https://volturaprojects.es/instalaciones-climatizacion",
+            "ca": "https://volturaprojects.es/ca/installacions-climatitzacio",
+            "x-default": "https://volturaprojects.es/instalaciones-climatizacion",
+        },
     },
     title: "Aire Condicionat a Barcelona | Instal·lació i Climatització",
     description: "Experts en climatització a Barcelona. Instal·lació d'aire condicionat per conductes, splits, sistemes Airzone i manteniment.",

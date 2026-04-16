@@ -7,7 +7,12 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 
 export const metadata = {
     alternates: {
-        canonical: "/ca/projectes",
+        canonical: "https://volturaprojects.es/ca/projectes",
+        languages: {
+            "es": "https://volturaprojects.es/proyectos",
+            "ca": "https://volturaprojects.es/ca/projectes",
+            "x-default": "https://volturaprojects.es/proyectos",
+        },
     },
     title: "Projectes Realitzats | Voltura Projects Barcelona",
     description: "Descobreix la nostra selecció de projectes de reformes integrals, instal·lacions i rehabilitacions a Barcelona.",

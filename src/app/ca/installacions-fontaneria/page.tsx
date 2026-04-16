@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/installacions-fontaneria",
+        languages: {
+            "es": "https://volturaprojects.es/instalaciones-fontaneria",
+            "ca": "https://volturaprojects.es/ca/installacions-fontaneria",
+            "x-default": "https://volturaprojects.es/instalaciones-fontaneria",
+        },
     },
     title: "Instal·lacions de Fontaneria a Barcelona | Reformes i Reparacions",
     description: "Fontaners experts a Barcelona. Canvi de canonades (coure, multicapa), baixants, instal·lació de termos i descalcificadors.",

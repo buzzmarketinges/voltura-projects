@@ -10,6 +10,11 @@ import { RelatedProjects } from "@/components/related-projects";
 export const metadata = {
     alternates: {
         canonical: "https://volturaprojects.es/ca/reformes-banys",
+        languages: {
+            "es": "https://volturaprojects.es/reformas-banos",
+            "ca": "https://volturaprojects.es/ca/reformes-banys",
+            "x-default": "https://volturaprojects.es/reformas-banos",
+        },
     },
     title: "Reformes de Banys a Barcelona | Dissenys de Luxe i Moderns",
     description: "Especialistes en reformes de banys a Barcelona. Transformem el teu bany en un spa amb microciment, griferia encastada i sanitaris suspesos.",

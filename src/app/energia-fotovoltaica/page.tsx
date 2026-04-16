@@ -9,7 +9,12 @@ import { RelatedProjects } from "@/components/related-projects";
 
 export const metadata = {
     alternates: {
-        canonical: "/energia-fotovoltaica",
+        canonical: "https://volturaprojects.es/energia-fotovoltaica",
+        languages: {
+            "es": "https://volturaprojects.es/energia-fotovoltaica",
+            "ca": "https://volturaprojects.es/ca/energia-fotovoltaica",
+            "x-default": "https://volturaprojects.es/energia-fotovoltaica",
+        },
     },
     title: "Placas Solares en Barcelona | Instalación y Autoconsumo",
     description: "Instalación de paneles solares en Barcelona. Ahorra hasta un 80% en tu factura de luz. Gestión integral: permisos, instalación y subvenciones.",

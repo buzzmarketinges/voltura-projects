@@ -29,16 +29,27 @@ export async function generateMetadata({ params }: Props) {
     
     if (!project) return {
         title: "Projecte no trobat",
-        alternates: { canonical: `/ca/projectes/${slug}` }
+        alternates: { canonical: `https://volturaprojects.es/ca/projectes/${slug}` }
     };
 
     const title = project.title_ca || project.title;
     const summary = project.summary_ca || project.summary;
 
+    const languages: Record<string, string> = {
+        "ca": `https://volturaprojects.es/ca/projectes/${slug}`,
+        "x-default": `https://volturaprojects.es/proyectos/${project.slug}`,
+    };
+    if (project.slug) {
+        languages["es"] = `https://volturaprojects.es/proyectos/${project.slug}`;
+    }
+
     return {
         title: `${title} | Voltura Projects`,
         description: summary || '',
-        alternates: { canonical: `/ca/projectes/${slug}` }
+        alternates: {
+            canonical: `https://volturaprojects.es/ca/projectes/${slug}`,
+            languages,
+        },
     };
 }
 

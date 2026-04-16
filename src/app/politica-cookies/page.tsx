@@ -3,7 +3,12 @@ import { Footer } from "@/components/footer";
 
 export const metadata = {
     alternates: {
-        canonical: "/politica-cookies",
+        canonical: "https://volturaprojects.es/politica-cookies",
+        languages: {
+            "es": "https://volturaprojects.es/politica-cookies",
+            "ca": "https://volturaprojects.es/ca/politica-cookies",
+            "x-default": "https://volturaprojects.es/politica-cookies",
+        },
     },
     title: "Política de Cookies | Voltura Projects",
     description: "Información sobre el uso de cookies en Voltura Projects.",

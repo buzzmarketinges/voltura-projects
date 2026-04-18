@@ -25,7 +25,7 @@ export default async function ProyectosPage() {
 
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
-            <Navbar />
+            <Navbar switchLanguagePath="/ca/projectes" />
 
             {/* Header */}
             <section className="pt-32 pb-16 px-4 text-center">

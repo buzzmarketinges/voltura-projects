@@ -54,12 +54,12 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
 
     const faqs = [
         {
-            question: `¿Cuánto cuesta una reforma integral en ${city.faqCity}?`,
-            answer: `El precio varía según las calidades elegidas y el estado inicial del inmueble. En Voltura Projects realizamos un estudio previo gratuito en ${city.faqCity} para ofrecerte un presupuesto detallado y ajustado a tus necesidades, sin costes ocultos.`,
+            question: `¿Cuánto cuesta una reforma integral en ${city!.faqCity}?`,
+            answer: `El precio varía según las calidades elegidas y el estado inicial del inmueble. En Voltura Projects realizamos un estudio previo gratuito en ${city!.faqCity} para ofrecerte un presupuesto detallado y ajustado a tus necesidades, sin costes ocultos.`,
         },
         {
-            question: `¿Tramitáis los permisos de obra en ${city.faqCity}?`,
-            answer: `Sí. Nos encargamos de toda la gestión burocrática con el ayuntamiento de ${city.faqCity}, ya sea una obra menor o una licencia de obra mayor, asegurando que tu proyecto cumple con toda la normativa vigente del municipio.`,
+            question: `¿Tramitáis los permisos de obra en ${city!.faqCity}?`,
+            answer: `Sí. Nos encargamos de toda la gestión burocrática con el ayuntamiento de ${city!.faqCity}, ya sea una obra menor o una licencia de obra mayor, asegurando que tu proyecto cumple con toda la normativa vigente del municipio.`,
         },
         {
             question: "¿Cuánto tiempo tarda una reforma completa?",
@@ -99,7 +99,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
         "name": "Voltura Projects",
         "image": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
         "logo": "https://volturaprojects.es/_next/image?url=%2Foro-imagotipo.png&w=1920&q=75",
-        "url": `https://volturaprojects.es/reformas-integrales-en-${city.slug}`,
+        "url": `https://volturaprojects.es/reformas-integrales-en-${city!.slug}`,
         "telephone": "+34 640 80 14 91",
         "priceRange": "€€€",
         "address": {
@@ -109,10 +109,10 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
             "postalCode": "08019",
             "addressCountry": "ES",
         },
-        "description": `Empresa especialista en reformas integrales de alto standing en ${city.name} con materiales de primera categoría y acabados de alta calidad.`,
+        "description": `Empresa especialista en reformas integrales de alto standing en ${city!.name} con materiales de primera categoría y acabados de alta calidad.`,
         "areaServed": {
             "@type": "City",
-            "name": city.name,
+            "name": city!.name,
         },
         "aggregateRating": {
             "@type": "AggregateRating",
@@ -123,7 +123,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
         },
     };
 
-    const servicios = otrosServicios(city.slug, city.displayName);
+    const servicios = otrosServicios(city!.slug, city!.displayName);
 
     return (
         <main className="min-h-screen bg-voltura-blue text-voltura-stone font-sans selection:bg-voltura-gold selection:text-white">
@@ -152,10 +152,10 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
                         <span className="text-voltura-gold font-bold tracking-[0.2em] uppercase text-sm">Servicio Premium</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
-                        Reformas Integrales en {city.displayName}
+                        Reformas Integrales en {city!.displayName}
                     </h1>
                     <h2 className="block text-2xl md:text-3xl font-sans font-light text-gray-300 mt-4 normal-case max-w-3xl mx-auto">
-                        {city.heroSubtitle}
+                        {city!.heroSubtitle}
                     </h2>
                     <div className="pt-8">
                         <ContactButton className="px-8 py-3 inline-flex items-center gap-2">
@@ -173,13 +173,13 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
                     </h2>
                     <p
                         className="text-lg text-gray-300 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: city.intro }}
+                        dangerouslySetInnerHTML={{ __html: city!.intro }}
                     />
                     <p
                         className="text-gray-400 leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: city.localDetail }}
+                        dangerouslySetInnerHTML={{ __html: city!.localDetail }}
                     />
-                    <p className="text-gray-400 text-sm italic">{city.processNote}</p>
+                    <p className="text-gray-400 text-sm italic">{city!.processNote}</p>
                 </div>
             </section>
 
@@ -190,7 +190,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <Ruler className="w-10 h-10 text-voltura-gold mb-4" />
                             <h3 className="text-xl font-serif text-white mb-2">Proyecto a Medida</h3>
-                            <p className="text-gray-400 text-sm">Diseño personalizado adaptado a tus necesidades y a las características estructurales de tu vivienda en {city.displayName}.</p>
+                            <p className="text-gray-400 text-sm">Diseño personalizado adaptado a tus necesidades y a las características estructurales de tu vivienda en {city!.displayName}.</p>
                         </div>
                         <div className="p-6 border border-white/5 rounded-sm hover:bg-white/5 transition-colors">
                             <Clock className="w-10 h-10 text-voltura-gold mb-4" />
@@ -218,7 +218,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
                         <p className="text-voltura-gold font-bold uppercase tracking-widest text-sm mb-2">Metodología</p>
                         <h2 className="text-4xl font-serif text-white mb-6">Nuestro Proceso de Reforma</h2>
                         <p className="text-gray-300">
-                            Simplificamos lo complejo. Un sistema paso a paso diseñado para eliminar la incertidumbre y garantizar resultados de alta gama en {city.displayName}.
+                            Simplificamos lo complejo. Un sistema paso a paso diseñado para eliminar la incertidumbre y garantizar resultados de alta gama en {city!.displayName}.
                         </p>
                     </div>
 
@@ -227,14 +227,14 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
                             <div className="text-6xl font-serif text-white/10 font-bold">01</div>
                             <h3 className="text-2xl font-serif text-white">Estudio y Diseño</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Visitamos tu inmueble en {city.displayName} para entender el espacio. Realizamos mediciones, propuestas de distribución y moodboards de materiales.
+                                Visitamos tu inmueble en {city!.displayName} para entender el espacio. Realizamos mediciones, propuestas de distribución y moodboards de materiales.
                             </p>
                         </div>
                         <div className="space-y-4">
                             <div className="text-6xl font-serif text-white/10 font-bold">02</div>
                             <h3 className="text-2xl font-serif text-white">Gestión Técnica</h3>
                             <p className="text-gray-400 leading-relaxed">
-                                Tramitación de licencias de obras mayores o menores, cédulas de habitabilidad y proyectos ejecutivos visados ante el ayuntamiento de {city.displayName}.
+                                Tramitación de licencias de obras mayores o menores, cédulas de habitabilidad y proyectos ejecutivos visados ante el ayuntamiento de {city!.displayName}.
                             </p>
                         </div>
                         <div className="space-y-4">
@@ -253,7 +253,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
-                            Alcance de nuestras Reformas Integrales en {city.displayName}
+                            Alcance de nuestras Reformas Integrales en {city!.displayName}
                         </h2>
                         <div className="w-20 h-1 bg-voltura-gold mx-auto"></div>
                     </div>
@@ -302,9 +302,9 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
             {/* CTA Final */}
             <section id="contacto" className="py-24 bg-gradient-to-b from-voltura-blue to-voltura-slate">
                 <div className="max-w-5xl mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-serif text-white mb-6">{city.ctaText}</h2>
+                    <h2 className="text-4xl font-serif text-white mb-6">{city!.ctaText}</h2>
                     <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                        Convierte tu vivienda en el hogar que mereces. Sin compromiso, nuestros técnicos valorarán tu reforma en {city.displayName}.
+                        Convierte tu vivienda en el hogar que mereces. Sin compromiso, nuestros técnicos valorarán tu reforma en {city!.displayName}.
                     </p>
                     <ContactButton className="px-10 py-4 text-lg shadow-lg shadow-voltura-gold/20">
                         Solicitar Visita Técnica
@@ -316,7 +316,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
             <section className="py-16 bg-voltura-blue border-t border-white/10">
                 <div className="max-w-4xl mx-auto px-4">
                     <h3 className="text-2xl font-serif text-white mb-8 text-center">
-                        Otros servicios en {city.displayName}
+                        Otros servicios en {city!.displayName}
                     </h3>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {servicios.map((s) => (
@@ -338,7 +338,7 @@ export default async function ReformasIntegralesCiudadPage({ params }: Props) {
             <section className="py-20 bg-voltura-blue border-t border-white/10">
                 <div className="max-w-4xl mx-auto px-4">
                     <h2 className="text-3xl font-serif text-white mb-10 text-center">
-                        Preguntas sobre reformas integrales en {city.displayName}
+                        Preguntas sobre reformas integrales en {city!.displayName}
                     </h2>
                     <FaqAccordion items={faqs} />
                 </div>

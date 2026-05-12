@@ -7,7 +7,17 @@ const secret = new TextEncoder().encode(
 )
 
 export async function middleware(request: NextRequest) {
-    if (request.nextUrl.pathname.startsWith('/admin')) {
+    const { pathname } = request.nextUrl;
+
+    // Rewrite /reformas-integrales-en-{slug} → /reformas-integrales-en/{slug}
+    const cityMatch = pathname.match(/^\/reformas-integrales-en-([a-z-]+)$/);
+    if (cityMatch) {
+        const url = request.nextUrl.clone();
+        url.pathname = `/reformas-integrales-en/${cityMatch[1]}`;
+        return NextResponse.rewrite(url);
+    }
+
+    if (pathname.startsWith('/admin')) {
         if (request.nextUrl.pathname === '/admin/login') {
             return NextResponse.next()
         }
@@ -30,5 +40,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: '/admin/:path*',
+    matcher: ['/admin/:path*', '/reformas-integrales-en-:slug+'],
 }

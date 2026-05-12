@@ -42,6 +42,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/admin/:path*',
-        { source: '/reformas-integrales-en-[a-z][a-z-]*' },
+        '/reformas-integrales-en-:ciudad([a-z-]+)',
     ],
 }

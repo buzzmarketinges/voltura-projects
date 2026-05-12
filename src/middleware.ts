@@ -9,6 +9,15 @@ const secret = new TextEncoder().encode(
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
+    // Redirect /reformas-integrales-en/{slug} → /reformas-integrales-en-{slug} (301)
+    const slashMatch = pathname.match(/^\/reformas-integrales-en\/([a-z][a-z-]*)$/);
+    if (slashMatch) {
+        return NextResponse.redirect(
+            new URL(`/reformas-integrales-en-${slashMatch[1]}`, request.url),
+            { status: 301 }
+        );
+    }
+
     // Rewrite /reformas-integrales-en-{slug} → /reformas-integrales-en/{slug}
     const cityMatch = pathname.match(/^\/reformas-integrales-en-([a-z-]+)$/);
     if (cityMatch) {
@@ -43,5 +52,6 @@ export const config = {
     matcher: [
         '/admin/:path*',
         '/reformas-integrales-en-:ciudad([a-z-]+)',
+        '/reformas-integrales-en/:ciudad([a-z-]+)',
     ],
 }

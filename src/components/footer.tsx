@@ -58,9 +58,7 @@ export function Footer() {
                             <a href="https://maps.app.goo.gl/dqSVzJHb9zaxD4av5" target="_blank" rel="noopener noreferrer" className="hover:text-voltura-gold transition-colors font-semibold text-white/90 whitespace-nowrap">
                               Voltura Projects | Reformas integrales en Barcelona
                             </a>
-                        </li>
-                        <li className="text-slate-300">Carrer de Bernat Metge, 14, 08019 Barcelona</li>
-                    </ul>
+                        </li>                    </ul>
                 </div>
             </div>
 

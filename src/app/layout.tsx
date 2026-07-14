@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
   },
+  other: {
+    "verify-getalink": "verify-getalink-11915",
+  },
 };
 
 export const viewport = {
